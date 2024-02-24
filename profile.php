@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html data-bs-theme="dark" lang="en">
 
@@ -94,11 +98,11 @@
 
 <body>
     <nav class="navbar navbar-expand-md fixed-top navbar-shrink py-3 navbar-light" id="mainNav">
-        <div class="container"><a href="index.html"><img src="assets/img/main-logo/CodixsGo.png" width="110" height="100"></a><a class="navbar-brand d-flex align-items-center" href="/"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a href="index.php"><img src="assets/img/main-logo/CodixsGo.png" width="110" height="100"></a><a class="navbar-brand d-flex align-items-center" href="/"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="features.php">Features</a></li>
                 </ul>
                 <div class="theme-switcher dropdown ms-auto" style="margin-right: 20px;margin-bottom: 10px;margin-top: 10px;"><a class="dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-sun-fill mb-1">
                             <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
@@ -111,7 +115,7 @@
                             </svg>Dark</a><a class="dropdown-item d-flex align-items-center" href="#" data-bs-theme-value="auto"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-circle-half opacity-50 me-2">
                                 <path d="M8 15A7 7 0 1 0 8 1zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16"></path>
                             </svg>Auto</a></div>
-                </div><a class="btn btn-primary border rounded-pill shadow" role="button" href="profile.html"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" fill="none" style="font-size: 25px;">
+                </div><a class="btn btn-primary border rounded-pill shadow" role="button" href="profile.php"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" fill="none" style="font-size: 25px;">
 
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M10 9C11.6569 9 13 7.65685 13 6C13 4.34315 11.6569 3 10 3C8.34315 3 7 4.34315 7 6C7 7.65685 8.34315 9 10 9ZM3 18C3 14.134 6.13401 11 10 11C13.866 11 17 14.134 17 18H3Z" fill="currentColor"></path>
                     </svg></a>
@@ -128,7 +132,10 @@
                 <div class="modal-body">
                     <p>Are you sure you want to leave me alone?</p>
                 </div>
-                <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">No</button><button class="btn btn-primary" type="button">Yes</button></div>
+                <div class="modal-footer">
+                    <button class="btn btn-light" type="button" data-bs-dismiss="modal">No</button>
+                    <button class="btn btn-primary" type="button" id="yes_button">Yes</button>
+                </div>
             </div>
         </div>
     </div>
@@ -179,11 +186,12 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <h5>Stacked </h5><div class="progress beautiful">
-    <div class="progress-bar progress-bar-success" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 35%;"></div>
-    <div class="progress-bar progress-bar-warning" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 20%;"></div>
-    <div class="progress-bar progress-bar-danger" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 10%;"></div>
-</div>
+                                        <h5>Stacked </h5>
+                                        <div class="progress beautiful">
+                                            <div class="progress-bar progress-bar-success" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 35%;"></div>
+                                            <div class="progress-bar progress-bar-warning" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 20%;"></div>
+                                            <div class="progress-bar progress-bar-danger" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 10%;"></div>
+                                        </div>
                                     </div>
                                     <div class="col-md-4">
                                         <h4>Bar Height</h4>
@@ -209,7 +217,7 @@
                             </div>
                             <div class="col-md-3 col-lg-2 col-xl-2 col-xxl-2 offset-md-6 offset-lg-8 offset-xl-8 offset-xxl-8" style="text-align: center;margin-bottom: 10px;"><button class="btn btn-primary btn-sm border rounded-pill" id="submitBtn-3" type="submit" style="width: 150px;text-align: center;">Change Details</button></div>
                             <div class="col-md-3 col-lg-2 col-xl-2 col-xxl-2 offset-md-0 offset-lg-0 offset-xl-0 offset-xxl-0" style="text-align: center;margin-bottom: 10px;"><button class="btn btn-primary btn-sm border rounded-pill" id="submitBtn-2" type="submit" style="width: 150px;text-align: center;">Change Details</button></div>
-                            <div class="col-md-3 col-lg-2 col-xl-2 col-xxl-2 offset-md-9 offset-lg-9 offset-xl-10 offset-xxl-10" style="text-align: center;margin-top: 10px;"><button class="btn btn-primary btn-sm border rounded-pill" id="submitBtn-1" type="submit" style="width: 150px;text-align: center;background: var(--bs-danger);" data-bs-target="#modal-1" data-bs-toggle="modal">Log Out</button></div>
+                            <div class="col-md-3 col-lg-2 col-xl-2 col-xxl-2 offset-md-9 offset-lg-9 offset-xl-10 offset-xxl-10" style="text-align: center;margin-top: 10px;"><button class="btn btn-primary btn-sm border rounded-pill" id="submitBtn-1" type="button" style="width: 150px;text-align: center;background: var(--bs-danger);" data-bs-target="#modal-1" data-bs-toggle="modal">Log Out</button></div>
                         </div>
                     </form>
                 </div>
@@ -267,6 +275,19 @@
     </footer>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#yes_button').click(function() {
+                $.ajax({
+                    url: 'assets/php/destroy_session.php',
+                    type: 'POST',
+                    success: function(response) {
+                        window.location.href = 'index.php';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
-
 </html>

@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html data-bs-theme="dark" lang="en">
 
@@ -7,9 +11,6 @@
     <title>Home - Brand</title>
     <script>
         (function() {
-
-            // JavaScript snippet handling Dark/Light mode switching
-
             const getStoredTheme = () => localStorage.getItem('theme');
             const setStoredTheme = theme => localStorage.setItem('theme', theme);
             const forcedTheme = document.documentElement.getAttribute('data-bss-forced-theme');
@@ -96,11 +97,11 @@
 
 <body>
     <nav class="navbar navbar-expand-md fixed-top navbar-shrink py-3 navbar-light" id="mainNav">
-        <div class="container"><a href="index.html"><img src="assets/img/main-logo/CodixsGo.png" width="110" height="100"></a><a class="navbar-brand d-flex align-items-center" href="/"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a href="index.php"><img src="assets/img/main-logo/CodixsGo.png" width="110" height="100"></a><a class="navbar-brand d-flex align-items-center" href="/"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.php">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="features.php">Features</a></li>
                 </ul>
                 <div class="theme-switcher dropdown ms-auto" style="margin-right: 20px;margin-bottom: 10px;margin-top: 10px;"><a class="dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-sun-fill mb-1">
                             <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
@@ -113,10 +114,17 @@
                             </svg>Dark</a><a class="dropdown-item d-flex align-items-center" href="#" data-bs-theme-value="auto"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-circle-half opacity-50 me-2">
                                 <path d="M8 15A7 7 0 1 0 8 1zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16"></path>
                             </svg>Auto</a></div>
-                </div><a class="btn btn-primary border rounded-pill shadow" role="button" href="profile.html"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" fill="none" style="font-size: 25px;">
-
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10 9C11.6569 9 13 7.65685 13 6C13 4.34315 11.6569 3 10 3C8.34315 3 7 4.34315 7 6C7 7.65685 8.34315 9 10 9ZM3 18C3 14.134 6.13401 11 10 11C13.866 11 17 14.134 17 18H3Z" fill="currentColor"></path>
-                    </svg></a>
+                </div>
+                <?php
+                    if (isset($_SESSION['email']) && isset($_SESSION['pass'])) {
+                        $golink = 'profile.php';
+                    } else {
+                        $golink = 'login.php';
+                    }
+                    echo "<a class='btn btn-primary border rounded-pill shadow' role='button' href='$golink'><svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20' fill='none' style='font-size: 25px;'>
+                        <path fill-rule='evenodd' clip-rule='evenodd' d='M10 9C11.6569 9 13 7.65685 13 6C13 4.34315 11.6569 3 10 3C8.34315 3 7 4.34315 7 6C7 7.65685 8.34315 9 10 9ZM3 18C3 14.134 6.13401 11 10 11C13.866 11 17 14.134 17 18H3Z' fill='currentColor'></path>
+                    </svg></a>";
+                ?>
             </div>
         </div>
     </nav>
@@ -127,9 +135,15 @@
                     <div class="text-center">
                         <h3 class="display-6 fw-bold rubberBand animated mb-5"><span class="underline">LEARN</span>&nbsp;TO CODE WHILE HAVING&nbsp;<span class="underline">FUN</span>.</h3>
                         <p class="fs-5 text-muted mb-5">Welcome to <strong><span style="color: rgb(49, 55, 120);">Codixs</span><span style="color: rgb(241, 90, 41);">Go</span></strong></p>
-                        <form class="d-flex justify-content-center flex-wrap" data-aos="zoom-in" data-aos-duration="1000" method="post" data-bs-theme="light">
-                            <div class="shadow-lg mb-3"><input class="form-control" type="email" name="email" id="emailInput" placeholder="Your Email"></div>
-                            <div class="shadow-lg mb-3"><a class="btn btn-primary" role="button" href="signup.html" onclick="copyEmail()">Sign Up</a></div>                            
+                        <form class="d-flex justify-content-center flex-wrap" data-aos="zoom-in" data-aos-duration="1000" method="post" data-bs-theme="black">
+                            <?php
+                            if (isset($_SESSION['email']) && isset($_SESSION['pass'])) {
+                                echo '<p class="fs-1 text-muted mb-5">Hello, ' . $_SESSION['username'] . '! &#128516</p>';
+                            } else {
+                                echo '<div class="shadow-lg mb-3"><input class="form-control" type="email" name="email" id="emailInput" placeholder="Your Email"></div>
+                                    <div class="shadow-lg mb-3"><a class="btn btn-primary" role="button" href="signup.php" onclick="copyEmail()">Sign Up</a></div>';
+                            };
+                            ?>
                         </form>
                     </div>
                 </div>
@@ -208,22 +222,27 @@
     </section>
     <section></section>
     <section></section>
-    <section class="py-4 py-xl-5">
-        <div class="container">
-            <div class="bg-primary border rounded border-0 border-primary overflow-hidden">
-                <div class="row g-0">
-                    <div class="col-md-6 d-flex flex-column justify-content-center">
-                        <div class="text-white p-4 p-md-5">
-                            <h2 class="fw-bold mb-3">Do you have an Account?</h2>
-                            <p class="mb-4">Take quiz to test your skills in coding.</p>
-                            <div class="my-3"><a class="btn btn-secondary me-2 mt-2" role="button" href="login.html">Sign In</a><a class="btn btn-light mt-2" role="button" href="signup.html">Sign Up</a></div>
+    <?php
+    if (isset($_SESSION['email']) && isset($_SESSION['pass'])) {
+    } else {
+        echo '<section class="py-4 py-xl-5">
+            <div class="container">
+                <div class="bg-primary border rounded border-0 border-primary overflow-hidden">
+                    <div class="row g-0">
+                        <div class="col-md-6 d-flex flex-column justify-content-center">
+                            <div class="text-white p-4 p-md-5">
+                                <h2 class="fw-bold mb-3">Do you have an Account?</h2>
+                                <p class="mb-4">Take quiz to test your skills in coding.</p>
+                                <div class="my-3"><a class="btn btn-secondary me-2 mt-2" role="button" href="login.php">Sign In</a><a class="btn btn-light mt-2" role="button" href="signup.php">Sign Up</a></div>
+                            </div>
                         </div>
+                        <div class="col-md-6 order-first order-md-last" style="min-height: 250px;"><img class="w-100 h-100 fit-contain pt-5 pt-md-0" src="assets/img/illustrations/web-development.svg"></div>
                     </div>
-                    <div class="col-md-6 order-first order-md-last" style="min-height: 250px;"><img class="w-100 h-100 fit-contain pt-5 pt-md-0" src="assets/img/illustrations/web-development.svg"></div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>';
+    }
+    ?>
     <section class="py-5"></section>
     <section class="py-4 py-xl-5 mb-5">
         <div class="container">
@@ -325,7 +344,7 @@
             var emailInputValue = document.getElementById('emailInput').value;
             localStorage.setItem('copiedEmail', emailInputValue);
         }
-    </script>    
+    </script>
 </body>
 
 </html>

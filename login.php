@@ -1,6 +1,10 @@
+<?php
+    session_start();
+    $connection = mysqli_connect('localhost','root', '', 'codixs') or die ('Unable to connect server');
+?>
+
 <!DOCTYPE html>
 <html data-bs-theme="dark" lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -94,11 +98,11 @@
 
 <body>
     <nav class="navbar navbar-expand-md fixed-top navbar-shrink py-3 navbar-light" id="mainNav">
-        <div class="container"><a href="index.html"><img src="assets/img/main-logo/CodixsGo.png" width="110" height="100"></a><a class="navbar-brand d-flex align-items-center" href="/"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a href="index.php"><img src="assets/img/main-logo/CodixsGo.png" width="110" height="100"></a><a class="navbar-brand d-flex align-items-center" href="/"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="features.php">Features</a></li>
                 </ul>
                 <div class="theme-switcher dropdown ms-auto" style="margin-right: 20px;margin-bottom: 10px;margin-top: 10px;"><a class="dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-sun-fill mb-1">
                             <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
@@ -126,10 +130,16 @@
                     <div class="col-md-6 text-center"><img class="img-fluid w-100" src="assets/img/illustrations/login.svg"></div>
                     <div class="col-md-5 col-xl-4 text-center text-md-start">
                         <h2 class="display-6 fw-bold mb-5"><span class="underline pb-1"><strong>Login</strong><br></span></h2>
-                        <form method="post" data-bs-theme="light">
-                            <div class="mb-3"><input class="shadow form-control" type="email" name="email" placeholder="Email"></div>
-                            <div class="mb-3"><input class="shadow form-control" type="password" name="password" placeholder="Password"></div>
-                            <div class="mb-5"><button class="btn btn-primary shadow" type="submit">Log in</button></div>
+                        <form action="login.php" method="post" data-bs-theme="light">
+                            <div class="mb-3">
+                                <input class="shadow form-control" type="email" name="loginemail" placeholder="Email">
+                            </div>
+                            <div class="mb-3">
+                                <input class="shadow form-control" type="password" name="loginpass" placeholder="Password">
+                            </div>
+                            <div class="mb-5">
+                                <button class="btn btn-primary shadow" id="processlogin" name="processlogin" type="submit">Log in</button>
+                            </div>
                         </form>
                         <p class="text-muted"><a href="forgotten-password.html">Forgot your password?</a></p>
                     </div>
@@ -186,8 +196,79 @@
             </div>
         </div>
     </footer>
+    <div class="modal" tabindex="-1" role="dialog" id="loginSuccessModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Login Successful!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Welcome! Your login was successful.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="modalproceed" name="modalproceed" data-bs-dismiss="modal">Proceed</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" tab ="-1" role="dialog" id="entervariables">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Please Enter!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Kindly provide input for all variables.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Okay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
-</body>
 
+    <?php
+        if (isset($_POST['processlogin'])) {
+
+            if ($connection->connect_error) {
+                die("Connection failed: " . $connection->connect_error);
+            }
+            
+            $email = $_POST['loginemail'];
+            $logpass = $_POST['loginpass'];
+            
+            $select = mysqli_query($connection, "SELECT * FROM list WHERE Email='$email' AND Password='$logpass'");
+            $row = mysqli_fetch_array($select);
+            
+            if (empty($email) || empty($logpass)) {
+                echo "<script>
+                        var entervariables = new bootstrap.Modal(document.getElementById('entervariables'));
+                        entervariables.show();
+                      </script>";
+            } else {
+                if(is_array($row)) {
+                    $_SESSION['email'] = $row['Email'];
+                    $_SESSION['username'] = $row['Name'];
+                    $_SESSION['pass'] = $row['Password'];
+                } else {
+                    
+                };
+                if (isset($_SESSION['username'])) {
+                    echo "<script>
+                        var loginSuccessModal = new bootstrap.Modal(document.getElementById('loginSuccessModal'));
+                        loginSuccessModal.show();
+                        document.getElementById('modalproceed').addEventListener('click', function() {
+                        window.location.href = 'index.php';
+                        });
+                        </script>";
+                };
+            };
+        }
+    ?>
+</body>
 </html>
