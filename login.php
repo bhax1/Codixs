@@ -12,9 +12,6 @@
     <title>Contacts - Brand</title>
     <script>
         (function() {
-
-            // JavaScript snippet handling Dark/Light mode switching
-
             const getStoredTheme = () => localStorage.getItem('theme');
             const setStoredTheme = theme => localStorage.setItem('theme', theme);
             const forcedTheme = document.documentElement.getAttribute('data-bss-forced-theme');
