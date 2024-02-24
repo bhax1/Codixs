@@ -5,6 +5,7 @@
 
 <!DOCTYPE html>
 <html data-bs-theme="dark" lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -115,10 +116,17 @@
                             </svg>Dark</a><a class="dropdown-item d-flex align-items-center" href="#" data-bs-theme-value="auto"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-circle-half opacity-50 me-2">
                                 <path d="M8 15A7 7 0 1 0 8 1zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16"></path>
                             </svg>Auto</a></div>
-                </div><a class="btn btn-primary border rounded-pill shadow" role="button" href="profile.html"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" fill="none" style="font-size: 25px;">
-
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10 9C11.6569 9 13 7.65685 13 6C13 4.34315 11.6569 3 10 3C8.34315 3 7 4.34315 7 6C7 7.65685 8.34315 9 10 9ZM3 18C3 14.134 6.13401 11 10 11C13.866 11 17 14.134 17 18H3Z" fill="currentColor"></path>
-                    </svg></a>
+                </div>
+                <?php
+                    if (isset($_SESSION['email']) && isset($_SESSION['pass'])) {
+                        $golink = 'profile.php';
+                    } else {
+                        $golink = 'login.php';
+                    }
+                    echo "<a class='btn btn-primary border rounded-pill shadow' role='button' href='$golink'><svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20' fill='none' style='font-size: 25px;'>
+                        <path fill-rule='evenodd' clip-rule='evenodd' d='M10 9C11.6569 9 13 7.65685 13 6C13 4.34315 11.6569 3 10 3C8.34315 3 7 4.34315 7 6C7 7.65685 8.34315 9 10 9ZM3 18C3 14.134 6.13401 11 10 11C13.866 11 17 14.134 17 18H3Z' fill='currentColor'></path>
+                    </svg></a>";
+                ?>
             </div>
         </div>
     </nav>
@@ -132,10 +140,10 @@
                         <h2 class="display-6 fw-bold mb-5"><span class="underline pb-1"><strong>Login</strong><br></span></h2>
                         <form action="login.php" method="post" data-bs-theme="light">
                             <div class="mb-3">
-                                <input class="shadow form-control" type="email" name="loginemail" placeholder="Email">
+                                <input class="shadow form-control" type="text" name="loginemail" placeholder="Email/Username" required>
                             </div>
                             <div class="mb-3">
-                                <input class="shadow form-control" type="password" name="loginpass" placeholder="Password">
+                                <input class="shadow form-control" type="password" name="loginpass" placeholder="Password" required>
                             </div>
                             <div class="mb-5">
                                 <button class="btn btn-primary shadow" id="processlogin" name="processlogin" type="submit">Log in</button>
@@ -212,15 +220,15 @@
             </div>
         </div>
     </div>
-    <div class="modal" tab ="-1" role="dialog" id="entervariables">
+    <div class="modal" tab ="-1" role="dialog" id="doesnotexist">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Please Enter!</h5>
+                    <h5 class="modal-title">Account does not exist</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Kindly provide input for all variables.</p>
+                    <p>The account you are trying to login does not exist. Check if your password is correct.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Okay</button>
@@ -233,42 +241,38 @@
     <script src="assets/js/bs-init.js"></script>
 
     <?php
-        if (isset($_POST['processlogin'])) {
+    if (isset($_POST['processlogin'])) {
 
-            if ($connection->connect_error) {
-                die("Connection failed: " . $connection->connect_error);
-            }
-            
-            $email = $_POST['loginemail'];
-            $logpass = $_POST['loginpass'];
-            
-            $select = mysqli_query($connection, "SELECT * FROM list WHERE Email='$email' AND Password='$logpass'");
-            $row = mysqli_fetch_array($select);
-            
-            if (empty($email) || empty($logpass)) {
-                echo "<script>
-                        var entervariables = new bootstrap.Modal(document.getElementById('entervariables'));
-                        entervariables.show();
-                      </script>";
-            } else {
-                if(is_array($row)) {
-                    $_SESSION['email'] = $row['Email'];
-                    $_SESSION['username'] = $row['Name'];
-                    $_SESSION['pass'] = $row['Password'];
-                } else {
-                    
-                };
-                if (isset($_SESSION['username'])) {
-                    echo "<script>
-                        var loginSuccessModal = new bootstrap.Modal(document.getElementById('loginSuccessModal'));
-                        loginSuccessModal.show();
-                        document.getElementById('modalproceed').addEventListener('click', function() {
-                        window.location.href = 'index.php';
-                        });
-                        </script>";
-                };
-            };
+        if ($connection->connect_error) {
+            die("Connection failed: " . $connection->connect_error);
         }
+
+        $email = $_POST['loginemail'];
+        $logpass = $_POST['loginpass'];
+
+        $select = mysqli_query($connection, "SELECT * FROM list WHERE Email='$email' OR Name='$email'");
+        $row = mysqli_fetch_array($select);
+
+        if ($row && password_verify($logpass, $row['Password'])) {
+            $_SESSION['email'] = $row['Email'];
+            $_SESSION['username'] = $row['Name'];
+
+            echo "<script>
+                var loginSuccessModal = new bootstrap.Modal(document.getElementById('loginSuccessModal'));
+                loginSuccessModal.show();
+                document.getElementById('modalproceed').addEventListener('click', function() {
+                window.location.href = 'index.php';
+                });
+            </script>";
+        } else {
+            echo "<script>
+                    var doesnotexist = new bootstrap.Modal(document.getElementById('doesnotexist'));
+                    doesnotexist.show();
+                </script>";
+        }
+        $stmt->close();
+    }
     ?>
 </body>
+
 </html>

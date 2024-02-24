@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    $connection = mysqli_connect('localhost','root', '', 'codixs') or die ('Unable to connect server');
+?>
+
 <!DOCTYPE html>
 <html data-bs-theme="dark" lang="en">
 
@@ -111,10 +116,17 @@
                             </svg>Dark</a><a class="dropdown-item d-flex align-items-center" href="#" data-bs-theme-value="auto"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-circle-half opacity-50 me-2">
                                 <path d="M8 15A7 7 0 1 0 8 1zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16"></path>
                             </svg>Auto</a></div>
-                </div><a class="btn btn-primary border rounded-pill shadow" role="button" href="profile.html"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" fill="none" style="font-size: 25px;">
-
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10 9C11.6569 9 13 7.65685 13 6C13 4.34315 11.6569 3 10 3C8.34315 3 7 4.34315 7 6C7 7.65685 8.34315 9 10 9ZM3 18C3 14.134 6.13401 11 10 11C13.866 11 17 14.134 17 18H3Z" fill="currentColor"></path>
-                    </svg></a>
+                </div>
+                <?php
+                    if (isset($_SESSION['email']) && isset($_SESSION['pass'])) {
+                        $golink = 'profile.php';
+                    } else {
+                        $golink = 'login.php';
+                    }
+                    echo "<a class='btn btn-primary border rounded-pill shadow' role='button' href='$golink'><svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20' fill='none' style='font-size: 25px;'>
+                        <path fill-rule='evenodd' clip-rule='evenodd' d='M10 9C11.6569 9 13 7.65685 13 6C13 4.34315 11.6569 3 10 3C8.34315 3 7 4.34315 7 6C7 7.65685 8.34315 9 10 9ZM3 18C3 14.134 6.13401 11 10 11C13.866 11 17 14.134 17 18H3Z' fill='currentColor'></path>
+                    </svg></a>";
+                ?>
             </div>
         </div>
     </nav>
@@ -128,12 +140,11 @@
                         <div class="col-md-5 col-xl-4 text-center text-md-start">
                             <h2 class="display-6 fw-bold mb-5"><span class="underline pb-1"><strong>Sign up</strong></span></h2>
                             <form method="post" data-bs-theme="light">
-                                <div class="mb-3">
-                                    <input class="shadow-sm form-control" type="email" name="email" id="copiedEmail" placeholder="Email">
-                                </div>
-                                <div class="mb-3"><input class="shadow-sm form-control" type="password" name="password" placeholder="Password"></div>
-                                <div class="mb-3"><input class="shadow-sm form-control" type="password" name="password_repeat" placeholder="Repeat Password"></div>
-                                <div class="mb-5"><button class="btn btn-primary shadow" type="submit">Create account</button></div>
+                                <div class="mb-3"><input class="shadow-sm form-control" type="email" name="email" id="copiedEmail" placeholder="Email" required></div>
+                                <div class="mb-3"><input class="shadow-sm form-control" type="text" name="username" placeholder="Username" required></div>
+                                <div class="mb-3"><input class="shadow-sm form-control" type="password" name="password" placeholder="Password" required></div>
+                                <div class="mb-3"><input class="shadow-sm form-control" type="password" name="password_repeat" placeholder="Confirm Password" required></div>
+                                <div class="mb-5"><button class="btn btn-primary shadow" type="submit" name="processsignup">Create account</button></div>
                             </form>
                             <p class="text-muted">Have an account? <a href="login.php">Log in&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-arrow-narrow-right">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -196,12 +207,133 @@
             </div>
         </div>
     </footer>
+    <div class="modal" tabindex="-1" role="dialog" id="signupSuccessModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Signup Successful!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Welcome new user! Your signup was successful.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="modalproceed" name="modalproceed" data-bs-dismiss="modal">Proceed</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" tab ="-1" role="dialog" id="notsame">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Password does not match</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Please check your password if they match.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Okay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" tab ="-1" role="dialog" id="shortpass">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Password is short</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>The password is less than 5 characters.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Okay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" tab ="-1" role="dialog" id="accountexist">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Account already exist</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Account associated with this email already exist.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Okay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script>
         var copiedEmail = localStorage.getItem('copiedEmail');
         document.getElementById('copiedEmail').value = copiedEmail;
     </script>
-</body>
 
+    <?php
+        if (isset($_POST['processsignup'])) {
+            if ($connection->connect_error) {
+                die("Connection failed: " . $connection->connect_error);
+            }
+            
+            $email = $_POST['email'];
+            $username = $_POST['username'];
+            $pass = $_POST['password'];
+            $conpass = $_POST['password_repeat'];
+            $date = date('Y-m-d H:i:s');
+            
+            $checkQuery = mysqli_query($connection, "SELECT * FROM list WHERE Email = '$email'");
+            $existingRow = mysqli_fetch_array($checkQuery);
+            
+            if (empty($email) || empty($username) || empty($pass) || empty($conpass)) {
+                echo "<script>
+                        var entervariables = new bootstrap.Modal(document.getElementById('entervariables'));
+                        entervariables.show();
+                      </script>";
+            } else {
+                if (strlen($pass) <= 5) {
+                    echo "<script>
+                            var shortpass = new bootstrap.Modal(document.getElementById('shortpass'));
+                            shortpass.show();
+                        </script>";
+                } else if ($pass != $conpass) {
+                    echo "<script>
+                            var notsame = new bootstrap.Modal(document.getElementById('notsame'));
+                            notsame.show();
+                        </script>";
+                } else {
+                    if ($existingRow) {
+                        echo "<script>
+                            var accountexist = new bootstrap.Modal(document.getElementById('accountexist'));
+                            accountexist.show();
+                        </script>";
+                    } else {
+                        $hashedPassword = password_hash($pass, PASSWORD_DEFAULT);
+                        $insertQuery = "INSERT INTO list (Name, Password, Date, Email) VALUES ('$username', '$hashedPassword', '$date', '$email')";
+                        if (mysqli_query($connection, $insertQuery)) {
+                            echo "<script>
+                                var signupSuccessModal = new bootstrap.Modal(document.getElementById('signupSuccessModal'));
+                                signupSuccessModal.show();
+                                document.getElementById('modalproceed').addEventListener('click', function() {
+                                window.location.href = 'index.php';
+                                });
+                            </script>";
+                        } else {
+                            echo "<script>Error: '" . $insertQuery . "'<br>" . mysqli_error($connection) . "</script>";
+                        }
+                    };
+                }
+            };
+        }
+    ?>
+</body>
 </html>

@@ -111,10 +111,17 @@
                             </svg>Dark</a><a class="dropdown-item d-flex align-items-center" href="#" data-bs-theme-value="auto"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-circle-half opacity-50 me-2">
                                 <path d="M8 15A7 7 0 1 0 8 1zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16"></path>
                             </svg>Auto</a></div>
-                </div><a class="btn btn-primary border rounded-pill shadow" role="button" href="profile.html"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" fill="none" style="font-size: 25px;">
-
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10 9C11.6569 9 13 7.65685 13 6C13 4.34315 11.6569 3 10 3C8.34315 3 7 4.34315 7 6C7 7.65685 8.34315 9 10 9ZM3 18C3 14.134 6.13401 11 10 11C13.866 11 17 14.134 17 18H3Z" fill="currentColor"></path>
-                    </svg></a>
+                </div>
+                <?php
+                    if (isset($_SESSION['email']) && isset($_SESSION['pass'])) {
+                        $golink = 'profile.php';
+                    } else {
+                        $golink = 'login.php';
+                    }
+                    echo "<a class='btn btn-primary border rounded-pill shadow' role='button' href='$golink'><svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 20 20' fill='none' style='font-size: 25px;'>
+                        <path fill-rule='evenodd' clip-rule='evenodd' d='M10 9C11.6569 9 13 7.65685 13 6C13 4.34315 11.6569 3 10 3C8.34315 3 7 4.34315 7 6C7 7.65685 8.34315 9 10 9ZM3 18C3 14.134 6.13401 11 10 11C13.866 11 17 14.134 17 18H3Z' fill='currentColor'></path>
+                    </svg></a>";
+                ?>
             </div>
         </div>
     </nav>
@@ -356,5 +363,4 @@
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
 </body>
-
 </html>
