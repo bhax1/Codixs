@@ -31,3 +31,5 @@ document.addEventListener('DOMContentLoaded', function() {
     mediumBtn.addEventListener('click', showQuiz);
     hardBtn.addEventListener('click', showQuiz);
 });
+
+
