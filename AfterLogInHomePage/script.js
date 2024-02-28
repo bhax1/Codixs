@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // easyBtn.addEventListener('click', showQuiz);
     
     // Global variable to store the total number of questions to be answered
-    
     let totalQuestions = 0;
     let diff = '';
     // Global variable to keep track of the number of questions answered
