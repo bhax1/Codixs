@@ -53,7 +53,16 @@
         <button class="difficulty-btn" id="medium-btn">Medium</button>
         <button class="difficulty-btn" id="hard-btn">Hard</button>
     </div>
+    <div class="question-selection">
+        <label for="question-select">Questions:</label>
+        <select id="question-select">
+            <option value="5">5</option>
+            <option value="10">10</option>
+           
+        </select>
+    </div>
 </div>
+
 
 <div class="quiz-container hidden" id="quiz">
     <div class="quiz-header">

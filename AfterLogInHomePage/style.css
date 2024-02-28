@@ -134,3 +134,15 @@ button:focus {
 .quiz-header input[type="radio"] {
   display: none; 
 }
+
+.question-selection {
+  margin-top: 20px; /* Add some top margin to create space */
+  margin-bottom: 3px; /* Add some bottom margin for spacing */
+}
+
+.question-selection select {
+  width: 75px; /* Make the select element full width */
+  padding: 10px; /* Add some padding for better appearance */
+  font-size: 1rem; /* Adjust font size if needed */
+}
+
