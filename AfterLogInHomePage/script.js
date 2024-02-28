@@ -1,11 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
     const startBtn = document.getElementById('start-btn');
     const easyBtn = document.getElementById('easy-btn');
+    const mediumBtn = document.getElementById('medium-btn');
+    const hardBtn = document.getElementById('hard-btn');
+    const difficultyContainer = document.getElementById('difficulty-container');
+    const quizContainer = document.getElementById('quiz');
+    const startContainer = document.getElementById('start-container');
     const submitBtn = document.getElementById('submit');
     const difficultyContainer = document.getElementById('difficulty-container');
     const quizContainer = document.getElementById('quiz');
     const startContainer = document.getElementById('start-container');
-   
 
     // Hide difficulty, quiz, and start containers initially
     difficultyContainer.style.display = 'none';
@@ -20,6 +24,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to show the quiz based on difficulty
     function showQuiz() {
+        quizContainer.style.display = 'block';
+        difficultyContainer.style.display = 'none';
+    }
+
+    // Event listeners
+    startBtn.addEventListener('click', startQuiz);
+
+    easyBtn.addEventListener('click', showQuiz);
+    mediumBtn.addEventListener('click', showQuiz);
+    hardBtn.addEventListener('click', showQuiz);
+});
         // Show quiz container
         quizContainer.style.display = 'block';
         difficultyContainer.style.display = 'none';
@@ -64,5 +79,3 @@ submitBtn.addEventListener('click', function() {
 
     
 });
-
-

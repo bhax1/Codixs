@@ -10,6 +10,11 @@
 body {
   background-color: #b8c6db;
   background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7f7 100%);
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,6 +75,11 @@ body {
 
 .difficulty-btn {
   font-size: 1.2rem;
+  margin: 0 10px; /* Adjust the margin as needed */
+}
+
+.quiz-header {
+  padding: 20px; /* Add padding to the quiz header */
   margin: 0 10px; 
 }
 
@@ -79,11 +89,28 @@ body {
 
 .quiz-header ul {
   padding-left: 20px;
+  list-style: none; /* Remove default list-style */
   list-style: none; 
 }
 
 .choice-label {
   display: block;
+  border: 1px solid #ccc; /* Add border to choices */
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.choice-label:hover {
+  background-color: #f0f0f0; /* Change background color on hover */
+}
+
+.choice-text {
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.choice-text:hover {
+  text-decoration: underline; /* Underline text on hover */
   border: 1px solid #ccc; 
   padding: 10px;
   margin-bottom: 10px;
@@ -129,6 +156,10 @@ button:focus {
 }
 
 .quiz-header h2 {
+  margin-bottom: 20px; /* Add space below the question text */
+}
+.quiz-header input[type="radio"] {
+  display: none; /* Hide the radio inputs */
   margin-bottom: 20px;
 }
 .quiz-header input[type="radio"] {
