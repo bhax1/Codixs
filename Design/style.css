@@ -106,6 +106,7 @@ body {
 
 .main a.action_btn_login:hover {
     background: var(--main-color); 
+    transition: all .50s ease;
 }
 
 .main a span {
