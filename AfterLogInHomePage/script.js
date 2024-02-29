@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     difficultyContainer.style.display = 'none';
     quizContainer.style.display = 'none';
     startContainer.style.display = 'block';
-
+    let ques = '';
     // Function to start the quiz
     function startQuiz() {
         difficultyContainer.style.display = 'block';
@@ -102,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('b_text').textContent = data.b;
             document.getElementById('c_text').textContent = data.c;
             document.getElementById('d_text').textContent = data.d;
+            ques = data.Questions;
         })
         .catch(error => console.error('Error fetching question:', error));
     }
@@ -109,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to handle submitting an answer
 // Function to handle submitting an answer
 function submitAnswer() {
-    console.log('Submit button clicked.'); // Log that the submit button was clicked
+    console.log(ques); // Log that the submit button was clicked
 
     answeredQuestions++;
     
