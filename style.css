@@ -205,9 +205,10 @@ body {
         left: 0; 
         right: 0; 
     }
+    
 }
 
-/* FOOTER */
+/* FOOTER CSS*/
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 
 * {
@@ -332,3 +333,5 @@ body {
     background-positon-x: 0px;
   }
 }
+/* END OF FOOTER CSS */
+  
