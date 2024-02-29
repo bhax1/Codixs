@@ -13,26 +13,20 @@ document.addEventListener('DOMContentLoaded', function() {
     quizContainer.style.display = 'none';
     startContainer.style.display = 'block';
     let ques = '';
+    let answeredQuestions = 0;
+    let encounteredQuestions = []; // Array to store encountered questions
+
     // Function to start the quiz
     function startQuiz() {
         difficultyContainer.style.display = 'block';
         startContainer.style.display = 'none'; // Hide start container
     }
 
-    // Function to show the quiz based on difficulty
-    // function showQuiz() {
-    //     // Show quiz container
-    //     quizContainer.style.display = 'block';
-    //     difficultyContainer.style.display = 'none';
-    //     // Show the first question
-    //     showQuestion();
-    // }
-
     function showQuiz(difficulty) {
         // Show quiz container
         quizContainer.style.display = 'block';
         difficultyContainer.style.display = 'none';
-    
+
         // Determine the URL based on the selected difficulty
         let url;
         switch (difficulty) {
@@ -43,48 +37,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 url = 'medium.php';
                 break;
             case 'hard':
-                    url = 'hard.php';
-                    break;
-            // Add cases for other difficulty levels if needed
+                url = 'hard.php';
+                break;
             default:
                 console.error('Invalid difficulty level');
                 return;
         }
-    
+
         // Show the first question
         diff = url;
         showQuestion(url);
     }
-    
+
     startBtn.addEventListener('click', startQuiz);
-    // easyBtn.addEventListener('click', showQuiz);
-    
+
     // Global variable to store the total number of questions to be answered
-    let totalQuestions = 0; 
+    let totalQuestions = 0;
     let diff = '';
-    // Global variable to keep track of the number of questions answered
-    let answeredQuestions = 0;
-
-    // Function to show the current question
-    // function showQuestion() {
-    //     const numQuestions = document.getElementById('question-select').value;
-
-    //     // Set the total number of questions
-    //     totalQuestions = parseInt(numQuestions);
-
-    //     // Fetch questions from PHP script
-    //     fetch(`easy.php?num=${numQuestions}`)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         // Display the random question and choices
-    //         document.getElementById('question').textContent = data.Questions;
-    //         document.getElementById('a_text').textContent = data.a;
-    //         document.getElementById('b_text').textContent = data.b;
-    //         document.getElementById('c_text').textContent = data.c;
-    //         document.getElementById('d_text').textContent = data.d;
-    //     })
-    //     .catch(error => console.error('Error fetching question:', error));
-    // }
 
     function showQuestion(url) {
         const numQuestions = document.getElementById('question-select').value;
@@ -92,38 +61,56 @@ document.addEventListener('DOMContentLoaded', function() {
         // Set the total number of questions
         totalQuestions = parseInt(numQuestions);
     
-        // Fetch questions from the specified PHP script
-        fetch(`${url}?num=${numQuestions}`)
-        .then(response => response.json())
-        .then(data => {
-            // Display the random question and choices
-            document.getElementById('question').textContent = data.Questions;
-            document.getElementById('a_text').textContent = data.a;
-            document.getElementById('b_text').textContent = data.b;
-            document.getElementById('c_text').textContent = data.c;
-            document.getElementById('d_text').textContent = data.d;
-            ques = data.Questions;
-        })
-        .catch(error => console.error('Error fetching question:', error));
+        // Fetch questions from the specified PHP script excluding encountered questions
+        fetch(`${url}?num=${numQuestions}&encountered=${encounteredQuestions.join(',')}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Check if the response contains an error
+                if (data.error) {
+                    console.error('Error fetching question:', data.error);
+                } else {
+                    // Check if the received question is encountered, if yes, fetch another question
+                    if (encounteredQuestions.includes(data.Questions)) {
+                        showQuestion(url);
+                        return;
+                    }
+                    // Display the random question and choices
+                    document.getElementById('question').textContent = data.Questions;
+                    document.getElementById('a_text').textContent = data.a;
+                    document.getElementById('b_text').textContent = data.b;
+                    document.getElementById('c_text').textContent = data.c;
+                    document.getElementById('d_text').textContent = data.d;
+                    ques = data.Questions;
+                    encounteredQuestions.push(data.Questions); // Add the encountered question to the list
+                }
+            })
+            .catch(error => console.error('Error fetching question:', error));
     }
+    
 
     // Function to handle submitting an answer
-// Function to handle submitting an answer
+   // Function to handle submitting an answer
 function submitAnswer() {
     console.log(ques); // Log that the submit button was clicked
 
+    // Increase the number of answered questions
     answeredQuestions++;
-    
+
     if (answeredQuestions >= totalQuestions) {
-    
         // Hide the quiz container if the desired number of questions have been answered
         quizContainer.style.display = 'none';
         console.log('All questions answered. Hiding quiz container.');
+        answeredQuestions = 0; // Reset answered questions count
     } else {
         console.log('Showing next question.');
         // Otherwise, show the next question
         showQuestion(diff);
-    }   
+    }
 }
 
 
@@ -131,6 +118,6 @@ function submitAnswer() {
     submitBtn.addEventListener('click', submitAnswer);
 
     easyBtn.addEventListener('click', () => showQuiz('easy'));
-mediumBtn.addEventListener('click', () => showQuiz('medium'));
-hardBtn.addEventListener('click', () => showQuiz('hard'));
+    mediumBtn.addEventListener('click', () => showQuiz('medium'));
+    hardBtn.addEventListener('click', () => showQuiz('hard'));
 });

@@ -85,6 +85,6 @@
     <button id="submit">Submit</button>
 </div>
 
-<script src="script.js"></script>
+<script src="script2.js"></script>
 </body>
 </html>
