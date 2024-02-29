@@ -1,0 +1,77 @@
+::-webkit-scrollbar {
+    width: 0;
+}
+
+.sidebar:hover ::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #fff;
+    border-radius: 5px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 370px;
+    height: 100%;
+    background: black;
+    padding: 15px;
+    display:flex;
+    flex-direction: column;
+}
+
+.logo {
+  font-size: 35px;
+  padding: 0 15px;
+  font-weight: 300px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+}
+
+.scrollbox {
+    padding: 10px 1px;
+    height: calc(100% - 90px);
+}
+
+.menu-content {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin-top: 20px;
+  padding-right: 10px;
+  overflow: auto;
+  overflow-y: scroll;
+}
+
+.menu-title {
+    padding: 0px 10px;
+    margin-top: 30px;
+    color: white;
+    font-size: 25px;
+}
+
+.menu-items{
+    list-style-type: none;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    margin-top: 0px;
+}
+
+.item a {
+    padding: 16px;
+    background-color: rgb(0, 0, 0);
+    display: inline-block;
+    width: 100%;
+    border-radius: 12px;
+}
+
+.item a:hover {
+    background-color: rgb(255, 255, 255, 0.2);
+}
