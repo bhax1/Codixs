@@ -82,7 +82,8 @@ document.addEventListener("DOMContentLoaded", function() {
   loginBtns.forEach(function(btn) {
       btn.addEventListener("click", function() {
           loginPopup.style.display = "block";
-          overlay.style.display = "block"; 
+          overlay.style.display = "block";
+          
       });
   });
 

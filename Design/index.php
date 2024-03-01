@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,74 +14,66 @@
   <link rel="stylesheet" href="login.css">
   <link rel="stylesheet" href="footer.css">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-  crossorigin="anonymous" referrerpolicy="no-referrer"/>
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
+
 <body>
 
-<div class="overlay" id="overlay"></div>
-<div class="login_popup">
-<div class="container" id="container">
-  <div class="form-container sign-up-container">
-    <form action= "/project/login.php"method="post">
-        <h1>Create Account</h1>
-        <div class="social-container">
+  <div class="overlay" id="overlay"></div>
+  <div class="login_popup">
+    <div class="container" id="container">
+      <div class="form-container sign-up-container">
+        <form action="index.php" method="post">
+          <h1>Create Account</h1>
+          <div class="social-container">
             <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
             <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
             <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-        <span>or use your email for registration</span>
-        <input type="text" name="name" placeholder="Name" />
-        <input type="email" name="email" placeholder="Email" />
-        <input type="password" name="password" placeholder="Password" />
-        <button type="submit" name="signup">Sign Up</button>
-    </form>
-</div>
+          </div>
+          <span>or use your email for registration</span>
+          <input type="text" name="createname" placeholder="Name" />
+          <input type="email" name="createemail" placeholder="Email" />
+          <input type="password" name="createpassword" placeholder="Password" />
+          <button type="submit" name="signupPop">Sign Up</button>
+        </form>
+      </div>
 
-<div class="form-container sign-in-container">
-    <form  action="/project/login.php" method="post">
-        <h1>Sign in</h1>
-        <div class="social-container">
+      <div class="form-container sign-in-container">
+        <form action="index.php" method="post">
+          <h1>Sign in</h1>
+          <div class="social-container">
             <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
             <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
             <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-        <span>or use your account</span>
-        <input type="email" name="email" placeholder="Email" />
-        <input type="password" name="password" placeholder="Password" />
-        <a href="#">Forgot your password?</a>
-        <button type="submit" name="signin">Sign In</button>
-    </form>
-</div>
+          </div>
+          <span>or use your account</span>
+          <input type="email" name="email" placeholder="Email" />
+          <input type="password" name="password" placeholder="Password" />
+          <a href="#">Forgot your password?</a>
+          <button type="submit" name="signinPop">Sign In</button>
+        </form>
+      </div>
 
 
-<div class="overlay-container">
-
-
-    <div class="overlay">
-        <div class="overlay-panel overlay-left">
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
             <h1>Welcome Back!</h1>
             <p>To keep connected with us please login with your personal info</p>
             <button class="ghost" id="signIn">Sign In</button>
-            
-           
-        </div>
-      
-        <div class="overlay-panel overlay-right">
+          </div>
+
+          <div class="overlay-panel overlay-right">
             <h1>Hello, Friend!</h1>
             <p>Enter your personal details and start journey with us</p>
             <button class="ghost" id="signUp">Sign Up</button>
+          </div>
+
         </div>
-
+      </div>
     </div>
-</div>
-</div>
-</div>
-
-
-
+  </div>
 
   <header>
     <nav class="navbar">
@@ -96,13 +89,14 @@
         <a class="action_btn_login" id="login">Log In</a>
         <a class="action_btn_login" id="GettingStrd">Getting Started</a>
         <div class="fa-solid fa-bars" id="menu_icon"></div>
-    </div>
+      </div>
     </nav>
   </header>
 
-
   <section id="home">
-    <div class="gradient-background"><div class="gradient"></div></div>
+    <div class="gradient-background">
+      <div class="gradient"></div>
+    </div>
     <div class="hero">
       <h1><span class="auto-type"></span></h1>
       <form>
@@ -150,8 +144,60 @@
     </ul>
     <p>&copy;2024 CodixGo | All Rights Reserved</p>
   </footer>
-  
+
   <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
   <script type="text/javascript" src="script.js"></script>
+
+  <?php
+  $connection = mysqli_connect('localhost', 'root', '', 'codixs');
+  if (!$connection) {
+    die('Unable to connect server: ' . mysqli_connect_error());
+  }
+
+  if (isset($_POST['signupPop'])) {
+    $createname = $_POST['createname'];
+    $createemail = $_POST['createemail'];
+    $createpassword = $_POST['createpassword'];
+    $hashed_password = password_hash($createpassword, PASSWORD_DEFAULT);
+    $date = date('Y-m-d H:i:s');
+    if (strlen($password) <= 5) {
+      echo "The password is less than 5 characters!";
+    } else if (empty($name) || empty($email) || empty($password)) {
+      echo "Please fill up all forms!";
+    } else {
+      $querys = "INSERT INTO list (Name, Password, Date, Email) VALUES ('$createname', '$hashed_password', '$date','$createemail')";
+      if (mysqli_query($connection, $querys)) {
+        echo "<script>alert('Successfully Created');</script>";
+      } else {
+        if (strpos(mysqli_error($connection), 'Duplicate entry') !== false) {
+          echo "Error: This email address is already in use.";
+        } else {
+          echo "Error: " . $querys . "<br>" . mysqli_error($connection);
+        }
+      }
+    }
+  }
+
+  if (isset($_POST['signinPop'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    if (!empty($email) && !empty($password)) {
+      $query = mysqli_query($connection, "SELECT * FROM list WHERE Email='$email'");
+      $row = mysqli_fetch_array($query);
+      if ($row && password_verify($password, $row['Password'])) {
+        echo "<script>
+                alert('Login Successfully!');
+                window.location.href = 'index.php'; // Redirect to Admin.php
+                </script>";
+        exit();
+      } else {
+        echo '<p class="error-message">Wrong password. Please try again.</p>';
+      }
+    } else {
+      echo "<script>alert('Please fill in all fields.');</script>";
+    }
+  }
+  ?>
 </body>
 </html>
