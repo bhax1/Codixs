@@ -108,7 +108,9 @@ section {
     align-items: center;
     justify-content: center; 
     padding: 0 15px; 
-    border: 2px solid transparent; 
+    border: 2px solid transparent;
+    display: inline-block;
+    padding: 8px 25px;
 }
 
 .main a.action_btn_login {
@@ -118,11 +120,6 @@ section {
 .main a.action_btn_login:hover {
     background: var(--main-color);
     transition: all .50s ease; 
-}
-
-.main a span {
-    display: inline-block;
-    padding: 8px 12px;
 }
 
 #menu_icon {
