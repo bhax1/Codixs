@@ -217,7 +217,6 @@ section {
         top: 100%;
         width: auto; 
         height: auto;
-        background: var(--main-color);
         display: flex;
         flex-direction: column;
         justify-content: center; 
@@ -233,11 +232,11 @@ section {
         text-align: center; 
     }
     .nav_links a:hover {
-        color: black;
+        color: var(--main-color);
         transform: translateY(3px);
     }
     .nav_links a.active {
-        color:black;
+        color: var(--main-color);
     }
     .nav_links.open {
         left: 0; 
