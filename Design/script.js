@@ -1,11 +1,30 @@
+
 //Menu Bar
 let menu = document.querySelector('#menu_icon');
-let navbar = document.querySelector('.nav_links')
+let navbar = document.querySelector('.nav_links');
+
+function isInsideNavbar(target) {
+  return navbar.contains(target);
+}
+
+function closeNavbar() {
+  menu.classList.remove('fa-xmark');
+  menu.classList.add('fa-bars');
+  navbar.classList.remove('open');
+}
 
 menu.onclick = () => {
-    menu.classList.toggle('fa-solid');
-    navbar.classList.toggle('open');
-}
+  menu.classList.toggle('fa-xmark');
+  menu.classList.toggle('fa-bars');
+  navbar.classList.toggle('open');
+};
+
+document.addEventListener('click', function(event) {
+  const isClickInsideNavbar = isInsideNavbar(event.target);
+  if (!isClickInsideNavbar && !menu.contains(event.target)) {
+    closeNavbar();
+  }
+});
 
 
 //Auto Type
@@ -20,7 +39,7 @@ var phrases = new Typed(".auto-type", {
     loop: true
 })
 
-//window scroll navbar
+//Window scroll navbar
 window.addEventListener('scroll', function() {
     var navbar = document.querySelector('.navbar');
     if(window.scrollY > 50) {
@@ -29,3 +48,83 @@ window.addEventListener('scroll', function() {
       navbar.classList.remove('scrolled');
     }
   });
+
+  
+// For Sections Link
+let sections = document.querySelectorAll('section');
+let navLinks = document.querySelectorAll('header nav .nav_links a');
+
+window.onscroll = () => {
+  sections.forEach(sec => {
+    let top = window.scrollY;
+    let offset = sec.offsetTop - 150;
+    let height = sec.offsetHeight;
+    let id = sec.getAttribute('id');
+
+    if (top >= offset && top < offset + height) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${id}`) {
+          link.classList.add('active');
+        }
+      });
+    }
+  });
+};
+
+
+// For Login
+document.addEventListener("DOMContentLoaded", function() {
+  const loginBtns = document.querySelectorAll(".action_btn_login ");
+  const loginPopup = document.querySelector(".login_popup");
+  const overlay = document.getElementById("overlay");
+
+  loginBtns.forEach(function(btn) {
+      btn.addEventListener("click", function() {
+          loginPopup.style.display = "block";
+          overlay.style.display = "block"; 
+      });
+  });
+
+  function isInsideLoginPopup(target) {
+      return loginPopup.contains(target);
+  }
+
+  function closeLoginPopup() {
+      loginPopup.style.display = "none";
+      overlay.style.display = "none"; 
+  }
+
+  window.addEventListener('click', function(event) {
+      const isClickInsideLoginPopup = isInsideLoginPopup(event.target);
+      if (!isClickInsideLoginPopup && !event.target.classList.contains("action_btn_login")) {
+          closeLoginPopup();
+      }
+  });
+});
+
+
+
+const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+const backSignInButton = document.getElementById('backSignIn');
+const backSignUpButton = document.getElementById('backSignUp');
+const container = document.getElementById('container');
+
+signUpButton.addEventListener('click', () => {
+	container.classList.add("right-panel-active");
+});
+
+signInButton.addEventListener('click', () => {
+	container.classList.remove("right-panel-active");
+});
+
+backSignInButton.addEventListener('click', () => {
+    window.location.href = 'index.php';
+});
+
+backSignUpButton.addEventListener('click', () => {
+    window.location.href = 'index.php';
+});
+
+
