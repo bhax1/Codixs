@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Getting Started</title>
 
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="hero.css">
-  <link rel="stylesheet" href="page1.css">
-  <link rel="stylesheet" href="page2.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/page1.css">
+  <link rel="stylesheet" href="css/page2.css">
 
-  <link rel="stylesheet" href="login.css">
-  <link rel="stylesheet" href="footer.css">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/footer.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -146,7 +146,7 @@
   </footer>
 
   <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-  <script type="text/javascript" src="script.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
 
   <?php
   $connection = mysqli_connect('localhost', 'root', '', 'codixs');
@@ -188,7 +188,7 @@
       if ($row && password_verify($password, $row['Password'])) {
         echo "<script>
                 alert('Login Successfully!');
-                window.location.href = 'index.php'; // Redirect to Admin.php
+                window.location.href = 'AfterLogInHomePage/index.php';
                 </script>";
         exit();
       } else {
