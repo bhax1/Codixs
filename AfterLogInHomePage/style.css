@@ -220,3 +220,27 @@ button.selected:focus {
   margin-right: 20px; /* Add space between quiz container and score container */
   flex-grow: 1; /* Allow the quiz container to grow and take up remaining space */
 }
+.result-container {
+  background-color: #fff; /* Set white background color */
+  border-radius: 10px;
+  box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 500px; /* Adjust width to 500px */
+  display: none; /* Hide result container initially */
+  text-align: center; /* Center align text */
+}
+
+.result-title {
+  font-size: 1.5rem; /* Increase title font size */
+  margin-bottom: 20px; /* Add margin below title */
+}
+
+.result-details {
+  margin-bottom: 20px; /* Add margin below details */
+}
+
+.result-comment {
+  font-style: italic; /* Make comment italic */
+  margin-top: 20px; /* Add margin on top of comment */
+}
