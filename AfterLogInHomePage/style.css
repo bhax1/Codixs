@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
 
 * {
@@ -189,3 +190,33 @@ button.selected:focus {
     background-color: rgb(44, 236, 44);
   }
   
+  .score-container {
+    display: flex;
+    flex-direction: column; /* Adjust to vertical layout */
+    align-items: flex-start; /* Align items to the start */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 250px; /* Adjust width */
+    margin-right: 20px;
+}
+
+/* Adjust the styles for each span within the score container */
+.score-container span {
+    margin-bottom: 10px; /* Add space between elements */
+    display: block; /* Display each item on a new line */
+}
+
+.layout {
+  display: flex;
+}
+
+
+
+.quiz-container {
+  margin-left: 10px; /* Add space between quiz container and sidebar */
+  margin-right: 20px; /* Add space between quiz container and score container */
+  flex-grow: 1; /* Allow the quiz container to grow and take up remaining space */
+}

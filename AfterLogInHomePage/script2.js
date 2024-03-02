@@ -8,15 +8,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const mediumBtn = document.getElementById('medium-btn');
     const hardBtn = document.getElementById('hard-btn');
     const choices = document.querySelectorAll('.choice-label');
-
+    const scoreContainer = document.getElementById('score-container');
+    scoreContainer.style.display = 'none';
     // Hide difficulty, quiz, and start containers initially
     difficultyContainer.style.display = 'none';
+      
     quizContainer.style.display = 'none';
     startContainer.style.display = 'block';
-    let ques = '';
+    
     let corrAns ='';
     let answeredQuestions = 0;
+    let currentQues = answeredQuestions +1;
     let encounteredQuestions = []; // Array to store encountered questions
+    let score = 0;
+    let streak = 0;
+    let totalQuestions = 0;
+    let diff = '';
+
+    function updateScore() {
+        document.getElementById('score').textContent = score;
+        document.getElementById('streak').textContent = streak;
+        document.getElementById('question-count').textContent = currentQues + '/' + totalQuestions;
+    }
 
     // Function to start the quiz
     function startQuiz() {
@@ -27,19 +40,19 @@ document.addEventListener('DOMContentLoaded', function() {
     function showQuiz(difficulty) {
         // Show quiz container
         quizContainer.style.display = 'block';
+        scoreContainer.style.display = 'block';
         difficultyContainer.style.display = 'none';
-
+        
         // Determine the URL based on the selected difficulty
-        let url;
         switch (difficulty) {
             case 'easy':
-                url = 'easy.php';
+                diff = 'easy.php';
                 break;
             case 'medium':
-                url = 'medium.php';
+                diff = 'medium.php';
                 break;
             case 'hard':
-                url = 'hard.php';
+                diff = 'hard.php';
                 break;
             default:
                 console.error('Invalid difficulty level');
@@ -47,23 +60,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Show the first question
-        diff = url;
-        showQuestion(url);
+        showQuestion(diff);
     }
 
     startBtn.addEventListener('click', startQuiz);
-
-    // Global variable to store the total number of questions to be answered
-    let totalQuestions = 0;
-    let diff = '';
 
     // Function to handle submitting an answer
     function submitAnswer() {
         // Check if the selected answer is correct
         const isCorrect = checkAnswer();
-        console.log(isCorrect);
+
+        // Update score and streak
+        if (isCorrect) {
+            score++;
+            streak++;
+        } else {
+            streak = 0;
+        }
+
+        // Update score and streak display
+        updateScore();
 
         // Increase the number of answered questions
+        currentQues++
         answeredQuestions++;
 
         if (answeredQuestions >= totalQuestions) {
@@ -97,10 +116,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to handle fetching and displaying a new question
     function showQuestion(url) {
         const numQuestions = document.getElementById('question-select').value;
-
+        
         // Set the total number of questions
         totalQuestions = parseInt(numQuestions);
-
+        updateScore();
         // Fetch questions from the specified PHP script excluding encountered questions
         fetch(`${url}?num=${numQuestions}&encountered=${encounteredQuestions.join(',')}`)
             .then(response => {

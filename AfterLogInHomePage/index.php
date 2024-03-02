@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Game - API Project</title>
-    <link rel="stylesheet" href="quiz.css">
-    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="navX.css"> <!--Experimental Change-->
 </head>
 <body class="layout">
 <nav class="sidebar">
@@ -52,6 +52,8 @@
     </div>
 </div>
 
+
+
 <div class="quiz-container hidden" id="quiz">
     <div class="quiz-header">
         <h2 id="question">Question Text</h2>
@@ -83,6 +85,14 @@
         </ul>
     </div>
     <button id="submit" class ="submit">Submit</button>
+</div>
+
+<div class="score-container hidden" id="score-container">
+    <span class="question">Question: <span id="question-count">0</span></span>
+    <span class="score">Score: <span id="score">0</span></span>
+    <span class="streak">Streak: <span id="streak">0</span></span>
+    <span class="time-bonus">Time Bonus: <span id="time-bonus">0</span></span>
+    <span class="points">Points: <span id="total-points">0</span></span>
 </div>
 
 <script src="script2.js"></script>
