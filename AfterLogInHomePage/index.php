@@ -57,26 +57,26 @@
         <h2 id="question">Question Text</h2>
         <ul>
             <li>
-                <label for="a" class="choice-label">
-                    <input type="radio" name="answer" id="a" class="answer">
+                <label for="a" class="choice-label" value ="a">
+                    <input type="radio" name="answer" id="a" class="answer" value ="a">
                     <span class="choice-text" id="a_text">Answer A</span>
                 </label>
             </li>
             <li>
-                <label for="b" class="choice-label">
-                    <input type="radio" name="answer" id="b" class="answer">
+                <label for="b" class="choice-label" value ="b">
+                    <input type="radio" name="answer" id="b" class="answer" value ="b">
                     <span class="choice-text" id="b_text">Answer B</span>
                 </label>
             </li>
             <li>
-                <label for="c" class="choice-label">
-                    <input type="radio" name="answer" id="c" class="answer">
+                <label for="c" class="choice-label" value ="c">
+                    <input type="radio" name="answer" id="c" class="answer" value ="c">
                     <span class="choice-text" id="c_text">Answer C</span>
                 </label>
             </li>
             <li>
-                <label for="d" class="choice-label">
-                    <input type="radio" name="answer" id="d" class="answer">
+                <label for="d" class="choice-label" value ="d">
+                    <input type="radio" name="answer" id="d" class="answer" value ="d">
                     <span class="choice-text" id="d_text">Answer D</span>
                 </label>
             </li>
@@ -85,6 +85,6 @@
     <button id="submit" class ="submit">Submit</button>
 </div>
 
-<script src="quiz.js"></script>
+<script src="script2.js"></script>
 </body>
 </html>

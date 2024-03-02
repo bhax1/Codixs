@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 // Fetch a random question and choices from the 'easy' table excluding encountered questions
 $encounteredQuestions = isset($_GET['encountered']) ? explode(',', $_GET['encountered']) : [];
 $encounteredCondition = !empty($encounteredQuestions) ? "WHERE Questions NOT IN ('" . implode("','", $encounteredQuestions) . "')" : "";
-$sql = "SELECT Questions, a, b, c, d FROM hard $encounteredCondition ORDER BY RAND() LIMIT 1";
+$sql = "SELECT Questions, a, b, c, d, answers FROM hard $encounteredCondition ORDER BY RAND() LIMIT 1";
 $result = $conn->query($sql);
 
 // Check if there are questions available

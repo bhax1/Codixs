@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     quizContainer.style.display = 'none';
     startContainer.style.display = 'block';
     let ques = '';
+    let corrAns ='';
     let answeredQuestions = 0;
     let encounteredQuestions = []; // Array to store encountered questions
 
@@ -58,14 +59,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to handle submitting an answer
     function submitAnswer() {
-        // Check if any choice is selected
-        const selectedChoice = document.querySelector('.choice-label input:checked');
-        if (!selectedChoice) {
-            // No choice is selected, do not proceed
-            return;
-        }
-
-        console.log(ques); // Log that the submit button was clicked
+        // Check if the selected answer is correct
+        const isCorrect = checkAnswer();
+        console.log(isCorrect);
 
         // Increase the number of answered questions
         answeredQuestions++;
@@ -80,10 +76,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Otherwise, show the next question
             showQuestion(diff);
         }
-
-        // Remove hoverable and focusable attributes from the submit button
-        submitBtn.removeAttribute('hoverable');
-        submitBtn.removeAttribute('focusable');
 
         // Reset selected choices and disable the submit button
         choices.forEach(choice => {
@@ -133,6 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById('b_text').textContent = data.b;
                     document.getElementById('c_text').textContent = data.c;
                     document.getElementById('d_text').textContent = data.d;
+                    corrAns = data.answers;
                     ques = data.Questions;
                     encounteredQuestions.push(data.Questions); // Add the encountered question to the list
 
@@ -142,9 +135,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         choice.querySelector('input').checked = false;
                     });
                     submitBtn.disabled = true;
-                    // Remove hoverable and focusable attributes from the submit button
-                    submitBtn.removeAttribute('hoverable');
-                    submitBtn.removeAttribute('focusable');
                     // Change submit button color back to blue
                     submitBtn.classList.remove('selected');
                 }
@@ -163,9 +153,22 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.disabled = false;
             // Add class to submit button to turn it green
             submitBtn.classList.add('selected');
-            // Add hoverable and focusable attributes to the submit button
-            submitBtn.setAttribute('hoverable', true);
-            submitBtn.setAttribute('focusable', true);
         });
     });
+
+    // Function to check if the selected answer is correct
+    function checkAnswer() {
+        const selectedChoice = document.querySelector('.choice-label input:checked');
+        if (!selectedChoice) {
+            console.log('no choice selected')
+            // No choice is selected, return false
+            return false;
+        }
+
+        // Retrieve the value of the selected choice
+        const selectedValue = selectedChoice.value;
+
+        // Compare the selected value with the correct answer
+        return selectedValue === corrAns;
+    }
 });
