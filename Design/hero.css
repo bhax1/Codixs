@@ -24,6 +24,7 @@
     background-image: linear-gradient(rgba(55, 235, 169, .85), #5b37eb);
     animation: rotate var(--speed) var(--easing) alternate infinite;
     border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    z-index: -100;
   }
 
   .hero h1 {

@@ -126,39 +126,39 @@ document.addEventListener("DOMContentLoaded", function() {
   const navBar = document.querySelector(".navbar");
 
   loginBtns.forEach(function(btn) {
-      btn.addEventListener("click", function() {
-          closeNavbar();
-          loginPopup.style.display = "block";
-          overlay.style.display = "block";
-          headerOverlay.style.display = "block";
-          heroHeader.classList.add("blurry");
-          navBar.classList.add("blurry");
-          document.body.style.overflow = "hidden"; 
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-          });
+    btn.addEventListener("click", function() {
+      closeNavbar();
+      loginPopup.style.display = "block";
+      overlay.style.display = "block";
+      headerOverlay.style.display = "block";
+      heroHeader.classList.add("blurry");
+      navBar.classList.add("blurry");
+      document.body.style.overflow = "hidden";
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
       });
+    });
   });
 
   function isInsideLoginPopup(target) {
-      return loginPopup.contains(target);
+    return loginPopup.contains(target);
   }
 
   function closeLoginPopup() {
-      loginPopup.style.display = "none";
-      overlay.style.display = "none";
-      headerOverlay.style.display = "none"; 
-      heroHeader.classList.remove("blurry");
-      navBar.classList.remove("blurry");
-      document.body.style.overflow = ""; 
+    loginPopup.style.display = "none";
+    overlay.style.display = "none";
+    headerOverlay.style.display = "none";
+    heroHeader.classList.remove("blurry");
+    navBar.classList.remove("blurry");
+    document.body.style.overflow = "";
   }
 
   window.addEventListener('click', function(event) {
-      const isClickInsideLoginPopup = isInsideLoginPopup(event.target);
-      if (!isClickInsideLoginPopup && !event.target.classList.contains("action_btn_login")) {
-          closeLoginPopup();
-      }
+    const isClickInsideLoginPopup = isInsideLoginPopup(event.target);
+    if (!isClickInsideLoginPopup && !event.target.classList.contains("action_btn_login")) {
+      closeLoginPopup();
+    }
   });
 });
 

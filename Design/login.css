@@ -1,9 +1,11 @@
 
-.hero.blurry {
-    position: relative;
-    z-index: 999; 
-    filter: blur(10px); 
-    background-color: rgba(0, 0, 0, 0.5); 
+/* Blurry */
+#home.blurry .hero,
+#home.blurry h1,
+#home.blurry form,
+#home.blurry input {
+  filter: blur(10px);
+  pointer-events: none; 
 }
 
 .navbar.blurry {
@@ -11,7 +13,7 @@
 	pointer-events: none; 
 }
 
-
+/* Login Menu */
 .login_popup {
 	display: none;
     z-index: 5;
@@ -22,12 +24,12 @@
     width: 800px;
     padding: 20px 30px;
     background: transparent;
-    animation: fadeIn .8s ease forwards; 
+    animation: fadeIn 1.6s ease forwards; 
 }
 
 @keyframes fadeIn {
     0% {
-        top: 40%; 
+        top: 30%; 
         opacity: 0;
     }
     100% {
@@ -35,6 +37,7 @@
         opacity: 1;
     }
 }
+
 .container h1 {
 	font-weight: bold;
 	margin: 0;
