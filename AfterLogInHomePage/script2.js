@@ -15,26 +15,31 @@ document.addEventListener('DOMContentLoaded', function() {
       
     quizContainer.style.display = 'none';
     startContainer.style.display = 'block';
-    
+    let difficultyBonus = 0;
     let corrAns ='';
     let answeredQuestions = 0;
-    let currentQues = answeredQuestions +1;
+    let currentQues = answeredQuestions + 1;
     let encounteredQuestions = []; // Array to store encountered questions
     let score = 0;
     let streak = 0;
     let totalQuestions = 0;
     let diff = '';
-
+    let points = 0;
+    let timeBonusInterval;
+    let timeBonus = 0;
     function updateScore() {
         document.getElementById('score').textContent = score;
         document.getElementById('streak').textContent = streak;
         document.getElementById('question-count').textContent = currentQues + '/' + totalQuestions;
+        document.getElementById('total-points').textContent = points;
     }
 
     // Function to start the quiz
     function startQuiz() {
+       
         difficultyContainer.style.display = 'block';
         startContainer.style.display = 'none'; // Hide start container
+        calculateTimeBonus();
     }
 
     function showQuiz(difficulty) {
@@ -47,12 +52,15 @@ document.addEventListener('DOMContentLoaded', function() {
         switch (difficulty) {
             case 'easy':
                 diff = 'easy.php';
+                difficultyBonus = 0;
                 break;
             case 'medium':
                 diff = 'medium.php';
+                difficultyBonus = 0.20;
                 break;
             case 'hard':
                 diff = 'hard.php';
+                difficultyBonus = 0.40;
                 break;
             default:
                 console.error('Invalid difficulty level');
@@ -65,46 +73,75 @@ document.addEventListener('DOMContentLoaded', function() {
 
     startBtn.addEventListener('click', startQuiz);
 
-    // Function to handle submitting an answer
-    function submitAnswer() {
-        // Check if the selected answer is correct
-        const isCorrect = checkAnswer();
+  // Function to handle submitting an answer
+function submitAnswer() {
+    // Check if the selected answer is correct
+    const isCorrect = checkAnswer();
 
-        // Update score and streak
-        if (isCorrect) {
-            score++;
-            streak++;
-        } else {
-            streak = 0;
-        }
+    // Calculate the base points
+    const basePoints = 500;
 
-        // Update score and streak display
-        updateScore();
+    // Update points by base points
+    points += basePoints;
 
-        // Increase the number of answered questions
-        currentQues++
-        answeredQuestions++;
+// Calculate streak bonus points
 
-        if (answeredQuestions >= totalQuestions) {
-            // Hide the quiz container if the desired number of questions have been answered
-            quizContainer.style.display = 'none';
-            console.log('All questions answered. Hiding quiz container.');
-            answeredQuestions = 0; // Reset answered questions count
-        } else {
-            console.log('Showing next question.');
-            // Otherwise, show the next question
-            showQuestion(diff);
-        }
+// Add streak bonus points to total points
 
-        // Reset selected choices and disable the submit button
-        choices.forEach(choice => {
-            choice.classList.remove('selected');
-            choice.querySelector('input').checked = false;
-        });
-        submitBtn.disabled = true;
-        // Change submit button color back to blue
-        submitBtn.classList.remove('selected');
+   
+    // Update the score and streak
+    if (isCorrect) {
+        score++;
+        streak++;
+        // Calculate bonus points (20% of base points) only if the answer is correct
+        const bonusPoints = Math.round(basePoints * 0.20);
+      
+        // Add bonus points to total points
+        points += bonusPoints;
+        const bonusTimePoints = Math.round((timeBonus/100) * points);
+        const difficultyBonusPoints = Math.round(difficultyBonus* basePoints);
+        points += difficultyBonusPoints;
+        points += bonusTimePoints;
+
+        const streakBonusPoints = Math.round((5 * streak / 100) * points);
+        points += streakBonusPoints;
+        
+    } else {
+        streak = 0;
     }
+
+    
+
+    // Update score and streak display
+    updateScore();
+
+    // Increase the number of answered questions
+    currentQues++;
+    answeredQuestions++;
+
+    if (answeredQuestions >= totalQuestions) {
+        // Hide the quiz container if the desired number of questions have been answered
+        quizContainer.style.display = 'none';
+        console.log('All questions answered. Hiding quiz container.');
+        answeredQuestions = 0; // Reset answered questions count
+    } else {
+        console.log('Showing next question.');
+
+        // Otherwise, show the next question
+        showQuestion(diff);
+        calculateTimeBonus();
+    }
+
+    // Reset selected choices and disable the submit button
+    choices.forEach(choice => {
+        choice.classList.remove('selected');
+        choice.querySelector('input').checked = false;
+    });
+    submitBtn.disabled = true;
+    // Change submit button color back to blue
+    submitBtn.classList.remove('selected');
+}
+
 
     // Event listener for the submit button
     submitBtn.addEventListener('click', submitAnswer);
@@ -174,6 +211,19 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.classList.add('selected');
         });
     });
+   // Function to calculate time bonus
+function calculateTimeBonus() {
+    clearInterval(timeBonusInterval); // Clear any existing interval
+     timeBonus = 100; // Initial time bonus in percent
+    const timeBonusElement = document.getElementById('time-bonus');
+    timeBonusElement.textContent = timeBonus + '%'; // Display initial time bonus
+
+    timeBonusInterval = setInterval(() => {
+        // Decrement time bonus by 10% every 3 seconds
+        timeBonus -= 10;
+        timeBonusElement.textContent = timeBonus + '%'; // Update time bonus display
+    }, 3000);
+}
 
     // Function to check if the selected answer is correct
     function checkAnswer() {

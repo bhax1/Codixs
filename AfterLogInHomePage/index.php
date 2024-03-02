@@ -95,6 +95,6 @@
     <span class="points">Points: <span id="total-points">0</span></span>
 </div>
 
-<script src="script2.js"></script>
+<script src="quiz.js"></script>
 </body>
 </html>
