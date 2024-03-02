@@ -1,5 +1,19 @@
+
+.hero.blurry {
+    position: relative;
+    z-index: 999; 
+    filter: blur(10px); 
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.navbar.blurry {
+    filter: blur(10px);;
+	pointer-events: none; 
+}
+
+
 .login_popup {
-    display:none;
+	display: none;
     z-index: 5;
     position: absolute;
     top: 50%;
@@ -8,8 +22,19 @@
     width: 800px;
     padding: 20px 30px;
     background: transparent;
+    animation: fadeIn .8s ease forwards; 
 }
 
+@keyframes fadeIn {
+    0% {
+        top: 40%; 
+        opacity: 0;
+    }
+    100% {
+        top: 50%; 
+        opacity: 1;
+    }
+}
 .container h1 {
 	font-weight: bold;
 	margin: 0;
@@ -154,9 +179,9 @@
 }
 
 .overlay {
-	background: #FF416C;
-	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-	background: linear-gradient(to right, #FF4B2B, #FF416C);
+	background: #5b37eb;
+	background: -webkit-linear-gradient(to right, rgba(55, 235, 169, 0.85), #5b37eb);
+	background: linear-gradient(to right, rgba(55, 235, 169, 0.85), #5b37eb);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;

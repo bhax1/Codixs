@@ -73,17 +73,25 @@ window.onscroll = () => {
 };
 
 
-// For Login
+
+// For Modal Login menu
 document.addEventListener("DOMContentLoaded", function() {
   const loginBtns = document.querySelectorAll(".action_btn_login ");
   const loginPopup = document.querySelector(".login_popup");
   const overlay = document.getElementById("overlay");
+  const heroHeader = document.getElementById("home");
+  const navBar = document.querySelector(".navbar");
 
   loginBtns.forEach(function(btn) {
       btn.addEventListener("click", function() {
           loginPopup.style.display = "block";
-          overlay.style.display = "block";
-          
+          heroHeader.classList.add("blurry");
+          navBar.classList.add("blurry");
+          document.body.style.overflow = "hidden"; 
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
       });
   });
 
@@ -93,7 +101,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function closeLoginPopup() {
       loginPopup.style.display = "none";
-      overlay.style.display = "none"; 
+      heroHeader.classList.remove("blurry");
+      navBar.classList.remove("blurry");
+      document.body.style.overflow = ""; 
   }
 
   window.addEventListener('click', function(event) {
@@ -106,6 +116,56 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+// For Modal Login Menu
+document.addEventListener("DOMContentLoaded", function() {
+  const loginBtns = document.querySelectorAll(".action_btn_login");
+  const loginPopup = document.querySelector(".login_popup");
+  const overlay = document.getElementById("overlay");
+  const headerOverlay = document.getElementById("headerOverlay");
+  const heroHeader = document.getElementById("home");
+  const navBar = document.querySelector(".navbar");
+
+  loginBtns.forEach(function(btn) {
+      btn.addEventListener("click", function() {
+          closeNavbar();
+          loginPopup.style.display = "block";
+          overlay.style.display = "block";
+          headerOverlay.style.display = "block";
+          heroHeader.classList.add("blurry");
+          navBar.classList.add("blurry");
+          document.body.style.overflow = "hidden"; 
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+      });
+  });
+
+  function isInsideLoginPopup(target) {
+      return loginPopup.contains(target);
+  }
+
+  function closeLoginPopup() {
+      loginPopup.style.display = "none";
+      overlay.style.display = "none";
+      headerOverlay.style.display = "none"; 
+      heroHeader.classList.remove("blurry");
+      navBar.classList.remove("blurry");
+      document.body.style.overflow = ""; 
+  }
+
+  window.addEventListener('click', function(event) {
+      const isClickInsideLoginPopup = isInsideLoginPopup(event.target);
+      if (!isClickInsideLoginPopup && !event.target.classList.contains("action_btn_login")) {
+          closeLoginPopup();
+      }
+  });
+});
+
+
+
+
+//Login Animation
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const backSignInButton = document.getElementById('backSignIn');

@@ -113,8 +113,11 @@ section {
     padding: 8px 25px;
 }
 
+
 .main a.action_btn_login {
-    background: var(--login-color); 
+    background: var(--login-color);
+    cursor: pointer; 
+    
 }
 
 .main a.action_btn_login:hover {
