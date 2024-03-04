@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/hero.css">
   <link rel="stylesheet" href="css/page1.css">
-  <link rel="stylesheet" href="css/page2.css">
   <link rel="stylesheet" href="css/cursor.css">
   <link rel="stylesheet" href="css/login.css">
   <link rel="stylesheet" href="css/Dev.css">
@@ -129,14 +128,13 @@
 
   <section id="page2" class="page2">
   <div class="Devs">
-    
     <div class="wrapper">
       <i id="left" class="fa-solid fa-angle-left"></i>
       <ul class="carousel">
         <li class="card">
           <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
           <h2>Mico</h2>
-          <span>Sales Manager</span>
+          <span>Web Developer</span>
         </li>
         <li class="card">
           <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
@@ -146,17 +144,17 @@
         <li class="card">
           <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
           <h2>Laguidao</h2>
-          <span>Online Teacher</span>
+          <span>Web Developer</span>
         </li>
         <li class="card">
           <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
           <h2>Augustine</h2>
-          <span>Freelancer</span>
+          <span>Web Developer</span>
         </li>
         <li class="card">
           <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
           <h2>Bob</h2>
-          <span>Bank Manager</span>
+          <span>Web Developer</span>
         </li>
       </ul>
       <i id="right" class="fa-solid fa-angle-right"></i>
@@ -203,6 +201,7 @@
 
   <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
   <script type="text/javascript" src="js/script.js" defer></script>
+  <script type="text/javascript" src="js/moveCard.js" defer></script>
 
 
 
