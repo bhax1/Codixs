@@ -127,44 +127,43 @@
 
 
 
-
-
-
   <section id="page2" class="page2">
-    <div class="Devs">
-      <div class="wrapper">
-        <i id="left" class="fa-solid fa-angle-left"></i>
-        <ul class="carousel">
-          <li class="card">
-            <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
-            <h2>Mico</h2>
-            <span>Sales Manager</span>
-          </li>
-          <li class="card">
-            <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
-            <h2>Joshua</h2>
-            <span>Web Developer</span>
-          </li>
-          <li class="card">
-            <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
-            <h2>Laguidao</h2>
-            <span>Online Teacher</span>
-          </li>
-          <li class="card">
-            <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
-            <h2>Augustine</h2>
-            <span>Freelancer</span>
-          </li>
-          <li class="card">
-            <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
-            <h2>Bob</h2>
-            <span>Bank Manager</span>
-          </li>
-        </ul>
-        <i id="right" class="fa-solid fa-angle-right"></i>
-      </div>
+  <div class="Devs">
+    
+    <div class="wrapper">
+      <i id="left" class="fa-solid fa-angle-left"></i>
+      <ul class="carousel">
+        <li class="card">
+          <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
+          <h2>Mico</h2>
+          <span>Sales Manager</span>
+        </li>
+        <li class="card">
+          <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
+          <h2>Joshua</h2>
+          <span>Web Developer</span>
+        </li>
+        <li class="card">
+          <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
+          <h2>Laguidao</h2>
+          <span>Online Teacher</span>
+        </li>
+        <li class="card">
+          <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
+          <h2>Augustine</h2>
+          <span>Freelancer</span>
+        </li>
+        <li class="card">
+          <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
+          <h2>Bob</h2>
+          <span>Bank Manager</span>
+        </li>
+      </ul>
+      <i id="right" class="fa-solid fa-angle-right"></i>
     </div>
-  </section>
+  </div>
+</section>
+
 
 
 
@@ -203,7 +202,7 @@
   </footer>
 
   <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-  <script type="text/javascript" src="js/script.js"></script>
+  <script type="text/javascript" src="js/script.js" defer></script>
 
 
 
