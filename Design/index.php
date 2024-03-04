@@ -10,17 +10,25 @@
   <link rel="stylesheet" href="css/hero.css">
   <link rel="stylesheet" href="css/page1.css">
   <link rel="stylesheet" href="css/page2.css">
-
+  <link rel="stylesheet" href="css/cursor.css">
   <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/Dev.css">
   <link rel="stylesheet" href="css/footer.css">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+  integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+ 
 
 </head>
 
 <body>
 
-  <div class="overlay" id="overlay"></div>
+<!-- Cursor -->
+<div class="circle"></div>
+
+
+<!-- For Modals -->
   <div class="login_popup">
     <div class="container" id="container">
       <div class="form-container sign-up-container">
@@ -55,7 +63,6 @@
         </form>
       </div>
 
-
       <div class="overlay-container">
         <div class="overlay">
           <div class="overlay-panel overlay-left">
@@ -69,52 +76,102 @@
             <p>Enter your personal details and start journey with us</p>
             <button class="ghost" id="signUp">Sign Up</button>
           </div>
-
         </div>
       </div>
     </div>
   </div>
 
+
+
+  
+<!-- For Navbar -->
   <header>
     <nav class="navbar">
       <div class="nav_logo"><a href="#"><span>{CodixsGo}</span></a></div>
       <ul class="nav_links">
         <li><a href="#home" class="active">Home</a></li>
-        <li><a href="#page1">Page 1</a></li>
-        <li><a href="#page2">Page 2</a></li>
-        <li><a href="#" class="action_btn_login" id="login">Log in</a></li>
-        <li><a href="#" class="action_btn_login" id="GettingStrd">Get Started</a></li>
+        <li><a href="#page1">About</a></li>
+        <li><a href="#page2">Devs</a></li>
+        <li><a href="#" class="action_btn_login" id="login">Log In</a></li>
       </ul>
       <div class="main">
         <a class="action_btn_login" id="login">Log In</a>
-        <a class="action_btn_login" id="GettingStrd">Getting Started</a>
         <div class="fa-solid fa-bars" id="menu_icon"></div>
       </div>
     </nav>
   </header>
 
-  <section id="home">
-    <div class="gradient-background">
-      <div class="gradient"></div>
-    </div>
+
+  <!-- Sections -->
+  <section id="home" class="home">
     <div class="hero">
       <h1><span class="auto-type"></span></h1>
-      <form>
-        <input type="submit" class="Getting_btn" value="Getting Started"></input>
-      </form>
+      <h3><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Tempore, ipsum! Maxime provident praesentium ea incidunt atque 
+        quo voluptate dolorem doloribus beatae, perferendis adipisci veniam 
+        iure unde cum explicabo commodi quasi?</span></h3>
+
+      <button class="button-19" role="button">Getting Started</button>  
     </div>
   </section>
+
+
+  
 
   <section id="page1" class="page1">
-    <div class="next">
+    <div class="AboutUs">
+  
+    
     </div>
   </section>
+
+
+
+
+
 
   <section id="page2" class="page2">
-    <div class="next">
+    <div class="Devs">
+      <div class="wrapper">
+        <i id="left" class="fa-solid fa-angle-left"></i>
+        <ul class="carousel">
+          <li class="card">
+            <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
+            <h2>Mico</h2>
+            <span>Sales Manager</span>
+          </li>
+          <li class="card">
+            <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
+            <h2>Joshua</h2>
+            <span>Web Developer</span>
+          </li>
+          <li class="card">
+            <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
+            <h2>Laguidao</h2>
+            <span>Online Teacher</span>
+          </li>
+          <li class="card">
+            <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
+            <h2>Augustine</h2>
+            <span>Freelancer</span>
+          </li>
+          <li class="card">
+            <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
+            <h2>Bob</h2>
+            <span>Bank Manager</span>
+          </li>
+        </ul>
+        <i id="right" class="fa-solid fa-angle-right"></i>
+      </div>
     </div>
   </section>
 
+
+
+
+
+
+<!-- For Footer -->
   <footer class="footer">
     <div class="waves">
       <div class="wave" id="wave1"></div>
@@ -147,6 +204,10 @@
 
   <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
+
+
+
+
 
   <?php
   $connection = mysqli_connect('localhost', 'root', '', 'codixs');

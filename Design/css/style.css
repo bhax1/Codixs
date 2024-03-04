@@ -21,11 +21,11 @@ body {
     min-height: 100vh;
     background: var(--bg-color);
     color: var(--text-color);
+    /* cursor: none;  */
 }
 
 section {
     min-height: 100vh;
-    padding: 20rem 9% 10rem;
   }
   
 /* NAVBAR */
@@ -197,6 +197,7 @@ section {
         border-radius: 15px;
         background-color: var(--main-color);
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        margin-bottom: 20px;
     }
 
     .nav_links .action_btn_login:hover {

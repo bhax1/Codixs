@@ -248,3 +248,8 @@
 	width: 40px;
 }
 
+@media (max-width: 830px) {
+    .login_popup {
+		width: 300px;
+	}
+}
