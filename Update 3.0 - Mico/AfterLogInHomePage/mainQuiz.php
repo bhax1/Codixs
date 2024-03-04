@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Game - API Project</title>
-    <link rel="stylesheet" href="quiz.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="navX.css"> <!--Experimental Change-->
 </head>
 <body class="layout">
@@ -101,10 +101,11 @@
     Points: <span id="points-result"></span>
   </div>
   <div class="result-comment" id="comment-result"></div>
+  <button id="continue-btn">Continue</button> <!-- Add the Continue button here -->
 </div>
 
 
 
-<script src="quiz.js"></script>
+<script src="script2.js"></script>
 </body>
 </html>

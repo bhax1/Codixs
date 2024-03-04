@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     difficultyContainer.style.display = 'none';
     quizContainer.style.display = 'none';
     startContainer.style.display = 'block';
-
+    
     let difficultyBonus = 0;
     let corrAns = '';
     let answeredQuestions = 0;
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function startQuiz() {
         difficultyContainer.style.display = 'block';
         startContainer.style.display = 'none';
-        calculateTimeBonus();
+       
     }
 
     function showQuiz(difficulty) {
@@ -68,53 +68,84 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         showQuestion(diff);
+        calculateTimeBonus();
     }
 
     startBtn.addEventListener('click', startQuiz);
 
     function submitAnswer() {
-        const isCorrect = checkAnswer();
+        // Disable submit button
+        submitBtn.disabled = true;
+    
+        // Identify the selected choice, if any
+        const selectedChoice = document.querySelector('.choice-label input:checked');
+        const selectedValue = selectedChoice ? selectedChoice.value : null;
+        
+        // Loop through all choices and apply red background to the incorrect ones
+        choices.forEach(choice => {
+            const choiceValue = choice.querySelector('input').value;
+            if (choiceValue !== corrAns) {
+                choice.classList.add('wrong');
+            }
+        });
+    
         const basePoints = 500;
         points += basePoints;
-
-        if (isCorrect) {
-            score++;
-            streak++;
-            const bonusPoints = Math.round(basePoints * 0.20);
-            points += bonusPoints;
-            const bonusTimePoints = Math.round((timeBonus / 100) * points);
-            const difficultyBonusPoints = Math.round(difficultyBonus * basePoints);
-            points += difficultyBonusPoints;
-            points += bonusTimePoints;
-
-            const streakBonusPoints = Math.round((5 * streak / 100) * points);
-            points += streakBonusPoints;
-        } else {
-            streak = 0;
-        }
-
-        updateScore();
-
-        currentQues++;
-        answeredQuestions++;
-
-        if (answeredQuestions >= totalQuestions) {
-            quizContainer.style.display = 'none';
-            scoreContainer.style.display = 'none'; // Hide score container
-            resultContainer.style.display = 'block'; // Show result container
-            displayResult(); // Display the result
-        } else {
-            showQuestion(diff);
-            calculateTimeBonus();
-        }
-
-        choices.forEach(choice => {
-            choice.classList.remove('selected');
-            choice.querySelector('input').checked = false;
-        });
-        submitBtn.disabled = true;
-        submitBtn.classList.remove('selected');
+    
+        // Change background color of the correct choice label to green temporarily
+        document.querySelector(`label[for=${corrAns}]`).classList.add('correct');
+    
+        // Delay before fetching and displaying the next question
+        setTimeout(() => {
+            // Remove background color changes
+            choices.forEach(choice => {
+                choice.classList.remove('wrong');
+            });
+            document.querySelector(`label[for=${corrAns}]`).classList.remove('correct');
+    
+            const isCorrect = selectedValue === corrAns;
+            if (isCorrect) {
+                score++;
+                streak++;
+                const bonusPoints = Math.round(basePoints * 0.20);
+                points += bonusPoints;
+                const bonusTimePoints = Math.round((timeBonus / 100) * points);
+                const difficultyBonusPoints = Math.round(difficultyBonus * basePoints);
+                points += difficultyBonusPoints;
+                points += bonusTimePoints;
+    
+                const streakBonusPoints = Math.round((5 * streak / 100) * points);
+                points += streakBonusPoints;
+            } else {
+                streak = 0;
+            }
+    
+            updateScore();
+    
+            currentQues++;
+            answeredQuestions++;
+    
+            if (answeredQuestions >= totalQuestions) {
+                quizContainer.style.display = 'none';
+                scoreContainer.style.display = 'none'; // Hide score container
+                resultContainer.style.display = 'block'; // Show result container
+                displayResult(); // Display the result
+            } else {
+                showQuestion(diff);
+                calculateTimeBonus();
+            }
+    
+            choices.forEach(choice => {
+                choice.classList.remove('selected');
+                choice.querySelector('input').checked = false;
+            });
+            submitBtn.classList.remove('selected');
+        }, 1000);
     }
+    
+    
+    
+    
 
     submitBtn.addEventListener('click', submitAnswer);
 
@@ -176,11 +207,18 @@ document.addEventListener('DOMContentLoaded', function() {
         clearInterval(timeBonusInterval);
         timeBonus = 100;
         const timeBonusElement = document.getElementById('time-bonus');
-        timeBonusElement.textContent = timeBonus + '%';
-
+        timeBonusElement.textContent = '+'+timeBonus + '%';
+        let timeLimiter = 10;
         timeBonusInterval = setInterval(() => {
-            timeBonus -= 10;
-            timeBonusElement.textContent = timeBonus + '%';
+            
+            if(timeLimiter<=0){
+                timeBonus = 0;
+            } else{
+                timeLimiter-=1;
+                timeBonus -= 10;
+            }
+            
+            timeBonusElement.textContent = '+'+timeBonus + '%';
         }, 3000);
     }
 
@@ -218,4 +256,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const resultComment = document.getElementById('comment-result');
         resultComment.textContent = comment;
     }
+
+    const continueBtn = document.getElementById('continue-btn');
+    continueBtn.addEventListener('click', function() {
+        // Hide result container and display start container
+        score=0;
+        streak=0;
+        currentQues=1;
+        points=0;
+        answeredQuestions=0;
+        resultContainer.style.display = 'none';
+        startContainer.style.display = 'block';
+    });
 });

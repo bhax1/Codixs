@@ -1,10 +1,12 @@
 <?php
     session_start();
-
-    if (isset($_SESSION['quizid']) && $_SESSION['quizid']['backbtnclicked'] === false) {
-        echo '<script>opencreate();</script>';
-    } else {
-        echo '<script>openmanage();</script>';
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (isset($_POST['eid'])) {
+            $_SESSION['eid'] = $_POST['eid'];
+        } else {
+            http_response_code(400);
+            echo '<script>alert("Error: eid parameter is missing in the request.");</script>';
+        }
     }
 ?>
 
@@ -31,10 +33,15 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" href="index.html" data-bs-target="#offcanvas-1" data-bs-toggle="offcanvas"><i class="icon ion-speedometer d-xl-flex" style="font-size: 25px;margin-right: 10px;margin-left: 10px;"></i><span class="d-xl-flex" style="font-size: 15px;">Dashboard</span></a></li>
-                    <li class="nav-item">
-                        <a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" href="profile.html"><i class="icon ion-android-person" style="font-size: 25px;margin-right: 10px;margin-left: 10px;"></i><span style="font-size: 15px;">Manage Accounts</span></a>
-                        <a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" href="manage-quiz.html"><i class="icon ion-android-create" style="font-size: 25px;margin-right: 10px;margin-left: 10px;"></i><span style="font-size: 15px;">Manage Quiz</span></a>
+                <li class="nav-item">
+                    <a id="dashboardLink" class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" data-bs-target="#offcanvas-1" data-bs-toggle="offcanvas">
+                        <i class="icon ion-speedometer d-xl-flex" style="font-size: 25px;margin-right: 10px;margin-left: 10px;"></i>
+                        <span class="d-xl-flex" style="font-size: 15px;">Dashboard</span>
+                    </a>
+                </li>                   
+                <li class="nav-item">
+                        <a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" href="manage-account.html"><i class="icon ion-android-person" style="font-size: 25px;margin-right: 10px;margin-left: 10px;"></i><span style="font-size: 15px;">Manage Accounts</span></a>
+                        <a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" href="manage-quiz.php"><i class="icon ion-android-create" style="font-size: 25px;margin-right: 10px;margin-left: 10px;"></i><span style="font-size: 15px;">Manage Quiz</span></a>
                         <a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" data-bs-target="#modal-1" data-bs-toggle="modal" href="5q-items.php"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-plus-lg" style="margin-right: 10px;margin-left: 10px;font-size: 20px;"><path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"></path></svg><span style="font-size: 15px;">Create Quiz</span></a>
                 </ul>
             </div>
@@ -58,7 +65,7 @@
                             </li>
                             <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">User</span><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person-fill" style="font-size: 20px;">
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">Admin</span><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person-fill" style="font-size: 20px;">
                                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"></path>
                                         </svg></a>
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a class="dropdown-item" href="../profile.html"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
@@ -90,7 +97,6 @@
                                                     <h4 class="card-title">' . $row['quizname'] . '</h4>
                                                     <p>Quiz Type - ' . $row['type'] . ' ('. $row['diff'] .')</p>
                                                     <button class="btn btn-primary edit-btn" type="button" data-eid="' . $row['eid'] . '" style="background: #181818;border-color: #181818;">Edit</button>
-                                                    <button class="btn btn-primary" type="button" style="margin-right: 10px;margin-left: 10px;background: #181818;border-color: #181818;">View</button>
                                                 </div>
                                             </div>
                                         </div>';
@@ -103,38 +109,31 @@
                     </div>
                 </div>
                 <div class="modal fade" role="dialog" tabindex="-1" id="modal-1">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Choose the following</h4><button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body"><select class="border rounded" style="border-color: #181818;color: #181818;font-size: 22px;">
-                                    <option value="1" selected="">Easy</option>
-                                    <option value="2">Medium</option>
-                                    <option value="3">Hard</option>
-                                </select>
-                                <p style="font-size: 18px;">Difficulty</p><select class="border rounded" style="border-color: #181818;color: #181818;font-size: 22px;">
-                                    <option value="5" selected="">5</option>
-                                    <option value="10">10</option>
-                                    <option value="15">15</option>
-                                </select>
-                                <p style="font-size: 18px;">Questions</p>
-                            </div>
-                            <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Cancel</button><button class="btn btn-primary" type="button" style="background: #181818;border-color: #181818;" data-bs-target="#modal-2" data-bs-toggle="modal">Create</button></div>
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Choose the following</h4><button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="modal"></button>
                         </div>
+                        <div class="modal-body">
+                            <input type="text" name="quiz-name" placeholder="Enter your quiz name">
+                        </div>
+                        <div class="modal-body">
+                            <select name="difficulty" class="border rounded" style="border-color: #181818;color: #181818;font-size: 22px;">
+                                <option value="Easy" selected="">Easy</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Hard">Hard</option>
+                            </select>
+                            <p style="font-size: 18px;">Difficulty</p>
+                            <select name="quiz-type" class="border rounded" style="border-color: #181818;color: #181818;font-size: 22px;">
+                                <option value="Multiple Choice Questions" selected="">Multiple Questions</option>
+                                <option value="Coding">Code</option>
+                            </select>
+                            <p style="font-size: 18px;">Quiz Type</p>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Cancel</button><button class="btn btn-primary" type="button" style="background: #181818;border-color: #181818;" id="save-quiz-btn">Create</button></div>
                     </div>
                 </div>
-                <div class="modal fade" role="dialog" tabindex="-1" id="modal-2">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Choose the following</h4><button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body"><input type="text" name="quiz-name" placeholder="Enter your quiz name"></div>
-                            <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Cancel</button><button class="btn btn-primary" type="button" style="background: #181818;border-color: #181818;">Create</button></div>
-                        </div>
-                    </div>
-                </div>
+            </div>
             </div>
             <div class="modal fade" role="dialog" tabindex="-1" id="modal-3">
                 <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
@@ -158,32 +157,23 @@
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/theme.js"></script>
-
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
     <script>
         $(document).ready(function () {
             $('.edit-btn').click(function () {
                 var eid = $(this).data('eid');
-                alert('Edit button clicked for quiz ID: ' + eid);
-
-                // Using AJAX to send data to the server-side script
+                
+                // Send the eid to the server using Ajax
                 $.ajax({
-                    url: 'save-quiz.php',  // Replace with the actual path to your server-side script
-                    method: 'POST',
-                    data: {
-                        quizid: {
-                            keyid: eid,
-                            backbtnclicked: false
-                        }
-                    },
-                    success: function (response) {
-                        // Handle the response if needed
-                        console.log(response);
+                    type: 'POST',
+                    url: '', // Leave the URL empty to send the request to the same file
+                    data: { eid: eid },
+                    success: function(response) {
                         window.location.href = '5q-items.php';
                     },
-                    error: function (xhr, status, error) {
-                        // Handle errors if needed
-                        console.error(xhr.responseText);
+                    error: function(xhr, status, error) {
+                        console.error('Error saving eid to session: ' + error);
                     }
                 });
             });
@@ -192,9 +182,40 @@
         function openmanage() {
             window.location.href = 'manage-quiz.php';
         }
+
         function opencreate() {
             window.location.href = '5q-items.php';
         }
+
+        $("#save-quiz-btn").click(function(){
+                var quizName = $("input[name='quiz-name']").val();
+                var difficulty = $("select[name='difficulty']").val();
+                var quizType = $("select[name='quiz-type']").val();
+                $.ajax({
+                    type: "POST",
+                    url: "save-quiz.php",
+                    data: { quizName: quizName, difficulty: difficulty, quizType: quizType},
+                    dataType: "json",
+                    success: function(response){
+                        if (response.status === 'success') {
+                            window.location.href = 'manage-quiz.php';
+                        } else {
+                            console.error(response.message);
+                            alert('Error: ' + response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                        alert('Error: ' + error);
+                    }
+                });
+                $("#modal-1").modal("hide");
+        });
+
+        document.getElementById('dashboardLink').addEventListener('click', function() {
+            // Redirecting to the desired file
+            window.location.href = 'index-admin.html';
+        });
     </script>
 </body>
 </html>

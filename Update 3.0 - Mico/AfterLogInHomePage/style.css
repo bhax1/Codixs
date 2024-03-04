@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
 
 * {
@@ -213,13 +212,12 @@ button.selected:focus {
   display: flex;
 }
 
-
-
 .quiz-container {
   margin-left: 10px; /* Add space between quiz container and sidebar */
   margin-right: 20px; /* Add space between quiz container and score container */
   flex-grow: 1; /* Allow the quiz container to grow and take up remaining space */
 }
+
 .result-container {
   background-color: #fff; /* Set white background color */
   border-radius: 10px;
@@ -229,6 +227,9 @@ button.selected:focus {
   width: 500px; /* Adjust width to 500px */
   display: none; /* Hide result container initially */
   text-align: center; /* Center align text */
+  display: flex; /* Set display to flex */
+  flex-direction: column; /* Arrange children vertically */
+  align-items: center; /* Center align items horizontally */
 }
 
 .result-title {
@@ -237,10 +238,19 @@ button.selected:focus {
 }
 
 .result-details {
-  margin-bottom: 20px; /* Add margin below details */
+  margin-bottom: 40px; /* Add margin below details */
 }
 
 .result-comment {
   font-style: italic; /* Make comment italic */
-  margin-top: 20px; /* Add margin on top of comment */
+  margin-top: 40px; /* Increase margin on top of comment */
+  margin-bottom: 30px; /* Add margin between comment and continue button */
+}
+
+.correct {
+  background-color: #57fc0b; /* Change to green color */
+}
+
+.wrong {
+  background-color: #ff5733; /* Change to red color */
 }

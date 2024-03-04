@@ -50,16 +50,16 @@ document.addEventListener('DOMContentLoaded', function() {
         difficultyContainer.style.display = 'none';
 
         switch (difficulty) {
-            case 'easy':
+            case 'Easy':
                 diff = 'easy.php';
                 difficultyBonus = 0;
                 break;
-            case 'medium':
-                diff = 'medium.php';
+            case 'Medium':
+                diff = 'easy.php';
                 difficultyBonus = 0.20;
                 break;
-            case 'hard':
-                diff = 'hard.php';
+            case 'Hard':
+                diff = 'easy.php';
                 difficultyBonus = 0.40;
                 break;
             default:
@@ -149,9 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     submitBtn.addEventListener('click', submitAnswer);
 
-    easyBtn.addEventListener('click', () => showQuiz('easy'));
-    mediumBtn.addEventListener('click', () => showQuiz('medium'));
-    hardBtn.addEventListener('click', () => showQuiz('hard'));
+    easyBtn.addEventListener('click', function() { showQuiz(playDiff);});
 
     function showQuestion(url) {
         const numQuestions = document.getElementById('question-select').value;

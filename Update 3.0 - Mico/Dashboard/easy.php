@@ -12,9 +12,14 @@ if ($conn->connect_error) {
 }
 
 $encounteredQuestions = isset($_GET['encountered']) ? explode(',', $_GET['encountered']) : [];
-$encounteredCondition = !empty($encounteredQuestions) ? "WHERE Questions NOT IN ('" . implode("','", $encounteredQuestions) . "')" : "";
-$sql = "SELECT Questions, a, b, c, d, answers FROM questions $encounteredCondition ORDER BY RAND() LIMIT 1";
-$result = $conn->query($sql);
+$encounteredCondition = !empty($encounteredQuestions) ? "AND Questions NOT IN ('" . implode("','", $encounteredQuestions) . "')" : "";
+
+// Use prepared statements to prevent SQL injection
+$sql = "SELECT Questions, a, b, c, d, answers FROM questions WHERE eid = ? $encounteredCondition ORDER BY RAND() LIMIT 1";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $_SESSION['play-eid']);
+$stmt->execute();
+$result = $stmt->get_result();
 
 // Check if there are questions available
 if ($result->num_rows > 0) {
@@ -23,6 +28,8 @@ if ($result->num_rows > 0) {
 } else {
     echo "0 results";
 }
+
+$stmt->close();
 $conn->close();
 
 // Output question as JSON
