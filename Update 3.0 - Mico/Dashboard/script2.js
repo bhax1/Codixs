@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const resultContainer = document.getElementById('result-container'); // New result container
     resultContainer.style.display = 'none'; // Hide result container initially
 
+    
+
     scoreContainer.style.display = 'none';
     difficultyContainer.style.display = 'none';
     quizContainer.style.display = 'none';

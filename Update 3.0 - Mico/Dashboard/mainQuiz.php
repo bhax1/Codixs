@@ -13,9 +13,11 @@
                 $stmt->bind_param("s", $_SESSION['play-eid']);
                 $stmt->execute();
                 $result = $stmt->get_result();
+                $total = 0;
                 while ($row = $result->fetch_assoc()) {
                     $total = $total + 1;
                 }
+                $_SESSION['total'] = $total;
                 $stmt->close();
             }
             $conn->close();
@@ -24,6 +26,9 @@
             echo '<script>alert("Error: eid parameter is missing in the request.");</script>';
         }
     }
+    echo '<script>alert("' . $_SESSION['play-diff'] . '");</script>';
+    echo '<script>alert("' . $_SESSION['play-eid'] . '");</script>';
+    echo '<script>alert("' . $_SESSION['total'] . '");</script>';
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +56,7 @@
     <div class="question-selection">
         <label for="question-select">Questions:</label>
         <select id="question-select">
-            <option value="<?php echo $total; ?>">5</option>
+            <option value="<?php echo $_SESSION['total']; ?>"><?php echo $_SESSION['total']; ?></option>
         </select>
     </div>
 </div>

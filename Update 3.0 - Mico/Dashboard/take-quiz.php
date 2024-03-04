@@ -84,7 +84,7 @@
                                                     <div class="card-body">
                                                         <h4 class="card-title">' . $row['quizname'] . '</h4>
                                                         <p>Quiz Type - ' . $row['type'] . ' ('. $row['diff'] .')</p>
-                                                        <button class="btn btn-primary play-btn" type="button" data-question-id="' . $row['eid'] . '" data-quiz-lvl="' . $row['diff'] . '" style="background: #181818;border-color: #181818;">Play</button>
+                                                        <button class="btn btn-primary play-btn" type="button" data-quiz-lvl="' . $row['diff'] . '" data-question-id="' . $row['eid'] . '" style="background: #181818;border-color: #181818;">Play</button>
                                                     </div>
                                                 </div>
                                             </div>';
@@ -106,7 +106,7 @@
                         <div class="modal-body">
                             <p>Ready to take a quiz?</p>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">No</button><button class="btn btn-primary" type="button" style="background: #181818;border-color: #181818;" id="confirmPlayBtn">Yes</button></div>
+                        <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">No</button><button class="btn btn-primary" type="button" style="background: #181818;border-color: #181818;" id="confirmPlayQuiz">Yes</button></div>
                     </div>
                 </div>
             </div>
@@ -136,33 +136,33 @@
     
     <script>
         $(document).ready(function () {
-        $(".play-btn").click(function () {
-            var eid = $(this).data("question-id");
-            var diff = $(this).data("quiz-lvl");
-            $("#confirmPlayBtn").data("question-id", eid);
-            $("#confirmPlayBtn").data("quiz-lvl", diff);
-            $("#wantplay").modal("show");
-        });
-
-        $("#confirmPlayBtn").click(function () {
-            var eid = $(this).data("question-id");
-            var diff = $(this).data("quiz-lvl");
-            $.ajax({
-                type: "POST",
-                url: "mainQuiz.php",
-                data: { eid: eid, diff: diff },
-                dataType: "json",
-                success: function (response) {
-                    window.location.href = 'mainQuiz.php';
-                }
+            $(".play-btn").click(function () {
+                $("#confirmPlayQuiz").attr("data-question-id", $(this).data("question-id"));
+                $("#confirmPlayQuiz").attr("data-quiz-lvl", $(this).data("quiz-lvl"));
+                $("#wantplay").modal("show");
             });
-            $("#wantplay").modal("hide");
+            $("#confirmPlayQuiz").click(function () {
+                var eid = $(this).data("question-id");
+                var diff = $(this).data("quiz-lvl");
+                alert(diff);
+                $.ajax({
+                    type: "POST",
+                    url: 'mainQuiz.php',
+                    data: { eid: eid, diff: diff },
+                    dataType: "json",
+                    success: function (response) {
+                    },
+                    error: function () {
+                    }
+                });
+                $("#wantplay").modal("hide");
+                window.location.href = 'mainQuiz.php';
+            });
         });
-    });
 
-    document.getElementById('dashboardLink').addEventListener('click', function() {
-        window.location.href = 'index.html';
-    });
+        document.getElementById('dashboardLink').addEventListener('click', function() {
+            window.location.href = 'index.html';
+        });
     </script>
 </body>
 </html>

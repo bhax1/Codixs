@@ -1,13 +1,19 @@
 <?php
     session_start();
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if (isset($_POST['eid'])) {
-            $_SESSION['eid'] = $_POST['eid'];
-        } else {
-            http_response_code(400);
-            echo '<script>alert("Error: eid parameter is missing in the request.");</script>';
+    $conn = new mysqli('localhost', 'root', '', 'codixs');
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } else {
+        $stmt = $conn->prepare("SELECT * FROM questions WHERE eid = ?");
+        $stmt->bind_param("s", $_SESSION['play-eid']);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        while ($row = $result->fetch_assoc()) {
+            $total = $total + 1;
         }
-    }
+            $stmt->close();
+        }
+    $conn->close();
 ?>
 
 <!DOCTYPE html>
