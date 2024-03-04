@@ -244,3 +244,12 @@ button.selected:focus {
   font-style: italic; /* Make comment italic */
   margin-top: 20px; /* Add margin on top of comment */
 }
+
+.correct {
+  background-color: #57fc0b; /* Change to green color */
+}
+
+
+.wrong {
+  background-color: #ff5733; /* Change to red color */
+}

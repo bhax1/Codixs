@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Game - API Project</title>
-    <link rel="stylesheet" href="quiz.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="navX.css"> <!--Experimental Change-->
 </head>
 <body class="layout">
