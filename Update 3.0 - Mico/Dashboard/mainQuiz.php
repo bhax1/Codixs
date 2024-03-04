@@ -26,9 +26,6 @@
             echo '<script>alert("Error: eid parameter is missing in the request.");</script>';
         }
     }
-    echo '<script>alert("' . $_SESSION['play-diff'] . '");</script>';
-    echo '<script>alert("' . $_SESSION['play-eid'] . '");</script>';
-    echo '<script>alert("' . $_SESSION['total'] . '");</script>';
 ?>
 
 <!DOCTYPE html>
@@ -44,17 +41,17 @@
 <body class="layout">
 
 <div class="start-container" id="start-container">
-    <h1 class="title">CodixGo!!</h1>
-    <button id="start-btn">Start</button>
+    <h1 class="title">CodixsGo!</h1>
+    <button id="start-btn">Next</button>
 </div>
 
 <div class="difficulty-container hidden" id="difficulty-container">
-    <h2 class="difficulty-title">Difficulty</h2>
+    <h2 class="difficulty-title">Are you ready?</h2>
     <div class="difficulty-btns">
-        <button class="difficulty-btn" id="easy-btn">Easy</button>
+        <button class="difficulty-btn" id="easy-btn">Start</button>
     </div>
     <div class="question-selection">
-        <label for="question-select">Questions:</label>
+        <label for="question-select">Total Questions:</label>
         <select id="question-select">
             <option value="<?php echo $_SESSION['total']; ?>"><?php echo $_SESSION['total']; ?></option>
         </select>
