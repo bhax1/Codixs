@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     difficultyContainer.style.display = 'none';
     quizContainer.style.display = 'none';
     startContainer.style.display = 'block';
-
+    
     let difficultyBonus = 0;
     let corrAns = '';
     let answeredQuestions = 0;
@@ -176,11 +176,18 @@ document.addEventListener('DOMContentLoaded', function() {
         clearInterval(timeBonusInterval);
         timeBonus = 100;
         const timeBonusElement = document.getElementById('time-bonus');
-        timeBonusElement.textContent = timeBonus + '%';
-
+        timeBonusElement.textContent = '+'+timeBonus + '%';
+        let timeLimiter = 10;
         timeBonusInterval = setInterval(() => {
-            timeBonus -= 10;
-            timeBonusElement.textContent = timeBonus + '%';
+            
+            if(timeLimiter<=0){
+                timeBonus = 0;
+            } else{
+                timeLimiter-=1;
+                timeBonus -= 10;
+            }
+            
+            timeBonusElement.textContent = '+'+timeBonus + '%';
         }, 3000);
     }
 

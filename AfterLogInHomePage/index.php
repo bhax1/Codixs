@@ -105,6 +105,6 @@
 
 
 
-<script src="quiz.js"></script>
+<script src="script2.js"></script>
 </body>
 </html>
