@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
 
@@ -21,14 +25,11 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" href="../index.html" data-bs-target="#offcanvas-1" data-bs-toggle="offcanvas"><i class="icon ion-speedometer d-xl-flex" style="font-size: 25px;margin-right: 10px;margin-left: 10px;"></i><span class="d-xl-flex" style="font-size: 15px;">Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" href="../profile.html"><i class="icon ion-android-person" style="font-size: 25px;margin-right: 10px;margin-left: 10px;"></i><span style="font-size: 15px;">Profile</span></a></li>
-                    <li class="nav-item"></li>
-                    <li class="nav-item"><a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" data-bs-target="#modal-1" data-bs-toggle="modal" href="5q-items.html"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-plus-lg" style="margin-right: 10px;margin-left: 10px;font-size: 20px;">
-                                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"></path>
-                            </svg><span style="font-size: 15px;">Create Quiz</span></a><a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" href="../manage-quiz.html"><i class="icon ion-android-create" style="font-size: 25px;margin-right: 10px;margin-left: 10px;"></i><span style="font-size: 15px;">Manage Quiz</span></a><a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" href="../manage-quiz.html"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-chat-square-fill" style="font-size: 25px;margin-right: 10px;margin-left: 10px;">
-                                <path d="M2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"></path>
-                            </svg><span style="font-size: 15px;">Take Quiz</span></a></li>
+                    <li class="nav-item"><a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" href="index.html" data-bs-target="#offcanvas-1" data-bs-toggle="offcanvas"><i class="icon ion-speedometer d-xl-flex" style="font-size: 25px;margin-right: 10px;margin-left: 10px;"></i><span class="d-xl-flex" style="font-size: 15px;">Dashboard</span></a></li>
+                    <li class="nav-item">
+                        <a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" href="profile.html"><i class="icon ion-android-person" style="font-size: 25px;margin-right: 10px;margin-left: 10px;"></i><span style="font-size: 15px;">Manage Accounts</span></a>
+                        <a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" href="manage-quiz.html"><i class="icon ion-android-create" style="font-size: 25px;margin-right: 10px;margin-left: 10px;"></i><span style="font-size: 15px;">Manage Quiz</span></a>
+                        <a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" data-bs-target="#modal-1" data-bs-toggle="modal" href="5q-items.html"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-plus-lg" style="margin-right: 10px;margin-left: 10px;font-size: 20px;"><path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"></path></svg><span style="font-size: 15px;">Create Quiz</span></a>
                 </ul>
             </div>
         </nav>
@@ -63,47 +64,38 @@
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4">Manage Quiz</h3>
+                    <h3 class="text-dark mb-4">Create Questions</h3>
                     <div class="card shadow">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold" style="--bs-primary: #181818;--bs-primary-rgb: 24,24,24;">Here are the list of the quiz you created</p>
+                            <p class="text-primary m-0 fw-bold" style="--bs-primary: #181818;--bs-primary-rgb: 24,24,24;">Fill up the Form</p>
                         </div>
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-12 col-sm-6 col-xl-6 offset-0 offset-sm-0 offset-xl-0" style="margin-bottom: 10px;">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Quiz 1</h4><button class="btn btn-primary border rounded" type="button" style="background: #181818;border-color: #181818;">Edit</button><button class="btn btn-primary border rounded" type="button" style="margin-right: 10px;margin-left: 10px;background: #181818;border-color: #181818;">View</button>
-                                        </div>
-                                    </div>
+                        <div class="col d-flex d-xl-flex justify-content-end justify-content-xl-start" style="margin-bottom: 10px">
+                            <button id="backbtn" class="btn btn-primary d-xl-flex" type="button" style="margin-right: 10px; background: #181818; border-color: #181818;">Back to Manage</button>
+                            <button id="addQuestionButton" class="btn btn-primary d-xl-flex" type="button" style="background: #181818; border-color: #181818;">Add Question</button>
+                        </div>
+                            <div class="flex-column">
+                            <div class="card">
+                                <div class="card">
+                                    <?php
+                                        $conn = new mysqli('localhost', 'root', '', 'codixs');
+                                        if ($conn->connect_error) {
+                                            die("Connection failed: " . $conn->connect_error);
+                                        } else {
+                                            $select = mysqli_query($conn, "SELECT * FROM questions");
+                                            while ($row = mysqli_fetch_array($select)) {
+                                                echo '<div class="card-body">
+                                                <h4 class="card-title">Question Title</h4>
+                                                <p></p>
+                                                <button class="btn btn-primary edit-btn" type="button" style="background: #181818;border-color: #181818;">Edit</button>
+                                                <button class="btn btn-primary" type="button" style="margin-right: 10px;margin-left: 10px;background: #181818;border-color: #181818;">Delete</button>
+                                            </div>';
+                                            }
+                                        }
+                                        $conn->close();
+                                    ?>
                                 </div>
-                                <div class="col-sm-6 col-xl-6 offset-sm-0 offset-xl-0" style="margin-bottom: 10px;">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Quiz 2</h4><button class="btn btn-primary" type="button" style="background: #181818;border-color: #181818;">Edit</button><button class="btn btn-primary" type="button" style="margin-right: 10px;margin-left: 10px;background: #181818;border-color: #181818;">View</button>
-                                        </div>
-                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6 col-xl-6 offset-sm-0 offset-xl-0" style="margin-top: 10px;">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Quiz 3</h4><button class="btn btn-primary" type="button" style="background: #181818;border-color: #181818;">Edit</button><button class="btn btn-primary" type="button" style="margin-right: 10px;margin-left: 10px;background: #181818;border-color: #181818;">View</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-xl-6 offset-sm-0 offset-xl-0" style="margin-top: 10px;">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Quiz 4</h4><button class="btn btn-primary" type="button" style="background: #181818;border-color: #181818;">Edit</button><button class="btn btn-primary" type="button" style="margin-right: 10px;margin-left: 10px;background: #181818;border-color: #181818;">View</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-xl-6 offset-sm-0 offset-xl-0" style="margin-top: 10px;"></div>
-                                <div class="col-sm-6 col-xl-6 offset-sm-0 offset-xl-0" style="margin-top: 10px;"></div>
-                                <div class="col-sm-6 col-xl-6 offset-sm-0 offset-xl-0" style="margin-top: 10px;"></div>
-                                <div class="col-sm-6 col-xl-6 offset-sm-0 offset-xl-0" style="margin-top: 10px;"></div>
                             </div>
                         </div>
                     </div>
@@ -126,7 +118,7 @@
                                 </select>
                                 <p style="font-size: 18px;">Questions</p>
                             </div>
-                            <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Cancel</button><button class="btn btn-primary" type="button" style="background: #181818;border-color: #181818;" data-bs-target="#modal-2" data-bs-toggle="modal">Create</button></div>
+                            <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Cancel</button><button class="btn btn-primary" type="button" style="background: #181818;border-color: #181818;">Create</button></div>
                         </div>
                     </div>
                 </div>
@@ -155,6 +147,29 @@
                     </div>
                 </div>
             </div>
+            <div class="modal fade" role="dialog" tabindex="-1" id="modal-4">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Choose the following</h4><button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                            <textarea rows="2" name ="promptquestion" class="form-control" placeholder="Enter your question"></textarea>
+                            </div>
+                            <div class="modal-body">
+                                <textarea rows="2" name ="question_opt[0]" required="" class="form-control" placeholder="A"></textarea>
+								<span><label><input type="radio" name="is_right[0]" class="is_right" value="a"> <small>Question Answer</small></label></span><br>
+								<textarea rows="2" name ="question_opt[1]" required="" class="form-control" placeholder="B"></textarea>
+								<label><input type="radio" name="is_right[1]" class="is_right" value="b"> <small>Question Answer</small></label><br>
+								<textarea rows="2" name ="question_opt[2]" required="" class="form-control" placeholder="C"></textarea>
+								<label><input type="radio" name="is_right[2]" class="is_right" value="c"> <small>Question Answer</small></label><br>
+								<textarea rows="2" name ="question_opt[3]" required="" class="form-control" placeholder="D"></textarea>
+								<label><input type="radio" name="is_right[3]" class="is_right" value="d"> <small>Question Answer</small></label>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Cancel</button><button id="modalCreateButton" class="btn btn-primary" type="button" style="background: #181818; border-color: #181818;">Create</button>
+                        </div>
+                    </div>
+                </div>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
                     <div class="text-center my-auto copyright"><span>Copyright © CodixsGo 2024</span></div>
@@ -162,8 +177,65 @@
             </footer>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/theme.js"></script>
-</body>
 
+    <script>
+    $(document).ready(function () {
+        $('.is_right').on('change', function () {
+            $('.is_right').not(this).prop('checked', false);
+        });
+
+        $("#addQuestionButton").click(function () {
+            $("#modal-4").modal("show");
+        });
+
+        $("#modalCreateButton").click(function () {
+            if ($("input[name^='is_right']:checked").length === 0) {
+                alert("Please select a question answer.");
+                return;
+            } else {
+                $("#modal-4").modal("hide");
+
+                var savedquestions = true;
+                var promptquestion = $("input[name='promptquestion']").val();
+                var question_opt0 = $("select[name='question_opt[0]']").val();
+                var question_opt1 = $("select[name='question_opt[1]']").val();
+                var question_opt2 = $("select[name='question_opt[2]']").val();
+                var question_opt3 = $("select[name='question_opt[3]']").val();
+                var answer = $("input[name^='is_right']:checked").val();
+                var eid = $_SESSION['quizid']['keyid'];
+                $.ajax({
+                    type: "POST",
+                    url: "save-quiz.php",
+                    data: {
+                        eid: eid, 
+                        savedquestions: savedquestions,
+                        promptquestion: promptquestion,
+                        question_opt0: question_opt0,
+                        question_opt1: question_opt1,
+                        question_opt2: question_opt2,
+                        question_opt3: question_opt3,
+                        answer: answer
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            console.log(response.message);
+                        } else {
+                            console.error(response.message);
+                            alert('Error: ' + response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                        alert('Error: ' + error);
+                    }
+                });
+            }
+            });
+    });
+    </script>
+</body>
 </html>
