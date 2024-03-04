@@ -101,6 +101,7 @@
     Points: <span id="points-result"></span>
   </div>
   <div class="result-comment" id="comment-result"></div>
+  <button id="continue-btn">Continue</button> <!-- Add the Continue button here -->
 </div>
 
 

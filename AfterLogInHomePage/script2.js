@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function startQuiz() {
         difficultyContainer.style.display = 'block';
         startContainer.style.display = 'none';
-        calculateTimeBonus();
+       
     }
 
     function showQuiz(difficulty) {
@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         showQuestion(diff);
+        calculateTimeBonus();
     }
 
     startBtn.addEventListener('click', startQuiz);
@@ -255,4 +256,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const resultComment = document.getElementById('comment-result');
         resultComment.textContent = comment;
     }
+
+    const continueBtn = document.getElementById('continue-btn');
+    continueBtn.addEventListener('click', function() {
+        // Hide result container and display start container
+        score=0;
+        streak=0;
+        currentQues=1;
+        points=0;
+        answeredQuestions=0;
+        resultContainer.style.display = 'none';
+        startContainer.style.display = 'block';
+    });
 });
