@@ -2,10 +2,12 @@
     .Devs {
         background-color: var(--bg-color);
         display: flex;
+        flex-direction: column;
         padding: 0 35px;
         align-items: center;
         justify-content: center;
         min-height: 100vh;
+
     }
 
     #left {
@@ -77,6 +79,7 @@
         align-items: center;
     }
     .carousel .card {
+        animation: fadeInAnimation 1s ease-in-out forwards;
         scroll-snap-align: start;
         height: 342px;
         list-style: none;

@@ -74,46 +74,6 @@ window.onscroll = () => {
   });
 };
 
-// For Modal Login menu
-document.addEventListener("DOMContentLoaded", function() {
-  const loginBtns = document.querySelectorAll(".action_btn_login ");
-  const loginPopup = document.querySelector(".login_popup");
-  const overlay = document.getElementById("overlay");
-  const heroHeader = document.getElementById("home");
-  const navBar = document.querySelector(".navbar");
-
-  loginBtns.forEach(function(btn) {
-      btn.addEventListener("click", function() {
-          loginPopup.style.display = "block";
-          heroHeader.classList.add("blurry");
-          navBar.classList.add("blurry");
-          document.body.style.overflow = "hidden"; 
-          closeNavbar();
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-          });
-      });
-  });
-
-  function isInsideLoginPopup(target) {
-      return loginPopup.contains(target);
-  }
-
-  function closeLoginPopup() {
-      loginPopup.style.display = "none";
-      heroHeader.classList.remove("blurry");
-      navBar.classList.remove("blurry");
-      document.body.style.overflow = ""; 
-  }
-
-  window.addEventListener('click', function(event) {
-      const isClickInsideLoginPopup = isInsideLoginPopup(event.target);
-      if (!isClickInsideLoginPopup && !event.target.classList.contains("action_btn_login")) {
-          closeLoginPopup();
-      }
-  });
-});
 
 //Login Animation
 const signUpButton = document.getElementById('signUp');
@@ -138,7 +98,30 @@ backSignUpButton.addEventListener('click', () => {
     window.location.href = 'index.php';
 });
 
+// Animation on Scroll
+function isInViewport(element) {
+  const rect = element.getBoundingClientRect();
+  return (
+    rect.top >= 0 &&
+    rect.left >= 0 &&
+    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  );
+}
 
-// For Cursor
+function addAnimationToVisibleSections() {
+  sections.forEach(section => {
+    if (isInViewport(section)) {
+      section.classList.add('fadeInAnimation');
+    } else {
+      section.classList.remove('fadeInAnimation');
+    }
+  });
+}
 
+window.addEventListener('scroll', addAnimationToVisibleSections);
+window.addEventListener('resize', addAnimationToVisibleSections);
+
+// Initial check
+addAnimationToVisibleSections();
 

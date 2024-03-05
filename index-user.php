@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
 
@@ -28,6 +32,8 @@
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" data-bs-target="#offcanvas-1" data-bs-toggle="offcanvas"><i class="icon ion-speedometer d-xl-flex" style="font-size: 25px;margin-right: 10px;margin-left: 10px;"></i><span class="d-xl-flex" style="font-size: 15px;">Dashboard</span></a></li>
                     <li class="nav-item"><a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" href=""><i class="icon ion-android-person" style="font-size: 25px;margin-right: 10px;margin-left: 10px;"></i><span style="font-size: 15px;">Profile</span></a></li>
+                    <li class="nav-item"><a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" href="manage-quiz-user.php"><i class="icon ion-android-create" style="font-size: 25px;margin-right: 10px;margin-left: 10px;"></i><span style="font-size: 15px;">Manage Quiz</span></a></li>
+                    <li class="nav-item"><a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" data-bs-target="#modal-1" data-bs-toggle="modal"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-plus-lg" style="margin-right: 10px;margin-left: 10px;font-size: 20px;"><path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"></path></svg><span style="font-size: 15px;">Create Quiz</span></a></li>
                     <li class="nav-item"><a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" href="take-quiz.php">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-chat-square-fill" style="font-size: 25px;margin-right: 10px;margin-left: 10px;"><path d="M2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z">
                         </path></svg><span style="font-size: 15px;">Take Quiz</span></a>
@@ -128,16 +134,24 @@
                     </div>
                 </div>
             </div>
-            <div class="modal fade" role="dialog" tabindex="-1" id="modal-3">
-                <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+            <div class="modal fade" role="dialog" tabindex="-1" id="modal-1">
+                <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">Log Out</h4><button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="modal"></button>
+                            <h4 class="modal-title">Choose the following</h4><button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Are you sure do you want to log out?</p>
+                            <input type="text" name="quiz-name" placeholder="Enter your quiz name">
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">No</button><button class="btn btn-primary" type="button" style="background: #181818;border-color: #181818;">Yes</button></div>
+                        <div class="modal-body">
+                            <select name="difficulty" class="border rounded" style="border-color: #181818;color: #181818;font-size: 22px;">
+                                <option value="Easy" selected="">Easy</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Hard">Hard</option>
+                            </select>
+                            <p style="font-size: 18px;">Difficulty</p>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Cancel</button><button class="btn btn-primary" type="button" style="background: #181818;border-color: #181818;" data-bs-target="#modal-2" data-bs-toggle="modal" id="save-quiz-btn">Create</button></div>
                     </div>
                 </div>
             </div>
@@ -151,5 +165,38 @@
     
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/theme.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#save-quiz-btn").click(function(){
+                var quizName = $("input[name='quiz-name']").val();
+                var difficulty = $("select[name='difficulty']").val();
+                $.ajax({
+                    type: "POST",
+                    url: "php/save-quiz.php",
+                    data: {quizName: quizName, difficulty: difficulty},
+                    dataType: "json",
+                    success: function(response){
+                        if (response.status === 'success') {
+                            alert(response.message);
+                            window.location.href = 'manage-quiz-user.php';
+                        } else {
+                            console.error(response.message);
+                            alert('Error: ' + response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                        alert('Error: ' + error);
+                    }
+                });
+            });
+        });
+        document.getElementById('dashboardLink').addEventListener('click', function() {
+            window.location.href = 'index-user.html';
+        });
+    </script>
 </body>
 </html>
