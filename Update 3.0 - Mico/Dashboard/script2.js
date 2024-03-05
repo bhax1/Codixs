@@ -96,6 +96,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
         // Change background color of the correct choice label to green temporarily
         document.querySelector(`label[for=${corrAns}]`).classList.add('correct');
+        const isCorrect = selectedValue === corrAns;
+        if (isCorrect) {
+            
+            playSound('correct.mp3');
+           
+        } else {
+            streak = 0;
+            playSound('incorrect.wav');
+        }
     
         // Delay before fetching and displaying the next question
         setTimeout(() => {
@@ -105,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             document.querySelector(`label[for=${corrAns}]`).classList.remove('correct');
     
-            const isCorrect = selectedValue === corrAns;
+            
             if (isCorrect) {
                 score++;
                 streak++;
@@ -115,11 +124,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 const difficultyBonusPoints = Math.round(difficultyBonus * basePoints);
                 points += difficultyBonusPoints;
                 points += bonusTimePoints;
-    
+                
                 const streakBonusPoints = Math.round((5 * streak / 100) * points);
                 points += streakBonusPoints;
             } else {
                 streak = 0;
+                
             }
     
             updateScore();
@@ -268,4 +278,8 @@ document.addEventListener('DOMContentLoaded', function() {
         resultContainer.style.display = 'none';
         startContainer.style.display = 'block';
     });
+    function playSound(soundName) {
+        const audio = new Audio(`sounds/${soundName}`);
+        audio.play();
+    }
 });
