@@ -25,6 +25,15 @@
 
 /* For Admin Menu*/
 .login-box {
+	display: none;
+	padding: 20px 30px;
+    z-index: 5;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+	width: 500px;
+    transform: translate(-50%,-50%);
+    animation: fadeIn 1.6s ease forwards; 
     margin-top: 75px;
     height: auto;
     background: #1A2226;
@@ -146,7 +155,6 @@ label {
 .loginbttm {
     padding: 0px;
 }
-
 
 
 

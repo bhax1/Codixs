@@ -68,7 +68,6 @@
   </div>
 
 <!-- For Modals (Admin) -->
-  <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-2"></div>
             <div class="col-lg-6 col-md-8 login-box">
@@ -96,7 +95,7 @@
                                     <!-- Error Message -->
                                 </div>
                                 <div class="col-lg-6 login-btm login-button">
-                                    <button type="submit" class="btn btn-outline-primary">LOGIN</button>
+                                    <button id="" type="submit" class="ghost">LOGIN</button>
                                 </div>
                             </div>
                         </form>
