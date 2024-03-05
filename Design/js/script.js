@@ -33,7 +33,7 @@ var phrases = new Typed(".auto-type", {
     "Coding is the Future!",
     "Learn different Language",
     "Have Fun!",
-    "Take quiz to test your skills!",
+    "Take a Quiz!",
     "Coding is Everything!",
     ],
     typeSpeed: 100,

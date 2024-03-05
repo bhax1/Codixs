@@ -121,8 +121,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('darky.jpg') no-repeat center center fixed; /* Baguhin ang URL papunta sa iyong file path */
-    background-size: cover; /* Cover na ang background */
+    background-color: #0f0f0f;
     font-family: 'Poppins', sans-serif;
 }
 

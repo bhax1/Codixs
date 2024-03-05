@@ -140,6 +140,7 @@
 
   @media (max-width: 1280px) {
     .hero h1 {
+      font-size: 3rem;
       transition: .3s;
     }
     
@@ -153,18 +154,20 @@
       left: 5%;
       transition: .3s;
     }
+    .hero h1 {
+      font-size: 2rem;
+      transition: .3s;
+    }
 }
 
   @media (max-width: 500px) {
     .hero-text {
       width: 100%;
-      text-align: center;
     }
 
     .hero h1 {
-      font-size: 1.5rem;
+      font-size: 1rem;
       transition: .3s;
-      margin-bottom: 3rem;
     }
     .color_1 {
       left: 10%;

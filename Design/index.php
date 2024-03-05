@@ -23,7 +23,7 @@
 
 
 
-  <!-- For Modals (User) -->
+  <!-- For User -->
   <div class="login_popup">
     <div class="container" id="container">
       <div class="form-container sign-up-container">
@@ -44,7 +44,7 @@
           <span>or use your account</span>
           <input type="email" name="email" placeholder="Email" />
           <input type="password" name="password" placeholder="Password" />
-          <a href="recover.php" onclick="alert('Welcome to Recovery Account!'); setTimeout(function(){ window.location.href = 'recover.php'; }, 100);">Forgot Password? and Username?</a>
+          <a href="recovery.php" onclick="alert('Welcome to Recovery Account!'); setTimeout(function(){ window.location.href = 'recovery.php'; }, 100);">Forgot Password? and Username?</a>
           <button type="submit" name="signinPop">Sign In</button>
         </form>
       </div>
@@ -67,43 +67,17 @@
     </div>
   </div>
 
-<!-- For Modals (Admin) -->
-        <div class="row">
-            <div class="col-lg-3 col-md-2"></div>
-            <div class="col-lg-6 col-md-8 login-box">
-                <div class="col-lg-12 login-key">
-                    <i class="fa-solid fa-key" aria-hidden="true"></i>
-                </div>
-                <div class="col-lg-12 login-title">
-                    ADMIN PANEL
-                </div>
 
-                <div class="col-lg-12 login-form">
-                    <div class="col-lg-12 login-form">
-                        <form>
-                            <div class="form-group">
-                                <label class="form-control-label">USERNAME</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-control-label">PASSWORD</label>
-                                <input type="password" class="form-control" i>
-                            </div>
+<!-- For Admin -->
 
-                            <div class="col-lg-12 loginbttm">
-                                <div class="col-lg-6 login-btm login-text">
-                                    <!-- Error Message -->
-                                </div>
-                                <div class="col-lg-6 login-btm login-button">
-                                    <button id="" type="submit" class="ghost">LOGIN</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-2"></div>
-            </div>
-        </div>
+
+
+
+
+
+
+
+
 
 
 
@@ -129,10 +103,7 @@
 
 
   <!-- Sections -->
-
-
   <section id="home" class="home">
-    <div class="color_1"></div>
     <div class="hero">
       <img src="img/Coding_Language_free_vector_icons_designed_by_Flat_Icons-removebg-preview.png" alt="">
       <div class="hero-text">
@@ -159,7 +130,6 @@
 
   <section id="page2" class="page2">
     <div class="Devs">
-      <div class="color_3"></div>
       <h2 class="headings">Developers</h2>
       <div class="wrapper" data-aos="fade-up">
         <i id="left" class="fa-solid fa-angle-left"></i>
@@ -197,6 +167,9 @@
 
 
   <!-- Cursor -->
+  <div id="blob"></div>
+  <!-- <div id="blur"></div> -->
+
   <div class="cursor">
     <div class="circle"></div>
     <div class="circle"></div>

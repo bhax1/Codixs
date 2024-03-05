@@ -23,13 +23,13 @@ body {
     color: var(--text-color);
     cursor: none;
     position: relative;
-
 }
 
 .headings {
     font-size: 8rem;
     text-align: center;
-    margin: 8rem 0;
+    margin: 3rem 0 8rem 0;
+    z-index: 100;
 }
   
 /* NAVBAR */
