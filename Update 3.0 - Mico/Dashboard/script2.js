@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const isCorrect = selectedValue === corrAns;
         if (isCorrect) {
             
-            playSound('correct.mp3');
+            playSound('correct.wav');
            
         } else {
             streak = 0;
@@ -261,11 +261,19 @@ document.addEventListener('DOMContentLoaded', function() {
             comment = "Damn! Now you're cooking!!";
         } else {
             comment = "Sheeeeeeeeeeeesh!";
-        }
+            playVideo('heaven.mp4'); // Play the 'heaven.mp3' video
+            playSound('Holy Sheesh.mp3');
+            document.body.style.overflow = 'hidden'; // Hide overflow content
+            setTimeout(() => {
+                // Reset background to normal after the video ends
+                stopVideo('heaven.mp4');
+                document.body.style.overflow = ''; // Restore overflow
+            }, 10000); // Change 5000 to the duration of the 'heaven.mp3' video in milliseconds
 
         const resultComment = document.getElementById('comment-result');
         resultComment.textContent = comment;
     }
+}
 
     const continueBtn = document.getElementById('continue-btn');
     continueBtn.addEventListener('click', function() {
@@ -277,9 +285,34 @@ document.addEventListener('DOMContentLoaded', function() {
         answeredQuestions=0;
         resultContainer.style.display = 'none';
         startContainer.style.display = 'block';
+        stopVideo('heaven.mp4');
+        document.body.style.overflow = ''; // Restore overflow
     });
     function playSound(soundName) {
         const audio = new Audio(`sounds/${soundName}`);
         audio.play();
     }
+
+    function playVideo(videoName) {
+        const video = document.createElement('video');
+        video.src = `Vids/${videoName}`;
+        video.autoplay = true;
+        video.loop = true;
+        video.style.position = 'fixed';
+        video.style.width = '130%';
+        video.style.height = '100%';
+        video.style.top = '0';
+        video.style.left = '0';
+        video.style.zIndex = '-1';
+        document.body.appendChild(video);
+    }
+    
+    function stopVideo(videoName) {
+        const video = document.querySelector(`video[src="Vids/${videoName}"]`);
+        if (video) {
+            video.pause();
+            video.parentNode.removeChild(video);
+        }
+    }
+
 });

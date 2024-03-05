@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const resultContainer = document.getElementById('result-container'); // New result container
     resultContainer.style.display = 'none'; // Hide result container initially
 
+    
+
     scoreContainer.style.display = 'none';
     difficultyContainer.style.display = 'none';
     quizContainer.style.display = 'none';
@@ -50,16 +52,16 @@ document.addEventListener('DOMContentLoaded', function() {
         difficultyContainer.style.display = 'none';
 
         switch (difficulty) {
-            case 'easy':
+            case 'Easy':
                 diff = 'easy.php';
                 difficultyBonus = 0;
                 break;
-            case 'medium':
-                diff = 'medium.php';
+            case 'Medium':
+                diff = 'easy.php';
                 difficultyBonus = 0.20;
                 break;
-            case 'hard':
-                diff = 'hard.php';
+            case 'Hard':
+                diff = 'easy.php';
                 difficultyBonus = 0.40;
                 break;
             default:
@@ -94,6 +96,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
         // Change background color of the correct choice label to green temporarily
         document.querySelector(`label[for=${corrAns}]`).classList.add('correct');
+        const isCorrect = selectedValue === corrAns;
+        if (isCorrect) {
+            
+            playSound('correct.wav');
+           
+        } else {
+            streak = 0;
+            playSound('incorrect.wav');
+        }
     
         // Delay before fetching and displaying the next question
         setTimeout(() => {
@@ -103,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             document.querySelector(`label[for=${corrAns}]`).classList.remove('correct');
     
-            const isCorrect = selectedValue === corrAns;
+            
             if (isCorrect) {
                 score++;
                 streak++;
@@ -113,11 +124,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 const difficultyBonusPoints = Math.round(difficultyBonus * basePoints);
                 points += difficultyBonusPoints;
                 points += bonusTimePoints;
-    
+                
                 const streakBonusPoints = Math.round((5 * streak / 100) * points);
                 points += streakBonusPoints;
             } else {
                 streak = 0;
+                
             }
     
             updateScore();
@@ -149,9 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     submitBtn.addEventListener('click', submitAnswer);
 
-    easyBtn.addEventListener('click', () => showQuiz('easy'));
-    mediumBtn.addEventListener('click', () => showQuiz('medium'));
-    hardBtn.addEventListener('click', () => showQuiz('hard'));
+    easyBtn.addEventListener('click', function() { showQuiz(playDiff);});
 
     function showQuestion(url) {
         const numQuestions = document.getElementById('question-select').value;
@@ -251,11 +261,19 @@ document.addEventListener('DOMContentLoaded', function() {
             comment = "Damn! Now you're cooking!!";
         } else {
             comment = "Sheeeeeeeeeeeesh!";
-        }
+            playVideo('heaven.mp4'); // Play the 'heaven.mp3' video
+            playSound('Holy Sheesh.mp3');
+            document.body.style.overflow = 'hidden'; // Hide overflow content
+            setTimeout(() => {
+                // Reset background to normal after the video ends
+                stopVideo('heaven.mp4');
+                document.body.style.overflow = ''; // Restore overflow
+            }, 10000); // Change 5000 to the duration of the 'heaven.mp3' video in milliseconds
 
         const resultComment = document.getElementById('comment-result');
         resultComment.textContent = comment;
     }
+}
 
     const continueBtn = document.getElementById('continue-btn');
     continueBtn.addEventListener('click', function() {
@@ -267,5 +285,34 @@ document.addEventListener('DOMContentLoaded', function() {
         answeredQuestions=0;
         resultContainer.style.display = 'none';
         startContainer.style.display = 'block';
+        stopVideo('heaven.mp4');
+        document.body.style.overflow = ''; // Restore overflow
     });
+    function playSound(soundName) {
+        const audio = new Audio(`sounds/${soundName}`);
+        audio.play();
+    }
+
+    function playVideo(videoName) {
+        const video = document.createElement('video');
+        video.src = `Vids/${videoName}`;
+        video.autoplay = true;
+        video.loop = true;
+        video.style.position = 'fixed';
+        video.style.width = '130%';
+        video.style.height = '100%';
+        video.style.top = '0';
+        video.style.left = '0';
+        video.style.zIndex = '-1';
+        document.body.appendChild(video);
+    }
+    
+    function stopVideo(videoName) {
+        const video = document.querySelector(`video[src="Vids/${videoName}"]`);
+        if (video) {
+            video.pause();
+            video.parentNode.removeChild(video);
+        }
+    }
+
 });
