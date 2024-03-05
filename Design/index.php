@@ -14,10 +14,8 @@
   <link rel="stylesheet" href="css/dev.css">
   <link rel="stylesheet" href="css/footer.css">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
-  integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
-  crossorigin="anonymous" referrerpolicy="no-referrer" />
- 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 
@@ -25,21 +23,17 @@
 
 
 
-<!-- For Modals -->
+  <!-- For Modals (User) -->
   <div class="login_popup">
     <div class="container" id="container">
       <div class="form-container sign-up-container">
         <form action="index.php" method="post">
           <h1>Create Account</h1>
-          <div class="social-container">
-            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-          </div>
           <span>or use your email for registration</span>
           <input type="text" name="createname" placeholder="Name" />
           <input type="email" name="createemail" placeholder="Email" />
           <input type="password" name="createpassword" placeholder="Password" />
+          <input type="text" name="verify" placeholder="Enter Your Crush Name" />
           <button type="submit" name="signupPop">Sign Up</button>
         </form>
       </div>
@@ -47,15 +41,10 @@
       <div class="form-container sign-in-container">
         <form action="index.php" method="post">
           <h1>Sign in</h1>
-          <div class="social-container">
-            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-          </div>
           <span>or use your account</span>
           <input type="email" name="email" placeholder="Email" />
           <input type="password" name="password" placeholder="Password" />
-          <a href="#">Forgot your password?</a>
+          <a href="recover.php" onclick="alert('Welcome to Recovery Account!'); setTimeout(function(){ window.location.href = 'recover.php'; }, 100);">Forgot Password? and Username?</a>
           <button type="submit" name="signinPop">Sign In</button>
         </form>
       </div>
@@ -78,10 +67,49 @@
     </div>
   </div>
 
+<!-- For Modals (Admin) -->
+  <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-2"></div>
+            <div class="col-lg-6 col-md-8 login-box">
+                <div class="col-lg-12 login-key">
+                    <i class="fa-solid fa-key" aria-hidden="true"></i>
+                </div>
+                <div class="col-lg-12 login-title">
+                    ADMIN PANEL
+                </div>
+
+                <div class="col-lg-12 login-form">
+                    <div class="col-lg-12 login-form">
+                        <form>
+                            <div class="form-group">
+                                <label class="form-control-label">USERNAME</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">PASSWORD</label>
+                                <input type="password" class="form-control" i>
+                            </div>
+
+                            <div class="col-lg-12 loginbttm">
+                                <div class="col-lg-6 login-btm login-text">
+                                    <!-- Error Message -->
+                                </div>
+                                <div class="col-lg-6 login-btm login-button">
+                                    <button type="submit" class="btn btn-outline-primary">LOGIN</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-2"></div>
+            </div>
+        </div>
 
 
-  
-<!-- For Navbar -->
+
+
+  <!-- For Navbar -->
   <header>
     <nav class="navbar">
       <div class="nav_logo"><a href="#"><span>CODIXSGO</span></a></div>
@@ -105,111 +133,113 @@
 
 
   <section id="home" class="home">
-  <div class="color_1"></div>
+    <div class="color_1"></div>
     <div class="hero">
       <img src="img/Coding_Language_free_vector_icons_designed_by_Flat_Icons-removebg-preview.png" alt="">
       <div class="hero-text">
-      <h1><span class="auto-type"></span></h1>
-      <h3><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Tempore, ipsum! Maxime provident praesentium ea incidunt atque 
-        quo voluptate dolorem doloribus beatae, perferendis adipisci veniam 
-        iure unde cum explicabo commodi quasi?</span></h3>
-      <button class="button-19" role="button">Getting Started</button>  
-    </div>
+        <h1><span class="auto-type"></span></h1>
+        <h3><span>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Tempore, ipsum! Maxime provident praesentium ea incidunt atque
+            quo voluptate dolorem doloribus beatae, perferendis adipisci veniam
+            iure unde cum explicabo commodi quasi?</span></h3>
+        <button class="button-19" role="button">Getting Started</button>
+      </div>
     </div>
   </section>
 
 
-  
+
 
   <section id="page1" class="page1">
-    <div class="About">  
+    <div class="About">
+      <h2 class="headings">About</h2>
     </div>
   </section>
 
 
 
   <section id="page2" class="page2">
-  <div class="Devs">
-  <div class="color_3"></div>
-    <div class="wrapper" data-aos="fade-up">
-      <i id="left" class="fa-solid fa-angle-left"></i>
-      <ul class="carousel">
-        <li class="card">
-          <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
-          <h2>Mico</h2>
-          <span>Web Developer</span>
-        </li>
-        <li class="card">
-          <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
-          <h2>Joshua</h2>
-          <span>Web Developer</span>
-        </li>
-        <li class="card">
-          <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
-          <h2>Laguidao</h2>
-          <span>Web Developer</span>
-        </li>
-        <li class="card">
-          <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
-          <h2>Augustine</h2>
-          <span>Web Developer</span>
-        </li>
-        <li class="card">
-          <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
-          <h2>Bob</h2>
-          <span>Web Developer</span>
-        </li>
-      </ul>
-      <i id="right" class="fa-solid fa-angle-right"></i>
+    <div class="Devs">
+      <div class="color_3"></div>
+      <h2 class="headings">Developers</h2>
+      <div class="wrapper" data-aos="fade-up">
+        <i id="left" class="fa-solid fa-angle-left"></i>
+        <ul class="carousel">
+          <li class="card">
+            <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
+            <h2>Mico</h2>
+            <span>Web Developer</span>
+          </li>
+          <li class="card">
+            <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
+            <h2>Joshua</h2>
+            <span>Web Developer</span>
+          </li>
+          <li class="card">
+            <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
+            <h2>Lawrence</h2>
+            <span>Web Developer</span>
+          </li>
+          <li class="card">
+            <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
+            <h2>Augustine</h2>
+            <span>Web Developer</span>
+          </li>
+          <li class="card">
+            <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
+            <h2>Bob</h2>
+            <span>Web Developer</span>
+          </li>
+        </ul>
+        <i id="right" class="fa-solid fa-angle-right"></i>
+      </div>
     </div>
+  </section>
+
+
+  <!-- Cursor -->
+  <div class="cursor">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
   </div>
-</section>
-
-
-<!-- Cursor -->
-<div class="cursor">
-<div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-</div>
 
 
 
 
-<!-- For Footer -->
+  <!-- For Footer -->
   <footer class="footer">
     <div class="waves">
       <div class="wave" id="wave1"></div>
@@ -235,47 +265,46 @@
   </footer>
 
 
-<!-- Online Script -->
+  <!-- Online Script -->
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  
+
   <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
   <script>
-      AOS.init({
-        duration: 3000,
-        once: true,
-      });
-    </script>
+    AOS.init({
+      duration: 3000,
+      once: true,
+    });
+  </script>
 
-<!-- Local Script -->
-  <script type="text/javascript" src="js/script.js" ></script>
-  <script type="text/javascript" src="js/moveCard.js" ></script>
-  <script type="text/javascript" src="js/moveCursor.js" ></script>
-  <script type="text/javascript" src="js/modals.js" ></script>
+  <!-- Local Script -->
+  <script type="text/javascript" src="js/script.js"></script>
+  <script type="text/javascript" src="js/moveCard.js"></script>
+  <script type="text/javascript" src="js/moveCursor.js"></script>
+  <script type="text/javascript" src="js/modals.js"></script>
 
 
 
 
   <?php
-  $connection = mysqli_connect('localhost', 'root', '', 'codixs');
-  if (!$connection) {
-    die('Unable to connect server: ' . mysqli_connect_error());
-  }
+  require('./database.php');
 
-  if (isset($_POST['signupPop'])) {
-    $createname = $_POST['createname'];
-    $createemail = $_POST['createemail'];
-    $createpassword = $_POST['createpassword'];
-    $hashed_password = password_hash($createpassword, PASSWORD_DEFAULT);
-    $date = date('Y-m-d H:i:s');
+  if (isset($_POST['signup'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $Verify = $_POST['verify'];
+    $date = date('Y-m-d H:i:s'); // Add a semicolon here
     if (strlen($password) <= 5) {
       echo "The password is less than 5 characters!";
     } else if (empty($name) || empty($email) || empty($password)) {
       echo "Please fill up all forms!";
     } else {
-      $querys = "INSERT INTO list (Name, Password, Date, Email) VALUES ('$createname', '$hashed_password', '$date','$createemail')";
+      // If the password meets the criteria, proceed with the insertion
+      $querys = "INSERT INTO list (Name, Password, Date, Email,Verify) VALUES ('$name', '$password', '$date','$email','$Verify')";
       if (mysqli_query($connection, $querys)) {
         echo "<script>alert('Successfully Created');</script>";
       } else {
+        // Check if the error is due to duplicate entry for the unique constraint on the Email field
         if (strpos(mysqli_error($connection), 'Duplicate entry') !== false) {
           echo "Error: This email address is already in use.";
         } else {
@@ -285,26 +314,36 @@
     }
   }
 
-  if (isset($_POST['signinPop'])) {
+
+  if (isset($_POST['signin'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     if (!empty($email) && !empty($password)) {
       $query = mysqli_query($connection, "SELECT * FROM list WHERE Email='$email'");
-      $row = mysqli_fetch_array($query);
-      if ($row && password_verify($password, $row['Password'])) {
-        echo "<script>
+      $no = mysqli_num_rows($query);
+      if ($no > 0) {
+        $data = mysqli_fetch_assoc($query);
+        if ($data['Password'] == $password) {
+          $_SESSION['ID'] = $data['ID'];
+          echo '<script>alert(' . $_SESSION['ID'] . ')</script>';
+          echo "<script>
                 alert('Login Successfully!');
-                window.location.href = 'AfterLogInHomePage/index.php';
+                window.location.href = '/project/login.php'; // Redirect to Admin.php
                 </script>";
-        exit();
+          exit();
+        } else {
+          echo '<p class="error-message">Wrong password. Please try again.</p>';
+        }
       } else {
-        echo '<p class="error-message">Wrong password. Please try again.</p>';
+        echo '<p class="error-message">Wrong user ID. Please check your input and try again.</p>';
       }
     } else {
-      echo "<script>alert('Please fill in all fields.');</script>";
+      echo '<p class="error-message">Please fill in all fields.</p>';
     }
   }
   ?>
+
 </body>
+
 </html>

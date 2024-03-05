@@ -2,10 +2,12 @@
     .Devs {
         background-color: var(--bg-color);
         display: flex;
+        flex-direction: column;
         padding: 0 35px;
         align-items: center;
         justify-content: center;
         min-height: 100vh;
+
     }
 
     #left {

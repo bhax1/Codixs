@@ -1,9 +1,10 @@
 .About {
-    background-color: var(--bg-color);
+    background-color: color rgb(85, 85, 85);
     display: flex;
     padding: 0 35px;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    z-index: 2;
 }
 
