@@ -1,12 +1,10 @@
 <?php
     $conn = new mysqli('localhost', 'root', '', 'codixs');
 
-    // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Get values from AJAX request and sanitize inputs
     $promptquestion = $conn->real_escape_string($_POST['promptquestion']);
     $question_opt0 = $conn->real_escape_string($_POST['question_opt0']);
     $question_opt1 = $conn->real_escape_string($_POST['question_opt1']);

@@ -80,7 +80,13 @@
                             <button id="backbtn" class="btn btn-primary d-xl-flex" type="button" style="margin-right: 10px; background: #181818; border-color: #181818;">Back to Manage</button>
                             <button id="addQuestionButton" class="btn btn-primary d-xl-flex" type="button" style="background: #181818; border-color: #181818;">Add Question</button>
                             <button id="deletequiz" class="btn btn-primary d-xl-flex" type="button" style="margin-left: 10px; background: #181818; border-color: #181818;">Delete Quiz</button>
-                            <button id="visibility" class="btn btn-primary d-xl-flex" type="button" style="margin-left: 10px; background: #181818; border-color: #181818;">Change Visibility</button>
+                            <?php
+                                $conn = new mysqli('localhost', 'root', '', 'codixs');
+                                $select = mysqli_query($conn, "SELECT * FROM quiz WHERE eid = '" . $_SESSION['eid'] . "'");
+                                while ($row = mysqli_fetch_array($select)) {
+                                    echo '<button id="changevisibility" class="btn btn-primary d-xl-flex" type="button" style="margin-left: 10px; background: #181818; border-color: #181818;">'. $row['visibility'] .'</button>';
+                                }
+                            ?>
                         </div>
                             <div class="flex-column">
                             <div class="card">
@@ -258,7 +264,6 @@
                     var question_opt3 = $("textarea[name='question_opt[3]']").val();
                     var answer = $(":radio[name^='is_right']:checked").val();
                     var eid = <?php echo json_encode($_SESSION['eid']); ?>;
-                    alert(eid);
                     $.ajax({
                         type: "POST",
                         url: "php/save-questions.php",
@@ -273,7 +278,7 @@
                         },
                         dataType: "json",
                         success: function(response) {
-                            alert(response);
+                            alert("Question created");
                             location.reload();
                         },
                         error: function(xhr, status, error) {
@@ -399,6 +404,27 @@
                 }
             });
 
+            $("#changevisibility").click(function(){     
+                $.ajax({
+                    type: 'POST',
+                    url: 'php/change-visibility.php',
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            alert('Visibility changed successfully');
+                            location.reload();
+                        } else {
+                            alert('Error changing visibility: ' + response.message);
+                            console.error('Error changing visibility: ' + response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Error changing visibility: ' + error);
+                        console.error('Error changing visibility: ' + error);
+                    }
+                });
+            });
+
             $("#save-quiz-btn").click(function(){
                 var quizName = $("input[name='quiz-name']").val();
                 var difficulty = $("select[name='difficulty']").val();
@@ -410,7 +436,7 @@
                     success: function(response){
                         if (response.status === 'success') {
                             alert(response.message);
-                            window.location.href = 'manage-quiz.php';
+                            window.location.href = 'manage-quiz-user.php';
                         } else {
                             console.error(response.message);
                             alert('Error: ' + response.message);
@@ -427,7 +453,7 @@
         window.location.href = 'index-admin.html';
         });
         document.getElementById('backbtn').addEventListener('click', function() {
-        window.location.href = 'manage-quiz.php';
+        window.location.href = 'manage-quiz-user.php';
         });
     </script>
 </body>

@@ -19,8 +19,10 @@ $difficulty = $_POST['difficulty'];
 $userId = $_SESSION['id'];
 $userName = $_SESSION['name'];
 
+$eid = uniqid();
+
 $sql = "INSERT INTO `quiz` (`eid`, `ID`, `Name`, `diff`, `quizname`, `visibility`)
-        VALUES ('$userId', $userId, '$userName', '$difficulty', '$quizName', 'Private')";
+        VALUES ('$eid', $userId, '$userName', '$difficulty', '$quizName', 'Private')";
 
 if ($conn->query($sql) === TRUE) {
     $response = array('status' => 'success', 'message' => 'Quiz saved successfully');

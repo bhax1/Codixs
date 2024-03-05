@@ -159,7 +159,7 @@
                     url: '',
                     data: { eid: eid },
                     success: function(response) {
-                        window.location.href = 'create-questions.php';
+                        window.location.href = 'create-questions-user.php';
                     },
                     error: function(xhr, status, error) {
                         console.error('Error saving eid to session: ' + error);
@@ -177,28 +177,28 @@
         }
 
         $("#save-quiz-btn").click(function(){
-            var quizName = $("input[name='quiz-name']").val();
-            var difficulty = $("select[name='difficulty']").val();
-            $.ajax({
-                type: "POST",
-                url: "php/save-quiz.php",
-                data: {quizName: quizName, difficulty: difficulty},
-                dataType: "json",
-                success: function(response){
-                    if (response.status === 'success') {
-                        alert(response.message);
-                        window.location.href = 'manage-quiz.php';
-                    } else {
-                        console.error(response.message);
-                        alert('Error: ' + response.message);
+                var quizName = $("input[name='quiz-name']").val();
+                var difficulty = $("select[name='difficulty']").val();
+                $.ajax({
+                    type: "POST",
+                    url: "php/save-quiz.php",
+                    data: {quizName: quizName, difficulty: difficulty},
+                    dataType: "json",
+                    success: function(response){
+                        if (response.status === 'success') {
+                            alert(response.message);
+                            window.location.href = 'manage-quiz-user.php';
+                        } else {
+                            console.error(response.message);
+                            alert('Error: ' + response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                            console.error(error);
+                            alert('Error: ' + error);
                     }
-                },
-                error: function(xhr, status, error) {
-                        console.error(error);
-                        alert('Error: ' + error);
-                }
+                });
             });
-        });
 
         document.getElementById('dashboardLink').addEventListener('click', function() {
             window.location.href = 'index-user.php';
