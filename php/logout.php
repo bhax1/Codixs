@@ -1,12 +1,11 @@
 <?php
-    session_start();
-    if (isset($_POST['logout'])) {
-        // Destroy the session
-        session_unset();
-        session_destroy();
+session_start();
+if (isset($_POST['logout'])) {
+    error_log('Logout request received');
+    session_unset();
+    session_destroy();
+    error_log('Session destroyed');
 
-        // Redirect to the login page
-        header("Location: index.php");
-        exit();
-    }
+    exit();
+}
 ?>
