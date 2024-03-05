@@ -8,23 +8,21 @@
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/hero.css">
-  <link rel="stylesheet" href="css/page1.css">
+  <link rel="stylesheet" href="css/about.css">
   <link rel="stylesheet" href="css/cursor.css">
   <link rel="stylesheet" href="css/login.css">
-  <link rel="stylesheet" href="css/Dev.css">
+  <link rel="stylesheet" href="css/dev.css">
   <link rel="stylesheet" href="css/footer.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
   integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
   crossorigin="anonymous" referrerpolicy="no-referrer" />
  
-
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 
 <body>
 
-<!-- Cursor -->
-<div class="circle"></div>
 
 
 <!-- For Modals -->
@@ -86,15 +84,17 @@
 <!-- For Navbar -->
   <header>
     <nav class="navbar">
-      <div class="nav_logo"><a href="#"><span>{CodixsGo}</span></a></div>
+      <div class="nav_logo"><a href="#"><span>CODIXSGO</span></a></div>
       <ul class="nav_links">
         <li><a href="#home" class="active">Home</a></li>
         <li><a href="#page1">About</a></li>
         <li><a href="#page2">Devs</a></li>
         <li><a href="#" class="action_btn_login" id="login">Log In</a></li>
+        <li><a href="#" class="action_btn_login" id="login">Admin</a></li>
       </ul>
       <div class="main">
         <a class="action_btn_login" id="login">Log In</a>
+        <a class="action_btn_login" id="login">Admin</a>
         <div class="fa-solid fa-bars" id="menu_icon"></div>
       </div>
     </nav>
@@ -102,15 +102,20 @@
 
 
   <!-- Sections -->
+
+
   <section id="home" class="home">
+  <div class="color_1"></div>
     <div class="hero">
+      <img src="img/Coding_Language_free_vector_icons_designed_by_Flat_Icons-removebg-preview.png" alt="">
+      <div class="hero-text">
       <h1><span class="auto-type"></span></h1>
       <h3><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Tempore, ipsum! Maxime provident praesentium ea incidunt atque 
         quo voluptate dolorem doloribus beatae, perferendis adipisci veniam 
         iure unde cum explicabo commodi quasi?</span></h3>
-
       <button class="button-19" role="button">Getting Started</button>  
+    </div>
     </div>
   </section>
 
@@ -118,9 +123,7 @@
   
 
   <section id="page1" class="page1">
-    <div class="AboutUs">
-  
-    
+    <div class="About">  
     </div>
   </section>
 
@@ -128,7 +131,8 @@
 
   <section id="page2" class="page2">
   <div class="Devs">
-    <div class="wrapper">
+  <div class="color_3"></div>
+    <div class="wrapper" data-aos="fade-up">
       <i id="left" class="fa-solid fa-angle-left"></i>
       <ul class="carousel">
         <li class="card">
@@ -163,7 +167,44 @@
 </section>
 
 
-
+<!-- Cursor -->
+<div class="cursor">
+<div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+</div>
 
 
 
@@ -190,19 +231,26 @@
           <ion-icon name="logo-instagram"></ion-icon>
         </a></li>
     </ul>
-    <ul class="menu">
-      <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
-      <li class="menu__item"><a class="menu__link" href="#">About Us</a></li>
-      <li class="menu__item"><a class="menu__link" href="#">Services</a></li>
-      <li class="menu__item"><a class="menu__link" href="#">Blog</a></li>
-    </ul>
     <p>&copy;2024 CodixGo | All Rights Reserved</p>
   </footer>
 
-  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-  <script type="text/javascript" src="js/script.js" defer></script>
-  <script type="text/javascript" src="js/moveCard.js" defer></script>
 
+<!-- Online Script -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <script>
+      AOS.init({
+        duration: 3000,
+        once: true,
+      });
+    </script>
+
+<!-- Local Script -->
+  <script type="text/javascript" src="js/script.js" ></script>
+  <script type="text/javascript" src="js/moveCard.js" ></script>
+  <script type="text/javascript" src="js/moveCursor.js" ></script>
+  <script type="text/javascript" src="js/modals.js" ></script>
 
 
 

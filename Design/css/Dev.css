@@ -77,6 +77,7 @@
         align-items: center;
     }
     .carousel .card {
+        animation: fadeInAnimation 1s ease-in-out forwards;
         scroll-snap-align: start;
         height: 342px;
         list-style: none;

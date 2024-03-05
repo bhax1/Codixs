@@ -10,7 +10,7 @@
 }
 
 :root {
-    --bg-color: #181818;
+    --bg-color: #0f0f0f;
     --text-color: #fff;
     --main-color: rgb(144, 216, 1);
     --main-color2: rgb(73, 109, 0);
@@ -19,18 +19,16 @@
 
 body {
     min-height: 100vh;
-    background: var(--bg-color);
     color: var(--text-color);
-    /* cursor: none;  */
-}
+    cursor: none;
+    position: relative;
 
-section {
-    min-height: 100vh;
-  }
+}
   
 /* NAVBAR */
 
 .navbar {
+    animation: fade-down 0.5s 0.4s backwards;
     position: fixed;
     width: 100%;
     top: 0;
@@ -261,3 +259,15 @@ section {
         transform: translateY(0);
     }
 }
+
+@keyframes fade-down {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
+}
+
