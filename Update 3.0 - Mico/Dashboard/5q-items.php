@@ -1,5 +1,7 @@
 <?php
     session_start();
+
+    $conn = new mysqli('localhost', 'root', '', 'codixs');
 ?>
 
 <!DOCTYPE html>
@@ -334,24 +336,25 @@
             });
 
             $(".edit-btn").click(function () {
-                $("#modalEditButton").attr("data-question-id", $(this).data("question-id"));
-                var questionId = $(this).data("question-id");
-
+                var qid = $(this).data("question-id");
+                
+                alert(qid);
                 $.ajax({
                     type: "POST",
-                    url: "",
-                    data: { qid: questionId },
+                    url: "get-question.php",
+                    data: {qid: qid},
                     dataType: "json",
                     success: function (response) {
                         if (response.status === 'success') {
+                            
                             $("#editModal textarea[name='promptquestion']").val(response.data.promptquestion);
 
                             for (var i = 0; i < response.data.options.length; i++) {
                                 $("#editModal textarea[name='question_opt[" + i + "]']").val(response.data.options[i].text);
                                 $("#editModal input[name='is_right[" + i + "]']").prop("checked", response.data.options[i].is_right === '1');
                             }
-
                             $("#editModal").modal("show");
+                            
                         } else {
                             console.error(response.message);
                         }

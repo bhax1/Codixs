@@ -22,4 +22,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $response = array('status' => 'error', 'message' => 'Unsupported request method');
     echo json_encode($response);
 }
+
 ?>

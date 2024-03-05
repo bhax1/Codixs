@@ -1,19 +1,8 @@
 <?php
     session_start();
-    $conn = new mysqli('localhost', 'root', '', 'codixs');
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    } else {
-        $stmt = $conn->prepare("SELECT * FROM questions WHERE eid = ?");
-        $stmt->bind_param("s", $_SESSION['play-eid']);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        while ($row = $result->fetch_assoc()) {
-            $total = $total + 1;
-        }
-            $stmt->close();
-        }
-    $conn->close();
+    if(isset($_POST['eid'])) {
+        $_SESSION['eid'] = $_POST['eid'];
+    };
 ?>
 
 <!DOCTYPE html>
