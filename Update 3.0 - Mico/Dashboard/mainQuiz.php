@@ -36,7 +36,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Game - API Project</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="navX.css"> <!--Experimental Change-->
+    <link rel="stylesheet" href="navX.css">
 </head>
 <body class="layout">
 
