@@ -80,7 +80,7 @@
                             <button id="deletequiz" class="btn btn-primary d-xl-flex" type="button" style="margin-left: 10px; background: #181818; border-color: #181818;">Delete Quiz</button>
                             <?php
                                 $conn = new mysqli('localhost', 'root', '', 'codixs');
-                                $select = mysqli_query($conn, "SELECT * FROM quiz WHERE eid = '" . $_SESSION['eid'] . "'");
+                                $select = mysqli_query($conn, "SELECT * FROM quiz WHERE eid = '". $_SESSION['eid'] . "'");
                                 while ($row = mysqli_fetch_array($select)) {
                                     echo '<button id="changevisibility" class="btn btn-primary d-xl-flex" type="button" style="margin-left: 10px; background: #181818; border-color: #181818;">'. $row['visibility'] .'</button>';
                                 }
