@@ -144,6 +144,19 @@
                     </div>
                 </div>
             </div>
+            <div class="modal fade" role="dialog" tabindex="-1" id="modal-3">
+                <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Log Out</h4><button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure do you want to log out?</p>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">No</button><button id="logoutbtn" class="btn btn-primary" type="button" style="background: #181818;border-color: #181818;">Yes</button></div>
+                    </div>
+                </div>
+            </div>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
                     <div class="text-center my-auto copyright"><span>Copyright © CodixsGo 2024</span></div>
@@ -183,7 +196,7 @@
                     }
                 });
             });
-                        $(".btn-primary").click(function() {
+                        $("#logoutbtn").click(function() {
                         var logout = 'logout';
                         $("#modal-3").modal("hide");
                         window.location.href = 'index.php';

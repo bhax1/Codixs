@@ -143,7 +143,7 @@
                         <div class="modal-body">
                             <p>Are you sure do you want to log out?</p>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">No</button><button class="btn btn-primary" type="button" style="background: #181818;border-color: #181818;">Yes</button></div>
+                        <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">No</button><button id="logoutbtn" class="btn btn-primary" type="button" style="background: #181818;border-color: #181818;">Yes</button></div>
                     </div>
                 </div>
             </div>
@@ -446,7 +446,8 @@
                     }
                 });
             });
-            $(".btn-primary").click(function() {
+            
+            $("#logoutbtn").click(function() {
                         var logout = 'logout';
                         $("#modal-3").modal("hide");
                         window.location.href = 'index.php';
@@ -462,13 +463,13 @@
                             }
                         });
                     });
-        });
+                    $("#backbtn").click(function() {
+                        window.location.href = 'manage-quiz-user.php';
+                    });
         document.getElementById('dashboardLink').addEventListener('click', function() {
-        window.location.href = 'index-user.php';
+            window.location.href = 'index-user.php';
         });
-        document.getElementById('backbtn').addEventListener('click', function() {
-        window.location.href = 'manage-quiz-user.php';
-        });
+    });
     </script>
 </body>
 </html>
