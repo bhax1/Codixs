@@ -1,0 +1,197 @@
+  .color_1 {
+    height: 1600px;
+    width: 1600px;
+    background-image: radial-gradient(closest-side, rgba(235, 235, 235, 0.171), transparent);
+    position: absolute;
+    top: -1100px;
+    left: 20%;
+    z-index: 1;
+  }
+
+  .home {
+    min-height: 100vh;
+    padding: 16% 9% 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-color);
+    z-index: 2;
+  }
+
+  .hero {
+    animation: fadeInAnimation 1s ease-in-out forwards;
+    width: 1500px;
+    height: 100%;
+    padding: 50px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(114, 114, 114, 0.37);
+    z-index: 1;
+
+    overflow: hidden;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+  }
+
+  .hero img {
+    width: 100%;
+    height: auto; 
+    max-width: 500px; 
+  }
+
+  .hero h1 {
+    font-size: 3.3rem;
+    font-weight: 700; 
+    opacity: 0; 
+    animation: fadeInAnimation 1s ease-in-out forwards;
+    transition: .3s;
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .hero h3 {
+    margin: 20px;
+    color: #b6b6b6;
+  }
+
+  .button-19 {
+    min-width: 150px; 
+    max-width: 200px; 
+    height: 50px;
+    appearance: button;
+    background-color: #109226;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: din-round, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+    margin: 20px;
+    outline: none;
+    overflow: visible;
+    padding: 13px 16px;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  
+  .button-19:after {
+    background-clip: padding-box;
+    background-color: #18b941;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    bottom: -4px;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+  }
+  
+  .button-19:main,
+  .button-19:focus {
+    user-select: auto;
+  }
+  
+  .button-19:hover:not(:disabled) {
+    filter: brightness(1.1);
+    -webkit-filter: brightness(1.1);
+  }
+  
+  .button-19:disabled {
+    cursor: auto;
+  }
+  
+  .button-19:active {
+    border-width: 4px 0 0;
+    background: none;
+  }
+  
+  
+
+  /* for Responsive */
+  @media (max-width: 1300px) {
+    .hero {
+      margin-top: 10px;
+      flex-direction: column;
+    }
+}
+
+
+  @media (max-width: 1280px) {
+    .hero h1 {
+      font-size: 3rem;
+      transition: .3s;
+    }
+    
+}
+
+  @media (max-width: 830px) {
+    .hero h1 {
+      transition: .3s;
+    }
+    .color_1 {
+      left: 5%;
+      transition: .3s;
+    }
+    .hero h1 {
+      font-size: 2rem;
+      transition: .3s;
+    }
+}
+
+  @media (max-width: 500px) {
+    .hero-text {
+      width: 100%;
+    }
+
+    .hero h1 {
+      font-size: 1rem;
+      transition: .3s;
+    }
+    .color_1 {
+      left: 10%;
+      transition: .3s;
+    }
+}
+
+/* For Animation  */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeInAnimation {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
