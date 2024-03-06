@@ -20,7 +20,7 @@
             </div>
 
             <?php
-            session_start();
+            session_start(); // Start the session
             
             require('./database.php');
             $emailIdData = array();
@@ -82,12 +82,12 @@
                         echo "</div>";
                     } else {
                         echo "<div class='output' style='text-align: center; margin-top: 80px;'>";
-                        echo "<p class='message'>Verification failed. Please try again.</p>";
+                        echo "<p class='message' style='color: white;'>Verification failed. Please try again.</p>";
                         echo "</div>";
                     }
                 } else {
                     echo "<div class='output' style='text-align: center; margin-top: 80px;'>";
-                    echo "<p class='message'>Failed to retrieve email ID. Please try again.</p>";
+                    echo "<p class='message' style='color: white;>Failed to retrieve email ID. Please try again.</p>";
                     echo "</div>";
                 }
             }
@@ -95,7 +95,7 @@
             if (isset($_POST['back'])){
                 echo "<script>
                 alert('Back to Home Page!');
-                window.location.href = 'index.php'; // Redirect to Admin.php
+                window.location.href = '/Codixs/index.php'; // Redirect to Admin.php
                 </script>";
                 exit();
             }

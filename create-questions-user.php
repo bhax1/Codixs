@@ -463,13 +463,13 @@
                             }
                         });
                     });
-                    $("#backbtn").click(function() {
-                        window.location.href = 'manage-quiz-user.php';
-                    });
-        document.getElementById('dashboardLink').addEventListener('click', function() {
-            window.location.href = 'index-user.php';
         });
-    });
+        document.getElementById('dashboardLink').addEventListener('click', function() {
+        window.location.href = 'index-user.php';
+        });
+        document.getElementById('backbtn').addEventListener('click', function() {
+        window.location.href = 'manage-quiz-user.php';
+        });
     </script>
 </body>
 </html>

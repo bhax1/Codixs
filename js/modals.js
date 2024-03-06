@@ -47,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const heroHeader_1 = document.getElementById("home");
     const navBar_1 = document.querySelector(".navbar");
   
-   
     loginBtns_admin.forEach(function(btn) {
       btn.addEventListener("click", function() {
         loginPopup_admin.style.display = "block";
@@ -81,4 +80,43 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
   });
+
+  //GETTING STARTED BUTTON
+  document.addEventListener("DOMContentLoaded", function() {
+    const loginBtns = document.querySelectorAll(".button-19");
+    const loginPopup2 = document.querySelector(".login_popup");
+    const heroHeader2 = document.getElementById("home");
+    const navBar2 = document.querySelector(".navbar");
   
+    loginBtns.forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        loginPopup2.style.display = "block";
+        heroHeader2.classList.add("blurry");
+        navBar2.classList.add("blurry");
+        document.body.style.overflow = "hidden"; 
+        closeNavbar();
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      });
+    });
+  
+    function isInsideLoginPopup(target) {
+      return loginPopup.contains(target);
+    }
+  
+    function closeLoginPopup() {
+      loginPopup2.style.display = "none";
+      heroHeader2.classList.remove("blurry");
+      navBar2.classList.remove("blurry");
+      document.body.style.overflow = ""; 
+    }
+  
+    window.addEventListener('click', function(event) {
+      const isClickInsideLoginPopup = isInsideLoginPopup(event.target);
+      if (!isClickInsideLoginPopup && !event.target.classList.contains("action_btn_login")) {
+        closeLoginPopup();
+      }
+    });
+  });
