@@ -159,24 +159,18 @@
     <script>
             $(document).ready(function () {
                 $(".play-btn").click(function () {
-                    // Get the data-quiz-lvl and data-question-id attributes from the clicked button
                     var diff = $(this).data("quiz-lvl");
                     var eid = $(this).data("question-id");
 
-                    // Show the modal
                     $("#wantplay").modal("show");
-
-                    // Set the data-quiz-lvl and data-question-id attributes for the confirmPlayQuiz button
                     $("#confirmPlayQuiz").data("quiz-lvl", diff);
                     $("#confirmPlayQuiz").data("question-id", eid);
                 });
 
                 $("#confirmPlayQuiz").click(function () {
-                    // Retrieve data-quiz-lvl and data-question-id attributes from the button
                     var eid = $(this).data("question-id");
                     var diff = $(this).data("quiz-lvl");
 
-                    // Perform the AJAX request
                     $.ajax({
                         type: "POST",
                         url: 'mainQuiz.php',
@@ -193,8 +187,6 @@
                             alert("Error: Unable to fetch total questions.");
                         }
                     });
-
-                    // Hide the modal after the AJAX request
                     $("#wantplay").modal("hide");
                 });
 
@@ -221,6 +213,23 @@
                     }
                 });
             });
+
+                        $(".btn-primary").click(function() {
+                        var logout = 'logout';
+                        $("#modal-3").modal("hide");
+                        window.location.href = 'index.php';
+                        $.ajax({
+                            type: "POST",
+                            url: "php/logout.php",
+                            data: { logout: logout },
+                            dataType: "json",
+                            success: function(response) {
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(xhr.responseText);
+                            }
+                        });
+                    });
 
             document.getElementById('dashboardLink').addEventListener('click', function() {
                 window.location.href = 'index-user.php';

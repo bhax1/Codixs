@@ -446,6 +446,22 @@
                     }
                 });
             });
+            $(".btn-primary").click(function() {
+                        var logout = 'logout';
+                        $("#modal-3").modal("hide");
+                        window.location.href = 'index.php';
+                        $.ajax({
+                            type: "POST",
+                            url: "php/logout.php",
+                            data: { logout: logout },
+                            dataType: "json",
+                            success: function(response) {
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(xhr.responseText);
+                            }
+                        });
+                    });
         });
         document.getElementById('dashboardLink').addEventListener('click', function() {
         window.location.href = 'index-user.php';
