@@ -96,6 +96,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
         // Change background color of the correct choice label to green temporarily
         document.querySelector(`label[for=${corrAns}]`).classList.add('correct');
+
+
+        const isCorrect = selectedValue === corrAns;
+        if (isCorrect) {
+            
+            playSound('correct.wav');
+           
+        } else {
+            streak = 0;
+            playSound('incorrect.wav');
+        }
     
         // Delay before fetching and displaying the next question
         setTimeout(() => {
@@ -250,7 +261,14 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (percentage < 100) {
             comment = "Damn! Now you're cooking!!";
         } else {
+           
             comment = "Sheeeeeeeeeeeesh!";
+            playVideo('heaven.mp4');
+            playSound('Holy Sheesh.mp3');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                document.body.style.overflow = '';
+            }, 11000);
         }
 
         const resultComment = document.getElementById('comment-result');
@@ -285,5 +303,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             })
             .catch(error => console.error('Error saving results:', error));
+    }
+    function playSound(soundName) {
+        const audio = new Audio(`sounds/${soundName}`);
+        audio.play();
+    }
+
+    function playVideo(videoName) {
+        const video = document.createElement('video');
+        video.src = `Vids/${videoName}`;
+        video.autoplay = true;
+        video.loop = true;
+        video.style.position = 'fixed';
+        video.style.width = '100%';
+        video.style.height = '100%';
+        video.style.top = '0';
+        video.style.left = '0';
+        video.style.zIndex = '-1';
+        document.body.appendChild(video);
+    }
+    
+    function stopVideo(videoName) {
+        const video = document.querySelector(`video[src="Vids/${videoName}"]`);
+        if (video) {
+            video.pause();
+            video.parentNode.removeChild(video);
+        }
     }
 });
