@@ -6,11 +6,6 @@
 <html data-bs-theme="light" lang="en">
 
 <head>
-    <script type="text/javascript">
-        function preventBack(){window.history.forward()};
-        setTimeout("preventBack()",0);
-        window.onunload=function(){null;}
-    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Dashboard - Brand</title>

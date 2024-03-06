@@ -334,8 +334,6 @@
             if ($password === $row['Password']) {
                 $_SESSION['id'] = $row['ID'];
                 $_SESSION['name'] = $row['Name'];
-                echo '<script>alert("' . $_SESSION['name'] . '")</script>';
-                echo '<script>alert("' . $_SESSION['id'] . '")</script>';
                 echo '<script>alert("Login Successfully!"); window.location.href = "index-user.php";</script>';
                 exit();
             } else {
