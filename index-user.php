@@ -91,19 +91,35 @@
                                         <tr>
                                             <th class="text-center">Username</th>
                                             <th class="text-center">Points</th>
+                                            <th class="text-center">Ranking</th>
                                         </tr>
                                     </thead>
                                     <tbody id="table-body">
-                                        <?php
-                                            
-                                        ?>
+                                    <?php
+                                        $conn = new mysqli('localhost', 'root', '', 'codixs');
+                                        if ($conn->connect_error) {
+                                            die("Connection failed: " . $conn->connect_error);
+                                        } else {
+                                            $select = mysqli_query($conn, "SELECT Name, SUM(points) as totalpoints FROM quiz_results GROUP BY Name ORDER BY totalpoints DESC");
 
-                                        <tr>
-                                            <td class="d-xl-flex align-items-xl-center" style="margin-left: -5px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person-fill" style="font-size: 20px;margin-right: 5px;margin-left: 5px;">
-                                                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"></path>
-                                                </svg>Kyrie Irving</td>
-                                            <td class="text-center">1000</td>
-                                        </tr>
+                                            $rank = 1;
+
+                                            while ($row = mysqli_fetch_assoc($select)) {
+                                                $name = $row['Name'];
+                                                $totalPoints = $row['totalpoints'];
+
+                                                echo '<tr>                                                       
+                                                    <td class="text-center">' . $name . '</td>
+                                                    <td class="text-center">' . $totalPoints . '</td>
+                                                    <td class="text-center">' . $rank . '</td>
+                                                    </tr>';
+
+                                                $rank++;
+                                            }
+
+                                            $conn->close();
+                                        }
+                                        ?>
                                     </tbody>
                                     <tfoot>
 

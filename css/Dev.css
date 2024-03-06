@@ -7,6 +7,7 @@
         align-items: center;
         justify-content: center;
         min-height: 100vh;
+        z-index: 100;
 
     }
 
@@ -17,6 +18,7 @@
 
     #right {
         color: black;
+        z-index: 100;
       }
 
     .wrapper {
@@ -98,6 +100,7 @@
         width: 148px;
         border-radius: 50%;
     }
+
     .card .img img {
         width: 140px;
         height: 140px;

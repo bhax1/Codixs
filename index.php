@@ -32,7 +32,7 @@
 
 
 
-  <!-- For Modals (User) -->
+  <!-- For User -->
   <div class="login_popup">
     <div class="container" id="container">
       <div class="form-container sign-up-container">
@@ -53,7 +53,7 @@
           <span>or use your account</span>
           <input type="email" name="email" placeholder="Email" />
           <input type="password" name="password" placeholder="Password" />
-          <a href="recover.php" onclick="alert('Welcome to Recovery Account!'); setTimeout(function(){ window.location.href = 'recover.php'; }, 100);">Forgot Password? and Username?</a>
+          <a href="recovery.php" onclick="alert('Welcome to Recovery Account!'); setTimeout(function(){ window.location.href = 'recovery.php'; }, 100);">Forgot Password? and Username?</a>
           <button type="submit" name="signinPop">Sign In</button>
         </form>
       </div>
@@ -76,46 +76,22 @@
     </div>
   </div>
 
-<!-- For Modals (Admin) -->
-        <div class="row">
-            <div class="col-lg-3 col-md-2"></div>
-            <div class="col-lg-6 col-md-8 login-box">
-                <div class="col-lg-12 login-key">
-                    <i class="fa-solid fa-key" aria-hidden="true"></i>
-                </div>
-                <div class="col-lg-12 login-title">
-                    ADMIN PANEL
-                </div>
 
-                <div class="col-lg-12 login-form">
-                    <div class="col-lg-12 login-form">
-                        <form>
-                            <div class="form-group">
-                                <label class="form-control-label">USERNAME</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-control-label">PASSWORD</label>
-                                <input type="password" class="form-control" i>
-                            </div>
-
-                            <div class="col-lg-12 loginbttm">
-                                <div class="col-lg-6 login-btm login-text">
-                                    <!-- Error Message -->
-                                </div>
-                                <div class="col-lg-6 login-btm login-button">
-                                    <button id="" type="submit" class="ghost">LOGIN</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-2"></div>
-            </div>
-        </div>
-
-
-
+<!-- For Admin -->
+<div class="login-box">
+  <h2>Login</h2>
+  <form action="index.php" method="POST">
+    <div class="user-box">
+      <input type="text" name="username" >
+      <label>Username</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="password" >
+      <label>Password</label>
+    </div>
+    <input class="submit" type="submit" name="submit" value="Login">
+  </form>
+</div>
 
   <!-- For Navbar -->
   <header>
@@ -126,11 +102,11 @@
         <li><a href="#page1">About</a></li>
         <li><a href="#page2">Devs</a></li>
         <li><a href="#" class="action_btn_login" id="login">Log In</a></li>
-        <li><a href="#" class="action_btn_login" id="login">Admin</a></li>
+        <li><a href="#" class="action_btn_admin" id="login">Admin</a></li>
       </ul>
       <div class="main">
         <a class="action_btn_login" id="login">Log In</a>
-        <a class="action_btn_login" id="login">Admin</a>
+        <a class="action_btn_admin" id="login">Admin</a>
         <div class="fa-solid fa-bars" id="menu_icon"></div>
       </div>
     </nav>
@@ -138,10 +114,7 @@
 
 
   <!-- Sections -->
-
-
   <section id="home" class="home">
-    <div class="color_1"></div>
     <div class="hero">
       <img src="img/Coding_Language_free_vector_icons_designed_by_Flat_Icons-removebg-preview.png" alt="">
       <div class="hero-text">
@@ -168,7 +141,6 @@
 
   <section id="page2" class="page2">
     <div class="Devs">
-      <div class="color_3"></div>
       <h2 class="headings">Developers</h2>
       <div class="wrapper" data-aos="fade-up">
         <i id="left" class="fa-solid fa-angle-left"></i>
@@ -206,6 +178,9 @@
 
 
   <!-- Cursor -->
+  <div id="blob"></div>
+  <!-- <div id="blur"></div> -->
+
   <div class="cursor">
     <div class="circle"></div>
     <div class="circle"></div>
@@ -346,6 +321,36 @@
         echo '<script>alert("Please fill in all fields.");</script>';
     }
   }
+
+  if(isset($_POST['submit'])){
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    if (!empty($username) && !empty($password)) {
+        $query = "SELECT * FROM `list` WHERE `ID` = 0 AND Name = '$username'";
+        $result = mysqli_query($connection, $query);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            if ($password === $row['Password']) {
+                $_SESSION['id'] = $row['ID'];
+                $_SESSION['name'] = $row['Name'];
+                echo "<script>
+                    alert('Welcome Master!');
+                    window.location.href = 'index-admin.php'; 
+                    </script>";
+                exit();
+            } else {
+                echo '<script>alert("Wrong password. Please try again.");</script>';
+            }
+        } else {
+          echo "<script>alert('Incorrect Username!');</script>";
+        }
+    } else {
+        echo '<script>alert("Please fill in all fields.");</script>';
+    }
+  }
   ?>
 </body>
+
 </html>

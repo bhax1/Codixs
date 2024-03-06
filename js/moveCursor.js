@@ -1,3 +1,5 @@
+
+//Circle
 const coords = { x: 0, y: 0 };
 const circles = document.querySelectorAll(".circle");
 
@@ -39,3 +41,23 @@ function animateCircles() {
 }
 
 animateCircles();
+
+
+// Blob
+const blob = document.getElementById("blob");
+const blur = document.getElementById("blur");
+
+window.onpointermove = event => {
+  const { clientX, clientY } = event;
+
+  const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
+  const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+  const adjustedX = clientX + scrollX;
+  const adjustedY = clientY + scrollY;
+
+  blob.animate(
+    { left: `${adjustedX}px`, top: `${adjustedY}px` },
+    { duration: 2000, fill: "forwards" }
+  );
+};

@@ -26,17 +26,10 @@
                     <div class="sidebar-brand-text mx-3"><span>cODIXSGO</span></div>
                 </a>
                 <hr class="sidebar-divider my-0">
-                <ul class="navbar-nav text-light" id="accordionSidebar">
+                <ul class="navbar-nav text-light" id="accordionSidebar">        
                 <li class="nav-item">
-                    <a id="dashboardLink" class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" data-bs-target="#offcanvas-1" data-bs-toggle="offcanvas">
-                        <i class="icon ion-speedometer d-xl-flex" style="font-size: 25px;margin-right: 10px;margin-left: 10px;"></i>
-                        <span class="d-xl-flex" style="font-size: 15px;">Dashboard</span>
-                    </a>
-                </li>   
-                <li class="nav-item">
-                        <a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" href="manage-account.html"><i class="icon ion-android-person" style="font-size: 25px;margin-right: 10px;margin-left: 10px;"></i><span style="font-size: 15px;">Manage Accounts</span></a>
-                        <a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" href="manage-quiz.php"><i class="icon ion-android-create" style="font-size: 25px;margin-right: 10px;margin-left: 10px;"></i><span style="font-size: 15px;">Manage Quiz</span></a>
-                        <a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" data-bs-target="#modal-1" data-bs-toggle="modal"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-plus-lg" style="margin-right: 10px;margin-left: 10px;font-size: 20px;"><path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"></path></svg><span style="font-size: 15px;">Create Quiz</span></a>
+                    <a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" href="index-admin.php"><i class="icon ion-android-create" style="font-size: 25px;margin-right: 10px;margin-left: 10px;"></i><span style="font-size: 15px;">Manage Quiz</span></a>
+                    <a class="nav-link d-md-flex d-lg-flex d-xl-flex align-items-md-center align-items-lg-center align-items-xl-center" data-bs-target="#modal-1" data-bs-toggle="modal"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-plus-lg" style="margin-right: 10px;margin-left: 10px;font-size: 20px;"><path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"></path></svg><span style="font-size: 15px;">Create Quiz</span></a>
                 </ul>
             </div>
         </nav>
@@ -81,7 +74,13 @@
                             <button id="backbtn" class="btn btn-primary d-xl-flex" type="button" style="margin-right: 10px; background: #181818; border-color: #181818;">Back to Manage</button>
                             <button id="addQuestionButton" class="btn btn-primary d-xl-flex" type="button" style="background: #181818; border-color: #181818;">Add Question</button>
                             <button id="deletequiz" class="btn btn-primary d-xl-flex" type="button" style="margin-left: 10px; background: #181818; border-color: #181818;">Delete Quiz</button>
-                            <button id="visibility" class="btn btn-primary d-xl-flex" type="button" style="margin-left: 10px; background: #181818; border-color: #181818;">Change Visibility</button>
+                            <?php
+                                $conn = new mysqli('localhost', 'root', '', 'codixs');
+                                $select = mysqli_query($conn, "SELECT * FROM quiz WHERE eid = '" . $_SESSION['eid'] . "'");
+                                while ($row = mysqli_fetch_array($select)) {
+                                    echo '<button id="changevisibility" class="btn btn-primary d-xl-flex" type="button" style="margin-left: 10px; background: #181818; border-color: #181818;">'. $row['visibility'] .'</button>';
+                                }
+                            ?>
                         </div>
                             <div class="flex-column">
                             <div class="card">
@@ -322,7 +321,7 @@
                     dataType: "json",
                     success: function (response) {
                         alert(response);
-                        window.location.href = 'manage-quiz.php';
+                        window.location.href = 'manage-quiz-user.php';
                     },
                     error: function (xhr, status, error) {
                         alert(response);
@@ -424,11 +423,8 @@
                 });
             });
         });
-        document.getElementById('dashboardLink').addEventListener('click', function() {
-        window.location.href = 'index-admin.html';
-        });
         document.getElementById('backbtn').addEventListener('click', function() {
-        window.location.href = 'manage-quiz.php';
+        window.location.href = 'index-admin.php';
         });
     </script>
 </body>
