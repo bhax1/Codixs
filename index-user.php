@@ -196,7 +196,7 @@
                     }
                 });
             });
-                        $("#logoutbtn").click(function() {
+            $("#logoutbtn").click(function() {
                         var logout = 'logout';
                         $("#modal-3").modal("hide");
                         window.location.href = 'index.php';
@@ -211,6 +211,8 @@
                                 console.error(xhr.responseText);
                             }
                         });
+                
+                });
         });
         document.getElementById('dashboardLink').addEventListener('click', function() {
             window.location.href = 'index-user.html';
