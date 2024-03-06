@@ -2,19 +2,20 @@
     session_start();
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['eid'])) {
-            $_SESSION['play-eid'] = $_POST['eid'];
-            $_SESSION['play-diff'] = $_POST['diff'];
-    
             $conn = new mysqli('localhost', 'root', '', 'codixs');
+
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             } else {
                 $stmt = $conn->prepare("SELECT COUNT(*) AS total FROM questions WHERE eid = ?");
-                $stmt->bind_param("s", $_SESSION['play-eid']);
+                $stmt->bind_param("s", $_POST['eid']);
                 $stmt->execute();
                 $result = $stmt->get_result();
                 $row = $result->fetch_assoc();
                 $totalquestions = $row['total'];
+
+                $_SESSION['play-eid'] = $_POST['eid'];
+                $_SESSION['play-diff'] = $_POST['diff'];
                 $_SESSION['total'] = $totalquestions;
     
                 echo json_encode(['totalquestions' => $totalquestions]); // Return totalquestions in the response

@@ -260,12 +260,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const continueBtn = document.getElementById('continue-btn');
     continueBtn.addEventListener('click', function () {
         saveResultsToDatabase(score, points);
-        alert('Quiz has been saved');
         window.location.href = 'take-quiz.php';
     });
 
-    function saveResultsToDatabase(eid, score, totalQuestions, points) {
-        fetch('save_results.php', {
+    function saveResultsToDatabase(score, points) {
+        fetch('php/save_results.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -273,7 +272,18 @@ document.addEventListener('DOMContentLoaded', function() {
             body: `score=${score}&points=${points}`,
         })
             .then(response => response.text())
-            .then(data => console.log(data))
+            .then(data => {
+                console.log(data); // Log the response data to the console
+    
+                // Check if the response indicates success
+                if (data === 'Results saved successfully') {
+                    alert('Results saved successfully'); // Display an alert
+                } else if (data === 'Record already exists') {
+                    alert('Record already exists'); // Display an alert for existing record
+                } else {
+                    console.error('Error saving results:', data); // Log the error message
+                }
+            })
             .catch(error => console.error('Error saving results:', error));
     }
 });

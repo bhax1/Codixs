@@ -67,10 +67,10 @@
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4">Manage Quiz</h3>
+                    <h3 class="text-dark mb-4">Test your skills!</h3>
                     <div class="card shadow">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold" style="--bs-primary: #181818;--bs-primary-rgb: 24,24,24;">Here are the list of the quiz you created</p>
+                            <p class="text-primary m-0 fw-bold" style="--bs-primary: #181818;--bs-primary-rgb: 24,24,24;">Quiz List</p>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -158,36 +158,46 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     
     <script>
-        $(document).ready(function () {
-            $(".play-btn").click(function () {
-                $("#confirmPlayQuiz").attr("data-question-id", $(this).data("question-id"));
-                $("#confirmPlayQuiz").attr("data-quiz-lvl", $(this).data("quiz-lvl"));
-                $("#wantplay").modal("show");
-            });
+            $(document).ready(function () {
+                $(".play-btn").click(function () {
+                    // Get the data-quiz-lvl and data-question-id attributes from the clicked button
+                    var diff = $(this).data("quiz-lvl");
+                    var eid = $(this).data("question-id");
 
-            $("#confirmPlayQuiz").click(function () {
-                var eid = $(this).data("question-id");
-                var diff = $(this).data("quiz-lvl");
+                    // Show the modal
+                    $("#wantplay").modal("show");
 
-                $.ajax({
-                    type: "POST",
-                    url: 'mainQuiz.php',
-                    data: { eid: eid, diff: diff },
-                    dataType: "json",
-                    success: function (response) {
-                        if (response.totalquestions && response.totalquestions > 0) {
-                            window.location.href = 'mainQuiz.php';
-                        } else {
-                            alert("This quiz is empty. Try other quiz.");
-                        }
-                    },
-                    error: function () {
-                        alert("Error: Unable to fetch total questions.");
-                    }
+                    // Set the data-quiz-lvl and data-question-id attributes for the confirmPlayQuiz button
+                    $("#confirmPlayQuiz").data("quiz-lvl", diff);
+                    $("#confirmPlayQuiz").data("question-id", eid);
                 });
 
-                $("#wantplay").modal("hide");
-            });
+                $("#confirmPlayQuiz").click(function () {
+                    // Retrieve data-quiz-lvl and data-question-id attributes from the button
+                    var eid = $(this).data("question-id");
+                    var diff = $(this).data("quiz-lvl");
+
+                    // Perform the AJAX request
+                    $.ajax({
+                        type: "POST",
+                        url: 'mainQuiz.php',
+                        data: { eid: eid, diff: diff },
+                        dataType: "json",
+                        success: function (response) {
+                            if (response.totalquestions && response.totalquestions > 0) {
+                                window.location.href = 'mainQuiz.php';
+                            } else {
+                                alert("This quiz is empty. Try another quiz.");
+                            }
+                        },
+                        error: function () {
+                            alert("Error: Unable to fetch total questions.");
+                        }
+                    });
+
+                    // Hide the modal after the AJAX request
+                    $("#wantplay").modal("hide");
+                });
 
             $("#save-quiz-btn").click(function(){
                 var quizName = $("input[name='quiz-name']").val();

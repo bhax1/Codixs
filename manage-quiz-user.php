@@ -200,6 +200,7 @@
                 });
             });
 
+            /*
             $(document).ready(function() {
                 $(".btn-primary").click(function() {
                     var logout = 'logout';
@@ -218,6 +219,7 @@
                     });
                 });
             });
+            */
 
         document.getElementById('dashboardLink').addEventListener('click', function() {
             window.location.href = 'index-user.php';
