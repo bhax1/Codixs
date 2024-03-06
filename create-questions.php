@@ -321,7 +321,7 @@
                     dataType: "json",
                     success: function (response) {
                         alert(response);
-                        window.location.href = 'manage-quiz-user.php';
+                        window.location.href = 'index-admin.php';
                     },
                     error: function (xhr, status, error) {
                         alert(response);
