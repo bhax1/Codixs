@@ -334,6 +334,7 @@
             });
 
             $(".edit-btn").click(function () {
+                $("#modalEditButton").attr("data-question-id", $(this).data("question-id"));
                 var qid = $(this).data("question-id");
                 $.ajax({
                     type: "POST",
@@ -374,7 +375,8 @@
                     var answer = $("#editModal :radio[name^='is_right']:checked").val();
                     var qid = $(this).data("question-id");
                     var eid = <?php echo json_encode($_SESSION['eid']); ?>;
-                    alert(qid);
+
+                    alert(promptquestion);
                     $.ajax({
                         type: "POST",
                         url: "php/edit-questions.php",
