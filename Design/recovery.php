@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="box">
-        <form method="POST" action="recover.php">
+        <form method="POST" action="recovery.php">
             <h2 class="glow">Recovery Account</h2>
             <div class="inputBox">
                 <input type="email" name="email" placeholder="Enter Your Email" />
@@ -95,7 +95,7 @@
             if (isset($_POST['back'])){
                 echo "<script>
                 alert('Back to Home Page!');
-                window.location.href = '/project/index.php'; // Redirect to Admin.php
+                window.location.href = '/Codixs/Design/index.php'; // Redirect to Admin.php
                 </script>";
                 exit();
             }

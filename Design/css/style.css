@@ -78,6 +78,10 @@ body {
 .nav_links .action_btn_login {
     display: none;
 }
+/*  */
+.nav_links .action_btn_admin {
+    display: none;
+}
 
 .nav_links a {
     color: var(--text-color);
@@ -122,10 +126,19 @@ body {
 .main a.action_btn_login {
     background: var(--login-color);
     cursor: pointer; 
-    
+}
+/*  */
+.main a.action_btn_admin {
+    background: var(--login-color);
+    cursor: pointer; 
 }
 
 .main a.action_btn_login:hover {
+    background: var(--main-color);
+    transition: all .50s ease; 
+}
+/*  */
+.main a.action_btn_admin:hover {
     background: var(--main-color);
     transition: all .50s ease; 
 }
@@ -165,8 +178,16 @@ body {
     .main .action_btn_login {
         display: none;
     }
+/*  */
+    .main .action_btn_admin {
+        display: none;
+    }
 
     .nav_links .action_btn_login {
+        display: block;
+    }
+/*  */
+    .nav_links .action_btn_admin {
         display: block;
     }
 
@@ -208,8 +229,22 @@ body {
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         margin-bottom: 20px;
     }
+/*  */
+    .nav_links .action_btn_admin {
+        width: 100%;
+        display: flex;
+        padding: 15px 80px ;
+        border-radius: 15px;
+        background-color: var(--main-color);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        margin-bottom: 20px;
+    }
 
     .nav_links .action_btn_login:hover {
+        color: black;
+    }
+/*  */
+    .nav_links .action_btn_admin:hover {
         color: black;
     }
     

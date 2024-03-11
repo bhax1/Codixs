@@ -69,18 +69,20 @@
 
 
 <!-- For Admin -->
-
-
-
-
-
-
-
-
-
-
-
-
+<div class="login-box">
+  <h2>Login</h2>
+  <form action="index.php" method="POST">
+    <div class="user-box">
+      <input type="text" name="email" >
+      <label>Username</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="password" >
+      <label>Password</label>
+    </div>
+    <input class="submit" type="submit" name="submit" value="Login">
+  </form>
+</div>
 
   <!-- For Navbar -->
   <header>
@@ -91,11 +93,11 @@
         <li><a href="#page1">About</a></li>
         <li><a href="#page2">Devs</a></li>
         <li><a href="#" class="action_btn_login" id="login">Log In</a></li>
-        <li><a href="#" class="action_btn_login" id="login">Admin</a></li>
+        <li><a href="#" class="action_btn_admin" id="login">Admin</a></li>
       </ul>
       <div class="main">
         <a class="action_btn_login" id="login">Log In</a>
-        <a class="action_btn_login" id="login">Admin</a>
+        <a class="action_btn_admin" id="login">Admin</a>
         <div class="fa-solid fa-bars" id="menu_icon"></div>
       </div>
     </nav>
@@ -259,7 +261,7 @@
 
   <?php
   require('./database.php');
-
+  
   if (isset($_POST['signup'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -315,6 +317,36 @@
     }
   }
   ?>
+
+
+
+<?php
+
+// Check if there is a POST request from the form
+if(isset($_POST['submit'])){
+    $email = strtolower($_POST['email']);
+    $password = strtolower($_POST['password']);
+    
+    // Check if email and password are correct
+    if($email == "admin@gmail.com" && $password == "123456" ){
+        echo "<script>
+        alert('Welcome Master!');
+        window.location.href = '/index-admin.html'; 
+        </script>";
+        exit();
+    } else {
+        // Perform actions for wrong email or password
+        if(empty($email) || empty($password)){
+            echo "<script>alert('Please input both email and password!');</script>";
+        } else if ($email != "admin@gmail.com"){
+            echo "<script>alert('Incorrect Email!');</script>";
+        } else if ($password != "123456"){
+            echo "<script>alert('Incorrect Password!');</script>";
+        }
+    }
+}
+?>
+
 
 </body>
 
