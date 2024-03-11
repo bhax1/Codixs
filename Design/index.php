@@ -70,7 +70,7 @@
 
 <!-- For Admin -->
 <div class="login-box">
-  <h2>Admin Login</h2>
+  <h2>Admin Login 🔑</h2>
   <form action="index.php" method="POST">
     <div class="user-box">
       <input type="text" name="email" >
