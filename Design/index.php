@@ -70,7 +70,7 @@
 
 <!-- For Admin -->
 <div class="login-box">
-  <h2>Login</h2>
+  <h2>Admin Login</h2>
   <form action="index.php" method="POST">
     <div class="user-box">
       <input type="text" name="email" >
@@ -110,11 +110,8 @@
       <img src="img/Coding_Language_free_vector_icons_designed_by_Flat_Icons-removebg-preview.png" alt="">
       <div class="hero-text">
         <h1><span class="auto-type"></span></h1>
-        <h3><span>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Tempore, ipsum! Maxime provident praesentium ea incidunt atque
-            quo voluptate dolorem doloribus beatae, perferendis adipisci veniam
-            iure unde cum explicabo commodi quasi?</span></h3>
-        <button class="button-19" role="button">Getting Started</button>
+        <h3><span>Welcome to CodixsGo! Elevate your coding skills with tailored quizzes. Join our community today and start your journey to mastery.</span></h3>
+        <button class="button-19 action_btn_login" id="gettingStarted" role="button">Getting Started</button>
       </div>
     </div>
   </section>
@@ -123,43 +120,59 @@
 
 
   <section id="page1" class="page1">
-    <div class="About">
+    <div class="About" data-aos="fade-up">
       <h2 class="headings">About</h2>
+      <div class="about-text">
+      <h2><span>
+      Welcome to CodixsGo, where coding isn't just a solitary endeavor - 
+      it's a collaborative journey. Tailored for beginners and seasoned developers alike,
+       our platform offers a diverse range of quizzes covering various programming languages and topics. 
+       What sets us apart is our unique feature allowing users to create their quizzes, 
+       fostering a collaborative learning environment where coding enthusiasts come together to share knowledge 
+       and insights. Join us today to start your journey of learning, growth, and endless possibilities in the world of coding.
+      </span></h2>
+
+      </div>
     </div>
   </section>
 
 
 
   <section id="page2" class="page2">
-    <div class="Devs">
+    <div class="Devs" data-aos="fade-up">
       <h2 class="headings">Developers</h2>
-      <div class="wrapper" data-aos="fade-up">
+      <div class="wrapper">
         <i id="left" class="fa-solid fa-angle-left"></i>
         <ul class="carousel">
           <li class="card">
             <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
             <h2>Mico</h2>
-            <span>Web Developer</span>
+            <span>Front-End Developer</span>
+            <span>⭐⭐⭐</span>
           </li>
           <li class="card">
             <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
             <h2>Joshua</h2>
-            <span>Web Developer</span>
+            <span>Full Stack Developer</span>
+            <span>⭐⭐⭐</span>
           </li>
           <li class="card">
             <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
             <h2>Lawrence</h2>
-            <span>Web Developer</span>
+            <span>Front-End Developer</span>
+            <span>⭐⭐⭐</span>
           </li>
           <li class="card">
             <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
             <h2>Augustine</h2>
-            <span>Web Developer</span>
+            <span>Back-End Developer</span>
+            <span>⭐⭐⭐⭐</span>
           </li>
           <li class="card">
             <div class="img"><img src="img/user.png" alt="img" draggable="false"></div>
             <h2>Bob</h2>
-            <span>Web Developer</span>
+            <span>Full Stack Developer</span>
+            <span>⭐⭐⭐⭐⭐</span>
           </li>
         </ul>
         <i id="right" class="fa-solid fa-angle-right"></i>
